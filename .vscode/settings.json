@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    "*.embeddedhtml": "html",
+    "Attr.C": "cpp",
+    "XMLSerializer.C": "cpp",
+    "Document.C": "cpp",
+    "Test.C": "cpp",
+    "XMLTokenizer.C": "cpp"
+  }
+}

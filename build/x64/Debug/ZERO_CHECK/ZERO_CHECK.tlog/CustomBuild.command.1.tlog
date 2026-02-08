@@ -1,0 +1,10 @@
+^E:\2026-SPRING-SOFTWARE-PATTERNS\BUILD\CMAKEFILES\DD8C8FBE638C7948C0FD04E8AFA1D55C\GENERATE.STAMP.RULE
+setlocal
+"D:\Program Files\CMake\bin\cmake.exe" -SE:/2026-spring-software-patterns/src -BE:/2026-spring-software-patterns/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/2026-spring-software-patterns/build/Patterns.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
