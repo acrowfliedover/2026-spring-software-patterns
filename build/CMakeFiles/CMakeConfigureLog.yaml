@@ -2,27 +2,240 @@
 ---
 events:
   -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineSystem.cmake:12 (find_program)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_UNAME"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "uname"
+    candidate_directories:
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/"
+      - "/Users/lfan/.bun/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/"
+    searched_directories:
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/uname"
+      - "/Users/lfan/.bun/bin/uname"
+      - "/opt/homebrew/bin/uname"
+      - "/opt/homebrew/sbin/uname"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/uname"
+      - "/usr/local/bin/uname"
+      - "/System/Cryptexes/App/usr/bin/uname"
+    found: "/usr/bin/uname"
+    search_context:
+      ENV{PATH}:
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
+  -
     kind: "message-v1"
     backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineSystem.cmake:212 (message)"
       - "CMakeLists.txt:2 (project)"
     message: |
-      The system is: Windows - 10.0.19045 - AMD64
+      The system is: Darwin - 24.6.0 - arm64
   -
     kind: "find-v1"
     backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeUnixFindMake.cmake:5 (find_program)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_MAKE_PROGRAM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "gmake"
+      - "make"
+      - "smake"
+    candidate_directories:
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/"
+      - "/Users/lfan/.bun/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/"
+    searched_directories:
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/gmake"
+      - "/Users/lfan/.bun/bin/gmake"
+      - "/opt/homebrew/bin/gmake"
+      - "/opt/homebrew/sbin/gmake"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/gmake"
+      - "/usr/local/bin/gmake"
+      - "/System/Cryptexes/App/usr/bin/gmake"
+      - "/usr/bin/gmake"
+      - "/bin/gmake"
+      - "/usr/sbin/gmake"
+      - "/sbin/gmake"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/gmake"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/gmake"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/gmake"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/gmake"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/make"
+      - "/Users/lfan/.bun/bin/make"
+      - "/opt/homebrew/bin/make"
+      - "/opt/homebrew/sbin/make"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/make"
+      - "/usr/local/bin/make"
+      - "/System/Cryptexes/App/usr/bin/make"
+    found: "/usr/bin/make"
+    search_context:
+      ENV{PATH}:
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompiler.cmake:73 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:64 (_cmake_find_compiler)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER"
+    description: "C compiler"
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "cc"
+      - "gcc"
+      - "cl"
+      - "bcc"
+      - "xlc"
+      - "icx"
+      - "clang"
+    candidate_directories:
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/"
+      - "/Users/lfan/.bun/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/"
+    searched_directories:
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/cc"
+      - "/Users/lfan/.bun/bin/cc"
+      - "/opt/homebrew/bin/cc"
+      - "/opt/homebrew/sbin/cc"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/cc"
+      - "/usr/local/bin/cc"
+      - "/System/Cryptexes/App/usr/bin/cc"
+    found: "/usr/bin/cc"
+    search_context:
+      ENV{PATH}:
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
       - "CMakeLists.txt:2 (project)"
     mode: "file"
     variable: "src_in"
     description: "Path to a file."
     settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
       CMAKE_FIND_USE_CMAKE_PATH: true
       CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
       CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
@@ -31,893 +244,850 @@ events:
     names:
       - "CMakeCCompilerId.c.in"
     candidate_directories:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/"
-    found: "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCCompilerId.c.in"
+      - "/opt/homebrew/share/cmake/Modules/"
+    found: "/opt/homebrew/share/cmake/Modules/CMakeCCompilerId.c.in"
     search_context:
       ENV{PATH}:
-        - "E:\\Python\\Scripts\\"
-        - "E:\\Python\\"
-        - "C:\\Program Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin"
-        - "C:\\Windows\\system32"
-        - "C:\\Windows"
-        - "C:\\Windows\\System32\\Wbem"
-        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\Windows\\System32\\OpenSSH\\"
-        - "D:\\Matlab\\runtime\\win64"
-        - "D:\\Matlab\\bin"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
-        - "C:\\Program Files\\dotnet\\"
-        - "E:\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\ProgramData\\chocolatey\\bin"
-        - "D:\\gradle-8.6-bin\\gradle-8.6\\bin"
-        - "D:\\aws\\"
-        - "D:\\Windows Kits\\10\\Windows Performance Toolkit\\"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "D:\\Program Files\\Git LFS"
-        - "C:\\Program Files\\GitHub CLI\\"
-        - "D:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\leofa\\AppData\\Local\\GitHubDesktop\\bin"
-        - "C:\\Users\\leofa\\.dotnet\\tools"
-        - "E:\\Microsoft VS Code\\bin"
-        - "E:\\Flush\\flutter\\bin"
-        - "E:\\PHP"
-        - "C:\\Users\\leofa\\AppData\\Roaming\\npm"
-        - "E:\\Git\\usr\\bin"
-        - "C:\\Program Files\\Android\\jdk\\jdk-8.0.302.8-hotspot\\jdk8u302-b08\\jre\\bin"
-        - "E:\\mongosh\\mongosh-2.2.12-win32-x64\\bin"
-        - "E:\\mongosh\\mongodb-database-tools-windows-x86_64-100.9.5\\bin"
-        - "D:\\aws"
-        - "D:\\aws\\awscli"
-        - "D:\\texlive\\2024\\bin\\windows"
-        - "D:\\cygwin64\\bin"
-        - "D:\\Programs\\cursor\\resources\\app\\bin"
-        - "D:\\msys64\\ucrt64\\bin"
-        - "D:\\msys64"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "message-v1"
     backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
       - "CMakeLists.txt:2 (project)"
     message: |
       Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
-      Compiler:  
+      Compiler: /usr/bin/cc 
       Build flags: 
       Id flags:  
       
       The output was:
       0
-      MSBuild version 17.12.12+1cce77968 for .NET Framework
-      Build started 2/7/2026 3:48:46 PM.
-      
-      Project "E:\\2026-spring-software-patterns\\build\\CMakeFiles\\4.2.3\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
-      PrepareForBuild:
-        Creating directory "Debug\\".
-        Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-        Creating directory "Debug\\CompilerIdC.tlog\\".
-      InitializeBuildStatus:
-        Creating "Debug\\CompilerIdC.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-        Touching "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
-      ClCompile:
-        C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TC /FC /errorReport:queue CMakeCCompilerId.c
-        CMakeCCompilerId.c
-      Link:
-        C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X64 Debug\\CMakeCCompilerId.obj
-        CompilerIdC.vcxproj -> E:\\2026-spring-software-patterns\\build\\CMakeFiles\\4.2.3\\CompilerIdC\\CompilerIdC.exe
-      PostBuildEvent:
-        for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
-        :VCEnd
-        CMAKE_C_COMPILER=C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.42.34433\\bin\\Hostx64\\x64\\cl.exe
-      FinalizeBuildStatus:
-        Deleting file "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
-        Touching "Debug\\CompilerIdC.tlog\\CompilerIdC.lastbuildstate".
-      Done Building Project "E:\\2026-spring-software-patterns\\build\\CMakeFiles\\4.2.3\\CompilerIdC\\CompilerIdC.vcxproj" (default targets).
-      
-      Build succeeded.
-          0 Warning(s)
-          0 Error(s)
-      
-      Time Elapsed 00:00:04.33
       
       
-      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
       
-      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
-      
-      The C compiler identification is MSVC, found in:
-        E:/2026-spring-software-patterns/build/CMakeFiles/4.2.3/CompilerIdC/CompilerIdC.exe
+      The C compiler identification is AppleClang, found in:
+        /Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/4.2.3/CompilerIdC/a.out
       
   -
-    kind: "find-v1"
+    kind: "message-v1"
     backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:103 (__resolve_linker_path)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:290 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
       - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "_CMAKE_TOOL_WITH_PATH"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "link"
-    candidate_directories:
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/"
-      - "E:/Python/Scripts/"
-      - "E:/Python/"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "D:/Matlab/runtime/win64/"
-      - "D:/Matlab/bin/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/"
-      - "C:/Program Files/dotnet/"
-      - "E:/Git/cmd/"
-      - "C:/Program Files/nodejs/"
-      - "C:/ProgramData/chocolatey/bin/"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/"
-      - "D:/aws/"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/"
-      - "D:/Program Files/Git LFS/"
-      - "C:/Program Files/GitHub CLI/"
-      - "D:/Program Files/CMake/bin/"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/"
-      - "C:/Users/leofa/.dotnet/tools/"
-      - "E:/Microsoft VS Code/bin/"
-      - "E:/Flush/flutter/bin/"
-      - "E:/PHP/"
-      - "C:/Users/leofa/AppData/Roaming/npm/"
-      - "E:/Git/usr/bin/"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/"
-      - "D:/aws/awscli/"
-      - "D:/texlive/2024/bin/windows/"
-      - "D:/cygwin64/bin/"
-      - "D:/Programs/cursor/resources/app/bin/"
-      - "D:/msys64/ucrt64/bin/"
-      - "D:/msys64/"
-    searched_directories:
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/link.com"
-    found: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/link.exe"
-    search_context:
-      ENV{PATH}:
-        - "E:\\Python\\Scripts\\"
-        - "E:\\Python\\"
-        - "C:\\Program Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin"
-        - "C:\\Windows\\system32"
-        - "C:\\Windows"
-        - "C:\\Windows\\System32\\Wbem"
-        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\Windows\\System32\\OpenSSH\\"
-        - "D:\\Matlab\\runtime\\win64"
-        - "D:\\Matlab\\bin"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
-        - "C:\\Program Files\\dotnet\\"
-        - "E:\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\ProgramData\\chocolatey\\bin"
-        - "D:\\gradle-8.6-bin\\gradle-8.6\\bin"
-        - "D:\\aws\\"
-        - "D:\\Windows Kits\\10\\Windows Performance Toolkit\\"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "D:\\Program Files\\Git LFS"
-        - "C:\\Program Files\\GitHub CLI\\"
-        - "D:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\leofa\\AppData\\Local\\GitHubDesktop\\bin"
-        - "C:\\Users\\leofa\\.dotnet\\tools"
-        - "E:\\Microsoft VS Code\\bin"
-        - "E:\\Flush\\flutter\\bin"
-        - "E:\\PHP"
-        - "C:\\Users\\leofa\\AppData\\Roaming\\npm"
-        - "E:\\Git\\usr\\bin"
-        - "C:\\Program Files\\Android\\jdk\\jdk-8.0.302.8-hotspot\\jdk8u302-b08\\jre\\bin"
-        - "E:\\mongosh\\mongosh-2.2.12-win32-x64\\bin"
-        - "E:\\mongosh\\mongodb-database-tools-windows-x86_64-100.9.5\\bin"
-        - "D:\\aws"
-        - "D:\\aws\\awscli"
-        - "D:\\texlive\\2024\\bin\\windows"
-        - "D:\\cygwin64\\bin"
-        - "D:\\Programs\\cursor\\resources\\app\\bin"
-        - "D:\\msys64\\ucrt64\\bin"
-        - "D:\\msys64"
+    message: |
+      Detecting C compiler apple sysroot: "/usr/bin/cc" "-E" "apple-sdk.c"
+        # 1 "apple-sdk.c"
+        # 1 "<built-in>" 1
+        # 1 "<built-in>" 3
+        # 466 "<built-in>" 3
+        # 1 "<command line>" 1
+        # 1 "<built-in>" 2
+        # 1 "apple-sdk.c" 2
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 1 3 4
+        # 89 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h" 1 3 4
+        # 90 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 2 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/TargetConditionals.h" 1 3 4
+        # 91 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 2 3 4
+        # 207 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 1 3 4
+        # 196 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h" 1 3 4
+        # 197 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 1 3 4
+        # 33 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h" 1 3 4
+        # 34 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 2 3 4
+        # 198 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h" 1 3 4
+        # 34 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h" 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 1 3 4
+        # 35 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h" 2 3 4
+        # 199 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 208 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 2 3 4
+        # 2 "apple-sdk.c" 2
+        
+        
+      Found apple sysroot: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
   -
     kind: "find-v1"
     backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "_CMAKE_TOOL_WITH_PATH"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "lld-link"
-    candidate_directories:
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/"
-      - "E:/Python/Scripts/"
-      - "E:/Python/"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "D:/Matlab/runtime/win64/"
-      - "D:/Matlab/bin/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/"
-      - "C:/Program Files/dotnet/"
-      - "E:/Git/cmd/"
-      - "C:/Program Files/nodejs/"
-      - "C:/ProgramData/chocolatey/bin/"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/"
-      - "D:/aws/"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/"
-      - "D:/Program Files/Git LFS/"
-      - "C:/Program Files/GitHub CLI/"
-      - "D:/Program Files/CMake/bin/"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/"
-      - "C:/Users/leofa/.dotnet/tools/"
-      - "E:/Microsoft VS Code/bin/"
-      - "E:/Flush/flutter/bin/"
-      - "E:/PHP/"
-      - "C:/Users/leofa/AppData/Roaming/npm/"
-      - "E:/Git/usr/bin/"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/"
-      - "D:/aws/awscli/"
-      - "D:/texlive/2024/bin/windows/"
-      - "D:/cygwin64/bin/"
-      - "D:/Programs/cursor/resources/app/bin/"
-      - "D:/msys64/ucrt64/bin/"
-      - "D:/msys64/"
-    searched_directories:
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/lld-link.com"
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/lld-link.exe"
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/lld-link"
-      - "E:/Python/Scripts/lld-link.com"
-      - "E:/Python/Scripts/lld-link.exe"
-      - "E:/Python/Scripts/lld-link"
-      - "E:/Python/lld-link.com"
-      - "E:/Python/lld-link.exe"
-      - "E:/Python/lld-link"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/lld-link.com"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/lld-link.exe"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/lld-link"
-      - "C:/Windows/System32/lld-link.com"
-      - "C:/Windows/System32/lld-link.exe"
-      - "C:/Windows/System32/lld-link"
-      - "C:/Windows/lld-link.com"
-      - "C:/Windows/lld-link.exe"
-      - "C:/Windows/lld-link"
-      - "C:/Windows/System32/wbem/lld-link.com"
-      - "C:/Windows/System32/wbem/lld-link.exe"
-      - "C:/Windows/System32/wbem/lld-link"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link"
-      - "C:/Windows/System32/OpenSSH/lld-link.com"
-      - "C:/Windows/System32/OpenSSH/lld-link.exe"
-      - "C:/Windows/System32/OpenSSH/lld-link"
-      - "D:/Matlab/runtime/win64/lld-link.com"
-      - "D:/Matlab/runtime/win64/lld-link.exe"
-      - "D:/Matlab/runtime/win64/lld-link"
-      - "D:/Matlab/bin/lld-link.com"
-      - "D:/Matlab/bin/lld-link.exe"
-      - "D:/Matlab/bin/lld-link"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/lld-link.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/lld-link.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/lld-link"
-      - "C:/Program Files/dotnet/lld-link.com"
-      - "C:/Program Files/dotnet/lld-link.exe"
-      - "C:/Program Files/dotnet/lld-link"
-      - "E:/Git/cmd/lld-link.com"
-      - "E:/Git/cmd/lld-link.exe"
-      - "E:/Git/cmd/lld-link"
-      - "C:/Program Files/nodejs/lld-link.com"
-      - "C:/Program Files/nodejs/lld-link.exe"
-      - "C:/Program Files/nodejs/lld-link"
-      - "C:/ProgramData/chocolatey/bin/lld-link.com"
-      - "C:/ProgramData/chocolatey/bin/lld-link.exe"
-      - "C:/ProgramData/chocolatey/bin/lld-link"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/lld-link.com"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/lld-link.exe"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/lld-link"
-      - "D:/aws/lld-link.com"
-      - "D:/aws/lld-link.exe"
-      - "D:/aws/lld-link"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/lld-link.com"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/lld-link.exe"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/lld-link"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/lld-link.com"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/lld-link.exe"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/lld-link"
-      - "D:/Program Files/Git LFS/lld-link.com"
-      - "D:/Program Files/Git LFS/lld-link.exe"
-      - "D:/Program Files/Git LFS/lld-link"
-      - "C:/Program Files/GitHub CLI/lld-link.com"
-      - "C:/Program Files/GitHub CLI/lld-link.exe"
-      - "C:/Program Files/GitHub CLI/lld-link"
-      - "D:/Program Files/CMake/bin/lld-link.com"
-      - "D:/Program Files/CMake/bin/lld-link.exe"
-      - "D:/Program Files/CMake/bin/lld-link"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/lld-link.com"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/lld-link.exe"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/lld-link"
-      - "C:/Users/leofa/.dotnet/tools/lld-link.com"
-      - "C:/Users/leofa/.dotnet/tools/lld-link.exe"
-      - "C:/Users/leofa/.dotnet/tools/lld-link"
-      - "E:/Microsoft VS Code/bin/lld-link.com"
-      - "E:/Microsoft VS Code/bin/lld-link.exe"
-      - "E:/Microsoft VS Code/bin/lld-link"
-      - "E:/Flush/flutter/bin/lld-link.com"
-      - "E:/Flush/flutter/bin/lld-link.exe"
-      - "E:/Flush/flutter/bin/lld-link"
-      - "E:/PHP/lld-link.com"
-      - "E:/PHP/lld-link.exe"
-      - "E:/PHP/lld-link"
-      - "C:/Users/leofa/AppData/Roaming/npm/lld-link.com"
-      - "C:/Users/leofa/AppData/Roaming/npm/lld-link.exe"
-      - "C:/Users/leofa/AppData/Roaming/npm/lld-link"
-      - "E:/Git/usr/bin/lld-link.com"
-      - "E:/Git/usr/bin/lld-link.exe"
-      - "E:/Git/usr/bin/lld-link"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/lld-link.com"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/lld-link.exe"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/lld-link"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/lld-link.com"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/lld-link.exe"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/lld-link"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/lld-link.com"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/lld-link.exe"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/lld-link"
-      - "D:/aws/awscli/lld-link.com"
-      - "D:/aws/awscli/lld-link.exe"
-      - "D:/aws/awscli/lld-link"
-      - "D:/texlive/2024/bin/windows/lld-link.com"
-      - "D:/texlive/2024/bin/windows/lld-link.exe"
-      - "D:/texlive/2024/bin/windows/lld-link"
-      - "D:/cygwin64/bin/lld-link.com"
-      - "D:/cygwin64/bin/lld-link.exe"
-      - "D:/cygwin64/bin/lld-link"
-      - "D:/Programs/cursor/resources/app/bin/lld-link.com"
-      - "D:/Programs/cursor/resources/app/bin/lld-link.exe"
-      - "D:/Programs/cursor/resources/app/bin/lld-link"
-      - "D:/msys64/ucrt64/bin/lld-link.com"
-      - "D:/msys64/ucrt64/bin/lld-link.exe"
-      - "D:/msys64/ucrt64/bin/lld-link"
-      - "D:/msys64/lld-link.com"
-      - "D:/msys64/lld-link.exe"
-      - "D:/msys64/lld-link"
-    found: false
-    search_context:
-      ENV{PATH}:
-        - "E:\\Python\\Scripts\\"
-        - "E:\\Python\\"
-        - "C:\\Program Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin"
-        - "C:\\Windows\\system32"
-        - "C:\\Windows"
-        - "C:\\Windows\\System32\\Wbem"
-        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\Windows\\System32\\OpenSSH\\"
-        - "D:\\Matlab\\runtime\\win64"
-        - "D:\\Matlab\\bin"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
-        - "C:\\Program Files\\dotnet\\"
-        - "E:\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\ProgramData\\chocolatey\\bin"
-        - "D:\\gradle-8.6-bin\\gradle-8.6\\bin"
-        - "D:\\aws\\"
-        - "D:\\Windows Kits\\10\\Windows Performance Toolkit\\"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "D:\\Program Files\\Git LFS"
-        - "C:\\Program Files\\GitHub CLI\\"
-        - "D:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\leofa\\AppData\\Local\\GitHubDesktop\\bin"
-        - "C:\\Users\\leofa\\.dotnet\\tools"
-        - "E:\\Microsoft VS Code\\bin"
-        - "E:\\Flush\\flutter\\bin"
-        - "E:\\PHP"
-        - "C:\\Users\\leofa\\AppData\\Roaming\\npm"
-        - "E:\\Git\\usr\\bin"
-        - "C:\\Program Files\\Android\\jdk\\jdk-8.0.302.8-hotspot\\jdk8u302-b08\\jre\\bin"
-        - "E:\\mongosh\\mongosh-2.2.12-win32-x64\\bin"
-        - "E:\\mongosh\\mongodb-database-tools-windows-x86_64-100.9.5\\bin"
-        - "D:\\aws"
-        - "D:\\aws\\awscli"
-        - "D:\\texlive\\2024\\bin\\windows"
-        - "D:\\cygwin64\\bin"
-        - "D:\\Programs\\cursor\\resources\\app\\bin"
-        - "D:\\msys64\\ucrt64\\bin"
-        - "D:\\msys64"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_LINKER"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "link"
-    candidate_directories:
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/"
-      - "E:/Python/Scripts/"
-      - "E:/Python/"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "D:/Matlab/runtime/win64/"
-      - "D:/Matlab/bin/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/"
-      - "C:/Program Files/dotnet/"
-      - "E:/Git/cmd/"
-      - "C:/Program Files/nodejs/"
-      - "C:/ProgramData/chocolatey/bin/"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/"
-      - "D:/aws/"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/"
-      - "D:/Program Files/Git LFS/"
-      - "C:/Program Files/GitHub CLI/"
-      - "D:/Program Files/CMake/bin/"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/"
-      - "C:/Users/leofa/.dotnet/tools/"
-      - "E:/Microsoft VS Code/bin/"
-      - "E:/Flush/flutter/bin/"
-      - "E:/PHP/"
-      - "C:/Users/leofa/AppData/Roaming/npm/"
-      - "E:/Git/usr/bin/"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/"
-      - "D:/aws/awscli/"
-      - "D:/texlive/2024/bin/windows/"
-      - "D:/cygwin64/bin/"
-      - "D:/Programs/cursor/resources/app/bin/"
-      - "D:/msys64/ucrt64/bin/"
-      - "D:/msys64/"
-    searched_directories:
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/link.com"
-    found: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/link.exe"
-    search_context:
-      ENV{PATH}:
-        - "E:\\Python\\Scripts\\"
-        - "E:\\Python\\"
-        - "C:\\Program Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin"
-        - "C:\\Windows\\system32"
-        - "C:\\Windows"
-        - "C:\\Windows\\System32\\Wbem"
-        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\Windows\\System32\\OpenSSH\\"
-        - "D:\\Matlab\\runtime\\win64"
-        - "D:\\Matlab\\bin"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
-        - "C:\\Program Files\\dotnet\\"
-        - "E:\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\ProgramData\\chocolatey\\bin"
-        - "D:\\gradle-8.6-bin\\gradle-8.6\\bin"
-        - "D:\\aws\\"
-        - "D:\\Windows Kits\\10\\Windows Performance Toolkit\\"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "D:\\Program Files\\Git LFS"
-        - "C:\\Program Files\\GitHub CLI\\"
-        - "D:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\leofa\\AppData\\Local\\GitHubDesktop\\bin"
-        - "C:\\Users\\leofa\\.dotnet\\tools"
-        - "E:\\Microsoft VS Code\\bin"
-        - "E:\\Flush\\flutter\\bin"
-        - "E:\\PHP"
-        - "C:\\Users\\leofa\\AppData\\Roaming\\npm"
-        - "E:\\Git\\usr\\bin"
-        - "C:\\Program Files\\Android\\jdk\\jdk-8.0.302.8-hotspot\\jdk8u302-b08\\jre\\bin"
-        - "E:\\mongosh\\mongosh-2.2.12-win32-x64\\bin"
-        - "E:\\mongosh\\mongodb-database-tools-windows-x86_64-100.9.5\\bin"
-        - "D:\\aws"
-        - "D:\\aws\\awscli"
-        - "D:\\texlive\\2024\\bin\\windows"
-        - "D:\\cygwin64\\bin"
-        - "D:\\Programs\\cursor\\resources\\app\\bin"
-        - "D:\\msys64\\ucrt64\\bin"
-        - "D:\\msys64"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_MT"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "mt"
-    candidate_directories:
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/"
-      - "E:/Python/Scripts/"
-      - "E:/Python/"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "D:/Matlab/runtime/win64/"
-      - "D:/Matlab/bin/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/"
-      - "C:/Program Files/dotnet/"
-      - "E:/Git/cmd/"
-      - "C:/Program Files/nodejs/"
-      - "C:/ProgramData/chocolatey/bin/"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/"
-      - "D:/aws/"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/"
-      - "D:/Program Files/Git LFS/"
-      - "C:/Program Files/GitHub CLI/"
-      - "D:/Program Files/CMake/bin/"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/"
-      - "C:/Users/leofa/.dotnet/tools/"
-      - "E:/Microsoft VS Code/bin/"
-      - "E:/Flush/flutter/bin/"
-      - "E:/PHP/"
-      - "C:/Users/leofa/AppData/Roaming/npm/"
-      - "E:/Git/usr/bin/"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/"
-      - "D:/aws/awscli/"
-      - "D:/texlive/2024/bin/windows/"
-      - "D:/cygwin64/bin/"
-      - "D:/Programs/cursor/resources/app/bin/"
-      - "D:/msys64/ucrt64/bin/"
-      - "D:/msys64/"
-    searched_directories:
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/mt.com"
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/mt.exe"
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/mt"
-      - "E:/Python/Scripts/mt.com"
-      - "E:/Python/Scripts/mt.exe"
-      - "E:/Python/Scripts/mt"
-      - "E:/Python/mt.com"
-      - "E:/Python/mt.exe"
-      - "E:/Python/mt"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/mt.com"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/mt.exe"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/mt"
-      - "C:/Windows/System32/mt.com"
-      - "C:/Windows/System32/mt.exe"
-      - "C:/Windows/System32/mt"
-      - "C:/Windows/mt.com"
-      - "C:/Windows/mt.exe"
-      - "C:/Windows/mt"
-      - "C:/Windows/System32/wbem/mt.com"
-      - "C:/Windows/System32/wbem/mt.exe"
-      - "C:/Windows/System32/wbem/mt"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt"
-      - "C:/Windows/System32/OpenSSH/mt.com"
-      - "C:/Windows/System32/OpenSSH/mt.exe"
-      - "C:/Windows/System32/OpenSSH/mt"
-      - "D:/Matlab/runtime/win64/mt.com"
-      - "D:/Matlab/runtime/win64/mt.exe"
-      - "D:/Matlab/runtime/win64/mt"
-      - "D:/Matlab/bin/mt.com"
-      - "D:/Matlab/bin/mt.exe"
-      - "D:/Matlab/bin/mt"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/mt.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/mt.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/mt"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/mt.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/mt.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/mt"
-      - "C:/Program Files/dotnet/mt.com"
-      - "C:/Program Files/dotnet/mt.exe"
-      - "C:/Program Files/dotnet/mt"
-      - "E:/Git/cmd/mt.com"
-      - "E:/Git/cmd/mt.exe"
-      - "E:/Git/cmd/mt"
-      - "C:/Program Files/nodejs/mt.com"
-      - "C:/Program Files/nodejs/mt.exe"
-      - "C:/Program Files/nodejs/mt"
-      - "C:/ProgramData/chocolatey/bin/mt.com"
-      - "C:/ProgramData/chocolatey/bin/mt.exe"
-      - "C:/ProgramData/chocolatey/bin/mt"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/mt.com"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/mt.exe"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/mt"
-      - "D:/aws/mt.com"
-      - "D:/aws/mt.exe"
-      - "D:/aws/mt"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/mt.com"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/mt.exe"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/mt"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/mt.com"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/mt.exe"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/mt"
-      - "D:/Program Files/Git LFS/mt.com"
-      - "D:/Program Files/Git LFS/mt.exe"
-      - "D:/Program Files/Git LFS/mt"
-      - "C:/Program Files/GitHub CLI/mt.com"
-      - "C:/Program Files/GitHub CLI/mt.exe"
-      - "C:/Program Files/GitHub CLI/mt"
-      - "D:/Program Files/CMake/bin/mt.com"
-      - "D:/Program Files/CMake/bin/mt.exe"
-      - "D:/Program Files/CMake/bin/mt"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/mt.com"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/mt.exe"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/mt"
-      - "C:/Users/leofa/.dotnet/tools/mt.com"
-      - "C:/Users/leofa/.dotnet/tools/mt.exe"
-      - "C:/Users/leofa/.dotnet/tools/mt"
-      - "E:/Microsoft VS Code/bin/mt.com"
-      - "E:/Microsoft VS Code/bin/mt.exe"
-      - "E:/Microsoft VS Code/bin/mt"
-      - "E:/Flush/flutter/bin/mt.com"
-      - "E:/Flush/flutter/bin/mt.exe"
-      - "E:/Flush/flutter/bin/mt"
-      - "E:/PHP/mt.com"
-      - "E:/PHP/mt.exe"
-      - "E:/PHP/mt"
-      - "C:/Users/leofa/AppData/Roaming/npm/mt.com"
-      - "C:/Users/leofa/AppData/Roaming/npm/mt.exe"
-      - "C:/Users/leofa/AppData/Roaming/npm/mt"
-      - "E:/Git/usr/bin/mt.com"
-      - "E:/Git/usr/bin/mt.exe"
-      - "E:/Git/usr/bin/mt"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/mt.com"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/mt.exe"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/mt"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/mt.com"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/mt.exe"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/mt"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/mt.com"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/mt.exe"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/mt"
-      - "D:/aws/awscli/mt.com"
-      - "D:/aws/awscli/mt.exe"
-      - "D:/aws/awscli/mt"
-      - "D:/texlive/2024/bin/windows/mt.com"
-      - "D:/texlive/2024/bin/windows/mt.exe"
-      - "D:/texlive/2024/bin/windows/mt"
-      - "D:/cygwin64/bin/mt.com"
-      - "D:/cygwin64/bin/mt.exe"
-      - "D:/cygwin64/bin/mt"
-      - "D:/Programs/cursor/resources/app/bin/mt.com"
-      - "D:/Programs/cursor/resources/app/bin/mt.exe"
-      - "D:/Programs/cursor/resources/app/bin/mt"
-      - "D:/msys64/ucrt64/bin/mt.com"
-      - "D:/msys64/ucrt64/bin/mt.exe"
-      - "D:/msys64/ucrt64/bin/mt"
-      - "D:/msys64/mt.com"
-      - "D:/msys64/mt.exe"
-      - "D:/msys64/mt"
-    found: false
-    search_context:
-      ENV{PATH}:
-        - "E:\\Python\\Scripts\\"
-        - "E:\\Python\\"
-        - "C:\\Program Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin"
-        - "C:\\Windows\\system32"
-        - "C:\\Windows"
-        - "C:\\Windows\\System32\\Wbem"
-        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\Windows\\System32\\OpenSSH\\"
-        - "D:\\Matlab\\runtime\\win64"
-        - "D:\\Matlab\\bin"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
-        - "C:\\Program Files\\dotnet\\"
-        - "E:\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\ProgramData\\chocolatey\\bin"
-        - "D:\\gradle-8.6-bin\\gradle-8.6\\bin"
-        - "D:\\aws\\"
-        - "D:\\Windows Kits\\10\\Windows Performance Toolkit\\"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "D:\\Program Files\\Git LFS"
-        - "C:\\Program Files\\GitHub CLI\\"
-        - "D:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\leofa\\AppData\\Local\\GitHubDesktop\\bin"
-        - "C:\\Users\\leofa\\.dotnet\\tools"
-        - "E:\\Microsoft VS Code\\bin"
-        - "E:\\Flush\\flutter\\bin"
-        - "E:\\PHP"
-        - "C:\\Users\\leofa\\AppData\\Roaming\\npm"
-        - "E:\\Git\\usr\\bin"
-        - "C:\\Program Files\\Android\\jdk\\jdk-8.0.302.8-hotspot\\jdk8u302-b08\\jre\\bin"
-        - "E:\\mongosh\\mongosh-2.2.12-win32-x64\\bin"
-        - "E:\\mongosh\\mongodb-database-tools-windows-x86_64-100.9.5\\bin"
-        - "D:\\aws"
-        - "D:\\aws\\awscli"
-        - "D:\\texlive\\2024\\bin\\windows"
-        - "D:\\cygwin64\\bin"
-        - "D:\\Programs\\cursor\\resources\\app\\bin"
-        - "D:\\msys64\\ucrt64\\bin"
-        - "D:\\msys64"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
       - "CMakeLists.txt:2 (project)"
     mode: "program"
     variable: "CMAKE_AR"
     description: "Path to a program."
     settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
       CMAKE_FIND_USE_CMAKE_PATH: false
       CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
       CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "lib"
+      - "ar"
     candidate_directories:
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/"
-      - "E:/Python/Scripts/"
-      - "E:/Python/"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "D:/Matlab/runtime/win64/"
-      - "D:/Matlab/bin/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/"
-      - "C:/Program Files/dotnet/"
-      - "E:/Git/cmd/"
-      - "C:/Program Files/nodejs/"
-      - "C:/ProgramData/chocolatey/bin/"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/"
-      - "D:/aws/"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/"
-      - "D:/Program Files/Git LFS/"
-      - "C:/Program Files/GitHub CLI/"
-      - "D:/Program Files/CMake/bin/"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/"
-      - "C:/Users/leofa/.dotnet/tools/"
-      - "E:/Microsoft VS Code/bin/"
-      - "E:/Flush/flutter/bin/"
-      - "E:/PHP/"
-      - "C:/Users/leofa/AppData/Roaming/npm/"
-      - "E:/Git/usr/bin/"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/"
-      - "D:/aws/awscli/"
-      - "D:/texlive/2024/bin/windows/"
-      - "D:/cygwin64/bin/"
-      - "D:/Programs/cursor/resources/app/bin/"
-      - "D:/msys64/ucrt64/bin/"
-      - "D:/msys64/"
-    searched_directories:
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/lib.com"
-    found: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/lib.exe"
+      - "/usr/bin/"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/"
+      - "/Users/lfan/.bun/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/"
+    found: "/usr/bin/ar"
     search_context:
       ENV{PATH}:
-        - "E:\\Python\\Scripts\\"
-        - "E:\\Python\\"
-        - "C:\\Program Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin"
-        - "C:\\Windows\\system32"
-        - "C:\\Windows"
-        - "C:\\Windows\\System32\\Wbem"
-        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\Windows\\System32\\OpenSSH\\"
-        - "D:\\Matlab\\runtime\\win64"
-        - "D:\\Matlab\\bin"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
-        - "C:\\Program Files\\dotnet\\"
-        - "E:\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\ProgramData\\chocolatey\\bin"
-        - "D:\\gradle-8.6-bin\\gradle-8.6\\bin"
-        - "D:\\aws\\"
-        - "D:\\Windows Kits\\10\\Windows Performance Toolkit\\"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "D:\\Program Files\\Git LFS"
-        - "C:\\Program Files\\GitHub CLI\\"
-        - "D:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\leofa\\AppData\\Local\\GitHubDesktop\\bin"
-        - "C:\\Users\\leofa\\.dotnet\\tools"
-        - "E:\\Microsoft VS Code\\bin"
-        - "E:\\Flush\\flutter\\bin"
-        - "E:\\PHP"
-        - "C:\\Users\\leofa\\AppData\\Roaming\\npm"
-        - "E:\\Git\\usr\\bin"
-        - "C:\\Program Files\\Android\\jdk\\jdk-8.0.302.8-hotspot\\jdk8u302-b08\\jre\\bin"
-        - "E:\\mongosh\\mongosh-2.2.12-win32-x64\\bin"
-        - "E:\\mongosh\\mongodb-database-tools-windows-x86_64-100.9.5\\bin"
-        - "D:\\aws"
-        - "D:\\aws\\awscli"
-        - "D:\\texlive\\2024\\bin\\windows"
-        - "D:\\cygwin64\\bin"
-        - "D:\\Programs\\cursor\\resources\\app\\bin"
-        - "D:\\msys64\\ucrt64\\bin"
-        - "D:\\msys64"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "find-v1"
     backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_RANLIB"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ranlib"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/"
+      - "/Users/lfan/.bun/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/"
+    found: "/usr/bin/ranlib"
+    search_context:
+      ENV{PATH}:
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_STRIP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "strip"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/"
+      - "/Users/lfan/.bun/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/"
+    found: "/usr/bin/strip"
+    search_context:
+      ENV{PATH}:
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ld"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/"
+      - "/Users/lfan/.bun/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/"
+    found: "/usr/bin/ld"
+    search_context:
+      ENV{PATH}:
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_NM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "nm"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/"
+      - "/Users/lfan/.bun/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/"
+    found: "/usr/bin/nm"
+    search_context:
+      ENV{PATH}:
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJDUMP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "objdump"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/"
+      - "/Users/lfan/.bun/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/"
+    found: "/usr/bin/objdump"
+    search_context:
+      ENV{PATH}:
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJCOPY"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "objcopy"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/"
+      - "/Users/lfan/.bun/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/"
+    searched_directories:
+      - "/usr/bin/objcopy"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/objcopy"
+      - "/Users/lfan/.bun/bin/objcopy"
+      - "/opt/homebrew/bin/objcopy"
+      - "/opt/homebrew/sbin/objcopy"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/objcopy"
+      - "/usr/local/bin/objcopy"
+      - "/System/Cryptexes/App/usr/bin/objcopy"
+      - "/bin/objcopy"
+      - "/usr/sbin/objcopy"
+      - "/sbin/objcopy"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/objcopy"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/objcopy"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/objcopy"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/objcopy"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_READELF"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "readelf"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/"
+      - "/Users/lfan/.bun/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/"
+    searched_directories:
+      - "/usr/bin/readelf"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/readelf"
+      - "/Users/lfan/.bun/bin/readelf"
+      - "/opt/homebrew/bin/readelf"
+      - "/opt/homebrew/sbin/readelf"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/readelf"
+      - "/usr/local/bin/readelf"
+      - "/System/Cryptexes/App/usr/bin/readelf"
+      - "/bin/readelf"
+      - "/usr/sbin/readelf"
+      - "/sbin/readelf"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/readelf"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/readelf"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/readelf"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/readelf"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_DLLTOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "dlltool"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/"
+      - "/Users/lfan/.bun/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/"
+    searched_directories:
+      - "/usr/bin/dlltool"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/dlltool"
+      - "/Users/lfan/.bun/bin/dlltool"
+      - "/opt/homebrew/bin/dlltool"
+      - "/opt/homebrew/sbin/dlltool"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/dlltool"
+      - "/usr/local/bin/dlltool"
+      - "/System/Cryptexes/App/usr/bin/dlltool"
+      - "/bin/dlltool"
+      - "/usr/sbin/dlltool"
+      - "/sbin/dlltool"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/dlltool"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/dlltool"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/dlltool"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/dlltool"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_ADDR2LINE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "addr2line"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/"
+      - "/Users/lfan/.bun/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/"
+    searched_directories:
+      - "/usr/bin/addr2line"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/addr2line"
+      - "/Users/lfan/.bun/bin/addr2line"
+      - "/opt/homebrew/bin/addr2line"
+      - "/opt/homebrew/sbin/addr2line"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/addr2line"
+      - "/usr/local/bin/addr2line"
+      - "/System/Cryptexes/App/usr/bin/addr2line"
+      - "/bin/addr2line"
+      - "/usr/sbin/addr2line"
+      - "/sbin/addr2line"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/addr2line"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/addr2line"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/addr2line"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/addr2line"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_TAPI"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "tapi"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/"
+      - "/Users/lfan/.bun/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/"
+    searched_directories:
+      - "/usr/bin/tapi"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/tapi"
+      - "/Users/lfan/.bun/bin/tapi"
+      - "/opt/homebrew/bin/tapi"
+      - "/opt/homebrew/sbin/tapi"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/tapi"
+      - "/usr/local/bin/tapi"
+      - "/System/Cryptexes/App/usr/bin/tapi"
+      - "/bin/tapi"
+      - "/usr/sbin/tapi"
+      - "/sbin/tapi"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/tapi"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/tapi"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/tapi"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/tapi"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompiler.cmake:54 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:69 (_cmake_find_compiler)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_CXX_COMPILER"
+    description: "CXX compiler"
+    settings:
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "c++"
+      - "g++"
+      - "cl"
+      - "bcc"
+      - "icpx"
+      - "icx"
+      - "clang++"
+    candidate_directories:
+      - "/usr/bin/"
+    found: "/usr/bin/c++"
+    search_context:
+      ENV{PATH}:
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
       - "CMakeLists.txt:2 (project)"
     mode: "file"
     variable: "src_in"
     description: "Path to a file."
     settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
       CMAKE_FIND_USE_CMAKE_PATH: true
       CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
       CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
@@ -926,774 +1096,544 @@ events:
     names:
       - "CMakeCXXCompilerId.cpp.in"
     candidate_directories:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/"
-    found: "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCXXCompilerId.cpp.in"
+      - "/opt/homebrew/share/cmake/Modules/"
+    found: "/opt/homebrew/share/cmake/Modules/CMakeCXXCompilerId.cpp.in"
     search_context:
       ENV{PATH}:
-        - "E:\\Python\\Scripts\\"
-        - "E:\\Python\\"
-        - "C:\\Program Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin"
-        - "C:\\Windows\\system32"
-        - "C:\\Windows"
-        - "C:\\Windows\\System32\\Wbem"
-        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\Windows\\System32\\OpenSSH\\"
-        - "D:\\Matlab\\runtime\\win64"
-        - "D:\\Matlab\\bin"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
-        - "C:\\Program Files\\dotnet\\"
-        - "E:\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\ProgramData\\chocolatey\\bin"
-        - "D:\\gradle-8.6-bin\\gradle-8.6\\bin"
-        - "D:\\aws\\"
-        - "D:\\Windows Kits\\10\\Windows Performance Toolkit\\"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "D:\\Program Files\\Git LFS"
-        - "C:\\Program Files\\GitHub CLI\\"
-        - "D:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\leofa\\AppData\\Local\\GitHubDesktop\\bin"
-        - "C:\\Users\\leofa\\.dotnet\\tools"
-        - "E:\\Microsoft VS Code\\bin"
-        - "E:\\Flush\\flutter\\bin"
-        - "E:\\PHP"
-        - "C:\\Users\\leofa\\AppData\\Roaming\\npm"
-        - "E:\\Git\\usr\\bin"
-        - "C:\\Program Files\\Android\\jdk\\jdk-8.0.302.8-hotspot\\jdk8u302-b08\\jre\\bin"
-        - "E:\\mongosh\\mongosh-2.2.12-win32-x64\\bin"
-        - "E:\\mongosh\\mongodb-database-tools-windows-x86_64-100.9.5\\bin"
-        - "D:\\aws"
-        - "D:\\aws\\awscli"
-        - "D:\\texlive\\2024\\bin\\windows"
-        - "D:\\cygwin64\\bin"
-        - "D:\\Programs\\cursor\\resources\\app\\bin"
-        - "D:\\msys64\\ucrt64\\bin"
-        - "D:\\msys64"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "message-v1"
     backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
       - "CMakeLists.txt:2 (project)"
     message: |
       Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
-      Compiler:  
+      Compiler: /usr/bin/c++ 
       Build flags: 
       Id flags:  
       
       The output was:
       0
-      MSBuild version 17.12.12+1cce77968 for .NET Framework
-      Build started 2/7/2026 3:48:51 PM.
-      
-      Project "E:\\2026-spring-software-patterns\\build\\CMakeFiles\\4.2.3\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
-      PrepareForBuild:
-        Creating directory "Debug\\".
-        Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-        Creating directory "Debug\\CompilerIdCXX.tlog\\".
-      InitializeBuildStatus:
-        Creating "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-        Touching "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
-      ClCompile:
-        C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
-        CMakeCXXCompilerId.cpp
-      Link:
-        C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
-        CompilerIdCXX.vcxproj -> E:\\2026-spring-software-patterns\\build\\CMakeFiles\\4.2.3\\CompilerIdCXX\\CompilerIdCXX.exe
-      PostBuildEvent:
-        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
-        :VCEnd
-        CMAKE_CXX_COMPILER=C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.42.34433\\bin\\Hostx64\\x64\\cl.exe
-      FinalizeBuildStatus:
-        Deleting file "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
-        Touching "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate".
-      Done Building Project "E:\\2026-spring-software-patterns\\build\\CMakeFiles\\4.2.3\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets).
-      
-      Build succeeded.
-          0 Warning(s)
-          0 Error(s)
-      
-      Time Elapsed 00:00:01.05
       
       
-      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
       
-      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      The CXX compiler identification is AppleClang, found in:
+        /Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/4.2.3/CompilerIdCXX/a.out
       
-      The CXX compiler identification is MSVC, found in:
-        E:/2026-spring-software-patterns/build/CMakeFiles/4.2.3/CompilerIdCXX/CompilerIdCXX.exe
-      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:290 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Detecting CXX compiler apple sysroot: "/usr/bin/c++" "-E" "apple-sdk.cpp"
+        # 1 "apple-sdk.cpp"
+        # 1 "<built-in>" 1
+        # 1 "<built-in>" 3
+        # 514 "<built-in>" 3
+        # 1 "<command line>" 1
+        # 1 "<built-in>" 2
+        # 1 "apple-sdk.cpp" 2
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 1 3 4
+        # 89 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h" 1 3 4
+        # 90 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 2 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/TargetConditionals.h" 1 3 4
+        # 91 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 2 3 4
+        # 207 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 1 3 4
+        # 196 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h" 1 3 4
+        # 197 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 1 3 4
+        # 33 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h" 1 3 4
+        # 34 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 2 3 4
+        # 198 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h" 1 3 4
+        # 34 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h" 3 4
+        # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h" 1 3 4
+        # 35 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h" 2 3 4
+        # 199 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h" 2 3 4
+        # 208 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h" 2 3 4
+        # 2 "apple-sdk.cpp" 2
+        
+        
+      Found apple sysroot: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
   -
     kind: "find-v1"
     backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "/opt/homebrew/share/cmake/Modules/Platform/Darwin.cmake:76 (find_program)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeSystemSpecificInformation.cmake:32 (include)"
       - "CMakeLists.txt:2 (project)"
     mode: "program"
-    variable: "_CMAKE_TOOL_WITH_PATH"
+    variable: "CMAKE_INSTALL_NAME_TOOL"
     description: "Path to a program."
     settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: false
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "lld-link"
-    candidate_directories:
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/"
-      - "E:/Python/Scripts/"
-      - "E:/Python/"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "D:/Matlab/runtime/win64/"
-      - "D:/Matlab/bin/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/"
-      - "C:/Program Files/dotnet/"
-      - "E:/Git/cmd/"
-      - "C:/Program Files/nodejs/"
-      - "C:/ProgramData/chocolatey/bin/"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/"
-      - "D:/aws/"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/"
-      - "D:/Program Files/Git LFS/"
-      - "C:/Program Files/GitHub CLI/"
-      - "D:/Program Files/CMake/bin/"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/"
-      - "C:/Users/leofa/.dotnet/tools/"
-      - "E:/Microsoft VS Code/bin/"
-      - "E:/Flush/flutter/bin/"
-      - "E:/PHP/"
-      - "C:/Users/leofa/AppData/Roaming/npm/"
-      - "E:/Git/usr/bin/"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/"
-      - "D:/aws/awscli/"
-      - "D:/texlive/2024/bin/windows/"
-      - "D:/cygwin64/bin/"
-      - "D:/Programs/cursor/resources/app/bin/"
-      - "D:/msys64/ucrt64/bin/"
-      - "D:/msys64/"
-    searched_directories:
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/lld-link.com"
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/lld-link.exe"
-      - "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/Hostx64/x64/lld-link"
-      - "E:/Python/Scripts/lld-link.com"
-      - "E:/Python/Scripts/lld-link.exe"
-      - "E:/Python/Scripts/lld-link"
-      - "E:/Python/lld-link.com"
-      - "E:/Python/lld-link.exe"
-      - "E:/Python/lld-link"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/lld-link.com"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/lld-link.exe"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/lld-link"
-      - "C:/Windows/System32/lld-link.com"
-      - "C:/Windows/System32/lld-link.exe"
-      - "C:/Windows/System32/lld-link"
-      - "C:/Windows/lld-link.com"
-      - "C:/Windows/lld-link.exe"
-      - "C:/Windows/lld-link"
-      - "C:/Windows/System32/wbem/lld-link.com"
-      - "C:/Windows/System32/wbem/lld-link.exe"
-      - "C:/Windows/System32/wbem/lld-link"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link"
-      - "C:/Windows/System32/OpenSSH/lld-link.com"
-      - "C:/Windows/System32/OpenSSH/lld-link.exe"
-      - "C:/Windows/System32/OpenSSH/lld-link"
-      - "D:/Matlab/runtime/win64/lld-link.com"
-      - "D:/Matlab/runtime/win64/lld-link.exe"
-      - "D:/Matlab/runtime/win64/lld-link"
-      - "D:/Matlab/bin/lld-link.com"
-      - "D:/Matlab/bin/lld-link.exe"
-      - "D:/Matlab/bin/lld-link"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/lld-link.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/lld-link.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/lld-link"
-      - "C:/Program Files/dotnet/lld-link.com"
-      - "C:/Program Files/dotnet/lld-link.exe"
-      - "C:/Program Files/dotnet/lld-link"
-      - "E:/Git/cmd/lld-link.com"
-      - "E:/Git/cmd/lld-link.exe"
-      - "E:/Git/cmd/lld-link"
-      - "C:/Program Files/nodejs/lld-link.com"
-      - "C:/Program Files/nodejs/lld-link.exe"
-      - "C:/Program Files/nodejs/lld-link"
-      - "C:/ProgramData/chocolatey/bin/lld-link.com"
-      - "C:/ProgramData/chocolatey/bin/lld-link.exe"
-      - "C:/ProgramData/chocolatey/bin/lld-link"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/lld-link.com"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/lld-link.exe"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/lld-link"
-      - "D:/aws/lld-link.com"
-      - "D:/aws/lld-link.exe"
-      - "D:/aws/lld-link"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/lld-link.com"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/lld-link.exe"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/lld-link"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/lld-link.com"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/lld-link.exe"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/lld-link"
-      - "D:/Program Files/Git LFS/lld-link.com"
-      - "D:/Program Files/Git LFS/lld-link.exe"
-      - "D:/Program Files/Git LFS/lld-link"
-      - "C:/Program Files/GitHub CLI/lld-link.com"
-      - "C:/Program Files/GitHub CLI/lld-link.exe"
-      - "C:/Program Files/GitHub CLI/lld-link"
-      - "D:/Program Files/CMake/bin/lld-link.com"
-      - "D:/Program Files/CMake/bin/lld-link.exe"
-      - "D:/Program Files/CMake/bin/lld-link"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/lld-link.com"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/lld-link.exe"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/lld-link"
-      - "C:/Users/leofa/.dotnet/tools/lld-link.com"
-      - "C:/Users/leofa/.dotnet/tools/lld-link.exe"
-      - "C:/Users/leofa/.dotnet/tools/lld-link"
-      - "E:/Microsoft VS Code/bin/lld-link.com"
-      - "E:/Microsoft VS Code/bin/lld-link.exe"
-      - "E:/Microsoft VS Code/bin/lld-link"
-      - "E:/Flush/flutter/bin/lld-link.com"
-      - "E:/Flush/flutter/bin/lld-link.exe"
-      - "E:/Flush/flutter/bin/lld-link"
-      - "E:/PHP/lld-link.com"
-      - "E:/PHP/lld-link.exe"
-      - "E:/PHP/lld-link"
-      - "C:/Users/leofa/AppData/Roaming/npm/lld-link.com"
-      - "C:/Users/leofa/AppData/Roaming/npm/lld-link.exe"
-      - "C:/Users/leofa/AppData/Roaming/npm/lld-link"
-      - "E:/Git/usr/bin/lld-link.com"
-      - "E:/Git/usr/bin/lld-link.exe"
-      - "E:/Git/usr/bin/lld-link"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/lld-link.com"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/lld-link.exe"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/lld-link"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/lld-link.com"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/lld-link.exe"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/lld-link"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/lld-link.com"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/lld-link.exe"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/lld-link"
-      - "D:/aws/awscli/lld-link.com"
-      - "D:/aws/awscli/lld-link.exe"
-      - "D:/aws/awscli/lld-link"
-      - "D:/texlive/2024/bin/windows/lld-link.com"
-      - "D:/texlive/2024/bin/windows/lld-link.exe"
-      - "D:/texlive/2024/bin/windows/lld-link"
-      - "D:/cygwin64/bin/lld-link.com"
-      - "D:/cygwin64/bin/lld-link.exe"
-      - "D:/cygwin64/bin/lld-link"
-      - "D:/Programs/cursor/resources/app/bin/lld-link.com"
-      - "D:/Programs/cursor/resources/app/bin/lld-link.exe"
-      - "D:/Programs/cursor/resources/app/bin/lld-link"
-      - "D:/msys64/ucrt64/bin/lld-link.com"
-      - "D:/msys64/ucrt64/bin/lld-link.exe"
-      - "D:/msys64/ucrt64/bin/lld-link"
-      - "D:/msys64/lld-link.com"
-      - "D:/msys64/lld-link.exe"
-      - "D:/msys64/lld-link"
-    found: false
-    search_context:
-      ENV{PATH}:
-        - "E:\\Python\\Scripts\\"
-        - "E:\\Python\\"
-        - "C:\\Program Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin"
-        - "C:\\Windows\\system32"
-        - "C:\\Windows"
-        - "C:\\Windows\\System32\\Wbem"
-        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\Windows\\System32\\OpenSSH\\"
-        - "D:\\Matlab\\runtime\\win64"
-        - "D:\\Matlab\\bin"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
-        - "C:\\Program Files\\dotnet\\"
-        - "E:\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\ProgramData\\chocolatey\\bin"
-        - "D:\\gradle-8.6-bin\\gradle-8.6\\bin"
-        - "D:\\aws\\"
-        - "D:\\Windows Kits\\10\\Windows Performance Toolkit\\"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "D:\\Program Files\\Git LFS"
-        - "C:\\Program Files\\GitHub CLI\\"
-        - "D:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\leofa\\AppData\\Local\\GitHubDesktop\\bin"
-        - "C:\\Users\\leofa\\.dotnet\\tools"
-        - "E:\\Microsoft VS Code\\bin"
-        - "E:\\Flush\\flutter\\bin"
-        - "E:\\PHP"
-        - "C:\\Users\\leofa\\AppData\\Roaming\\npm"
-        - "E:\\Git\\usr\\bin"
-        - "C:\\Program Files\\Android\\jdk\\jdk-8.0.302.8-hotspot\\jdk8u302-b08\\jre\\bin"
-        - "E:\\mongosh\\mongosh-2.2.12-win32-x64\\bin"
-        - "E:\\mongosh\\mongodb-database-tools-windows-x86_64-100.9.5\\bin"
-        - "D:\\aws"
-        - "D:\\aws\\awscli"
-        - "D:\\texlive\\2024\\bin\\windows"
-        - "D:\\cygwin64\\bin"
-        - "D:\\Programs\\cursor\\resources\\app\\bin"
-        - "D:\\msys64\\ucrt64\\bin"
-        - "D:\\msys64"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineRCCompiler.cmake:40 (find_program)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Windows-MSVC.cmake:580 (enable_language)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Windows-MSVC.cmake:553 (__windows_compiler_msvc_enable_rc)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Windows-MSVC-C.cmake:5 (__windows_compiler_msvc)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCInformation.cmake:48 (include)"
-      - "CMakeLists.txt:2 (project)"
-    mode: "program"
-    variable: "CMAKE_RC_COMPILER"
-    description: "RC compiler"
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
+      SearchFramework: "FIRST"
+      SearchAppBundle: "FIRST"
       CMAKE_FIND_USE_CMAKE_PATH: true
       CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
       CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
       CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
-      - "rc"
+      - "install_name_tool"
     candidate_directories:
-      - "E:/Python/Scripts/"
-      - "E:/Python/"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/"
-      - "C:/Windows/System32/"
-      - "C:/Windows/"
-      - "C:/Windows/System32/wbem/"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
-      - "C:/Windows/System32/OpenSSH/"
-      - "D:/Matlab/runtime/win64/"
-      - "D:/Matlab/bin/"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/"
-      - "C:/Program Files/dotnet/"
-      - "E:/Git/cmd/"
-      - "C:/Program Files/nodejs/"
-      - "C:/ProgramData/chocolatey/bin/"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/"
-      - "D:/aws/"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/"
-      - "D:/Program Files/Git LFS/"
-      - "C:/Program Files/GitHub CLI/"
-      - "D:/Program Files/CMake/bin/"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/"
-      - "C:/Users/leofa/.dotnet/tools/"
-      - "E:/Microsoft VS Code/bin/"
-      - "E:/Flush/flutter/bin/"
-      - "E:/PHP/"
-      - "C:/Users/leofa/AppData/Roaming/npm/"
-      - "E:/Git/usr/bin/"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/"
-      - "D:/aws/awscli/"
-      - "D:/texlive/2024/bin/windows/"
-      - "D:/cygwin64/bin/"
-      - "D:/Programs/cursor/resources/app/bin/"
-      - "D:/msys64/ucrt64/bin/"
-      - "D:/msys64/"
-      - "C:/Program Files/bin/"
-      - "C:/Program Files/sbin/"
-      - "C:/Program Files/"
-      - "C:/Program Files (x86)/bin/"
-      - "C:/Program Files (x86)/sbin/"
-      - "C:/Program Files (x86)/"
-      - "D:/Program Files/CMake/bin/"
-      - "D:/Program Files/CMake/sbin/"
-      - "D:/Program Files/CMake/"
-      - "C:/Program Files (x86)/Patterns/bin/"
-      - "C:/Program Files (x86)/Patterns/sbin/"
-      - "C:/Program Files (x86)/Patterns/"
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/"
+      - "/Users/lfan/.bun/bin/"
+      - "/opt/homebrew/bin/"
+      - "/opt/homebrew/sbin/"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/"
+      - "/usr/local/bin/"
+      - "/System/Cryptexes/App/usr/bin/"
+      - "/usr/bin/"
+      - "/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
+      - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts/"
     searched_directories:
-      - "E:/Python/Scripts/rc.com"
-      - "E:/Python/Scripts/rc.exe"
-      - "E:/Python/Scripts/rc"
-      - "E:/Python/rc.com"
-      - "E:/Python/rc.exe"
-      - "E:/Python/rc"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/rc.com"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/rc.exe"
-      - "C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin/rc"
-      - "C:/Windows/System32/rc.com"
-      - "C:/Windows/System32/rc.exe"
-      - "C:/Windows/System32/rc"
-      - "C:/Windows/rc.com"
-      - "C:/Windows/rc.exe"
-      - "C:/Windows/rc"
-      - "C:/Windows/System32/wbem/rc.com"
-      - "C:/Windows/System32/wbem/rc.exe"
-      - "C:/Windows/System32/wbem/rc"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc.com"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc.exe"
-      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc"
-      - "C:/Windows/System32/OpenSSH/rc.com"
-      - "C:/Windows/System32/OpenSSH/rc.exe"
-      - "C:/Windows/System32/OpenSSH/rc"
-      - "D:/Matlab/runtime/win64/rc.com"
-      - "D:/Matlab/runtime/win64/rc.exe"
-      - "D:/Matlab/runtime/win64/rc"
-      - "D:/Matlab/bin/rc.com"
-      - "D:/Matlab/bin/rc.exe"
-      - "D:/Matlab/bin/rc"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/rc.com"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/rc.exe"
-      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/rc"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/rc.com"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/rc.exe"
-      - "C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR/rc"
-      - "C:/Program Files/dotnet/rc.com"
-      - "C:/Program Files/dotnet/rc.exe"
-      - "C:/Program Files/dotnet/rc"
-      - "E:/Git/cmd/rc.com"
-      - "E:/Git/cmd/rc.exe"
-      - "E:/Git/cmd/rc"
-      - "C:/Program Files/nodejs/rc.com"
-      - "C:/Program Files/nodejs/rc.exe"
-      - "C:/Program Files/nodejs/rc"
-      - "C:/ProgramData/chocolatey/bin/rc.com"
-      - "C:/ProgramData/chocolatey/bin/rc.exe"
-      - "C:/ProgramData/chocolatey/bin/rc"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/rc.com"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/rc.exe"
-      - "D:/gradle-8.6-bin/gradle-8.6/bin/rc"
-      - "D:/aws/rc.com"
-      - "D:/aws/rc.exe"
-      - "D:/aws/rc"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/rc.com"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/rc.exe"
-      - "D:/Windows Kits/10/Windows Performance Toolkit/rc"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/rc.com"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/rc.exe"
-      - "C:/Users/leofa/AppData/Local/Microsoft/WindowsApps/rc"
-      - "D:/Program Files/Git LFS/rc.com"
-      - "D:/Program Files/Git LFS/rc.exe"
-      - "D:/Program Files/Git LFS/rc"
-      - "C:/Program Files/GitHub CLI/rc.com"
-      - "C:/Program Files/GitHub CLI/rc.exe"
-      - "C:/Program Files/GitHub CLI/rc"
-      - "D:/Program Files/CMake/bin/rc.com"
-      - "D:/Program Files/CMake/bin/rc.exe"
-      - "D:/Program Files/CMake/bin/rc"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/rc.com"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/rc.exe"
-      - "C:/Users/leofa/AppData/Local/GitHubDesktop/bin/rc"
-      - "C:/Users/leofa/.dotnet/tools/rc.com"
-      - "C:/Users/leofa/.dotnet/tools/rc.exe"
-      - "C:/Users/leofa/.dotnet/tools/rc"
-      - "E:/Microsoft VS Code/bin/rc.com"
-      - "E:/Microsoft VS Code/bin/rc.exe"
-      - "E:/Microsoft VS Code/bin/rc"
-      - "E:/Flush/flutter/bin/rc.com"
-      - "E:/Flush/flutter/bin/rc.exe"
-      - "E:/Flush/flutter/bin/rc"
-      - "E:/PHP/rc.com"
-      - "E:/PHP/rc.exe"
-      - "E:/PHP/rc"
-      - "C:/Users/leofa/AppData/Roaming/npm/rc.com"
-      - "C:/Users/leofa/AppData/Roaming/npm/rc.exe"
-      - "C:/Users/leofa/AppData/Roaming/npm/rc"
-      - "E:/Git/usr/bin/rc.com"
-      - "E:/Git/usr/bin/rc.exe"
-      - "E:/Git/usr/bin/rc"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/rc.com"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/rc.exe"
-      - "C:/Program Files/Android/jdk/jdk-8.0.302.8-hotspot/jdk8u302-b08/jre/bin/rc"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/rc.com"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/rc.exe"
-      - "E:/mongosh/mongosh-2.2.12-win32-x64/bin/rc"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/rc.com"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/rc.exe"
-      - "E:/mongosh/mongodb-database-tools-windows-x86_64-100.9.5/bin/rc"
-      - "D:/aws/awscli/rc.com"
-      - "D:/aws/awscli/rc.exe"
-      - "D:/aws/awscli/rc"
-      - "D:/texlive/2024/bin/windows/rc.com"
-      - "D:/texlive/2024/bin/windows/rc.exe"
-      - "D:/texlive/2024/bin/windows/rc"
-      - "D:/cygwin64/bin/rc.com"
-      - "D:/cygwin64/bin/rc.exe"
-      - "D:/cygwin64/bin/rc"
-      - "D:/Programs/cursor/resources/app/bin/rc.com"
-      - "D:/Programs/cursor/resources/app/bin/rc.exe"
-      - "D:/Programs/cursor/resources/app/bin/rc"
-      - "D:/msys64/ucrt64/bin/rc.com"
-      - "D:/msys64/ucrt64/bin/rc.exe"
-      - "D:/msys64/ucrt64/bin/rc"
-      - "D:/msys64/rc.com"
-      - "D:/msys64/rc.exe"
-      - "D:/msys64/rc"
-      - "C:/Program Files/bin/rc.com"
-      - "C:/Program Files/bin/rc.exe"
-      - "C:/Program Files/bin/rc"
-      - "C:/Program Files/sbin/rc.com"
-      - "C:/Program Files/sbin/rc.exe"
-      - "C:/Program Files/sbin/rc"
-      - "C:/Program Files/rc.com"
-      - "C:/Program Files/rc.exe"
-      - "C:/Program Files/rc"
-      - "C:/Program Files (x86)/bin/rc.com"
-      - "C:/Program Files (x86)/bin/rc.exe"
-      - "C:/Program Files (x86)/bin/rc"
-      - "C:/Program Files (x86)/sbin/rc.com"
-      - "C:/Program Files (x86)/sbin/rc.exe"
-      - "C:/Program Files (x86)/sbin/rc"
-      - "C:/Program Files (x86)/rc.com"
-      - "C:/Program Files (x86)/rc.exe"
-      - "C:/Program Files (x86)/rc"
-      - "D:/Program Files/CMake/bin/rc.com"
-      - "D:/Program Files/CMake/bin/rc.exe"
-      - "D:/Program Files/CMake/bin/rc"
-      - "D:/Program Files/CMake/sbin/rc.com"
-      - "D:/Program Files/CMake/sbin/rc.exe"
-      - "D:/Program Files/CMake/sbin/rc"
-      - "D:/Program Files/CMake/rc.com"
-      - "D:/Program Files/CMake/rc.exe"
-      - "D:/Program Files/CMake/rc"
-      - "C:/Program Files (x86)/Patterns/bin/rc.com"
-      - "C:/Program Files (x86)/Patterns/bin/rc.exe"
-      - "C:/Program Files (x86)/Patterns/bin/rc"
-      - "C:/Program Files (x86)/Patterns/sbin/rc.com"
-      - "C:/Program Files (x86)/Patterns/sbin/rc.exe"
-      - "C:/Program Files (x86)/Patterns/sbin/rc"
-      - "C:/Program Files (x86)/Patterns/rc.com"
-      - "C:/Program Files (x86)/Patterns/rc.exe"
-      - "C:/Program Files (x86)/Patterns/rc"
-    found: false
+      - "/Users/lfan/.nvm/versions/node/v20.20.0/bin/install_name_tool"
+      - "/Users/lfan/.bun/bin/install_name_tool"
+      - "/opt/homebrew/bin/install_name_tool"
+      - "/opt/homebrew/sbin/install_name_tool"
+      - "/Library/Frameworks/Python.framework/Versions/3.14/bin/install_name_tool"
+      - "/usr/local/bin/install_name_tool"
+      - "/System/Cryptexes/App/usr/bin/install_name_tool"
+    found: "/usr/bin/install_name_tool"
     search_context:
       ENV{PATH}:
-        - "E:\\Python\\Scripts\\"
-        - "E:\\Python\\"
-        - "C:\\Program Files\\Microsoft\\jdk-11.0.16.101-hotspot\\bin"
-        - "C:\\Windows\\system32"
-        - "C:\\Windows"
-        - "C:\\Windows\\System32\\Wbem"
-        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
-        - "C:\\Windows\\System32\\OpenSSH\\"
-        - "D:\\Matlab\\runtime\\win64"
-        - "D:\\Matlab\\bin"
-        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
-        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR"
-        - "C:\\Program Files\\dotnet\\"
-        - "E:\\Git\\cmd"
-        - "C:\\Program Files\\nodejs\\"
-        - "C:\\ProgramData\\chocolatey\\bin"
-        - "D:\\gradle-8.6-bin\\gradle-8.6\\bin"
-        - "D:\\aws\\"
-        - "D:\\Windows Kits\\10\\Windows Performance Toolkit\\"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "D:\\Program Files\\Git LFS"
-        - "C:\\Program Files\\GitHub CLI\\"
-        - "D:\\Program Files\\CMake\\bin"
-        - "C:\\Users\\leofa\\AppData\\Local\\Microsoft\\WindowsApps"
-        - "C:\\Users\\leofa\\AppData\\Local\\GitHubDesktop\\bin"
-        - "C:\\Users\\leofa\\.dotnet\\tools"
-        - "E:\\Microsoft VS Code\\bin"
-        - "E:\\Flush\\flutter\\bin"
-        - "E:\\PHP"
-        - "C:\\Users\\leofa\\AppData\\Roaming\\npm"
-        - "E:\\Git\\usr\\bin"
-        - "C:\\Program Files\\Android\\jdk\\jdk-8.0.302.8-hotspot\\jdk8u302-b08\\jre\\bin"
-        - "E:\\mongosh\\mongosh-2.2.12-win32-x64\\bin"
-        - "E:\\mongosh\\mongodb-database-tools-windows-x86_64-100.9.5\\bin"
-        - "D:\\aws"
-        - "D:\\aws\\awscli"
-        - "D:\\texlive\\2024\\bin\\windows"
-        - "D:\\cygwin64\\bin"
-        - "D:\\Programs\\cursor\\resources\\app\\bin"
-        - "D:\\msys64\\ucrt64\\bin"
-        - "D:\\msys64"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/Patterns"
-      CMAKE_SYSTEM_PREFIX_PATH:
-        - "C:/Program Files"
-        - "C:/Program Files (x86)"
-        - "D:/Program Files/CMake"
-        - "C:/Program Files (x86)/Patterns"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/bin"
+        - "/opt/homebrew/sbin"
+        - "/Library/Frameworks/Python.framework/Versions/3.14/bin"
+        - "/usr/local/bin"
+        - "/System/Cryptexes/App/usr/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/sbin"
+        - "/sbin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+        - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+        - "/Users/lfan/.nvm/versions/node/v20.20.0/bin"
+        - "/Users/lfan/.bun/bin"
+        - "/Users/lfan/Library/Application Support/JetBrains/Toolbox/scripts"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
   -
     kind: "try_compile-v1"
     backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:2 (project)"
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "E:/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-shhjrn"
-      binary: "E:/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-shhjrn"
+      source: "/Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-GEKE3m"
+      binary: "/Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-GEKE3m"
     cmakeVariables:
-      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
-      CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
-      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: ""
     buildResult:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'E:/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-shhjrn'
+        Change Dir: '/Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-GEKE3m'
         
-        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_c5671.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
-        MSBuild version 17.12.12+1cce77968 for .NET Framework
-        Build started 2/7/2026 3:48:52 PM.
-        
-        Project "E:\\2026-spring-software-patterns\\build\\CMakeFiles\\CMakeScratch\\TryCompile-shhjrn\\cmTC_c5671.vcxproj" on node 1 (default targets).
-        PrepareForBuild:
-          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "E:\\2026-spring-software-patterns\\build\\CMakeFiles\\CMakeScratch\\TryCompile-shhjrn\\Debug\\".
-          Creating directory "cmTC_c5671.dir\\Debug\\cmTC_c5671.tlog\\".
-        InitializeBuildStatus:
-          Creating "cmTC_c5671.dir\\Debug\\cmTC_c5671.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_c5671.dir\\Debug\\cmTC_c5671.tlog\\unsuccessfulbuild".
-        ClCompile:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_c5671.dir\\Debug\\\\" /Fd"cmTC_c5671.dir\\Debug\\vc143.pdb" /external:W1 /TC /errorReport:queue "D:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
-          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
-          Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_c5671.dir\\Debug\\\\" /Fd"cmTC_c5671.dir\\Debug\\vc143.pdb" /external:W1 /TC /errorReport:queue "D:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
-          CMakeCCompilerABI.c
-        Link:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /OUT:"E:\\2026-spring-software-patterns\\build\\CMakeFiles\\CMakeScratch\\TryCompile-shhjrn\\Debug\\cmTC_c5671.exe" /INCREMENTAL /ILK:"cmTC_c5671.dir\\Debug\\cmTC_c5671.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-shhjrn/Debug/cmTC_c5671.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"E:/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-shhjrn/Debug/cmTC_c5671.lib" /MACHINE:X64  /machine:x64 cmTC_c5671.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_c5671.vcxproj -> E:\\2026-spring-software-patterns\\build\\CMakeFiles\\CMakeScratch\\TryCompile-shhjrn\\Debug\\cmTC_c5671.exe
-        FinalizeBuildStatus:
-          Deleting file "cmTC_c5671.dir\\Debug\\cmTC_c5671.tlog\\unsuccessfulbuild".
-          Touching "cmTC_c5671.dir\\Debug\\cmTC_c5671.tlog\\cmTC_c5671.lastbuildstate".
-        Done Building Project "E:\\2026-spring-software-patterns\\build\\CMakeFiles\\CMakeScratch\\TryCompile-shhjrn\\cmTC_c5671.vcxproj" (default targets).
-        
-        Build succeeded.
-            0 Warning(s)
-            0 Error(s)
-        
-        Time Elapsed 00:00:00.82
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_68268/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_68268.dir/build.make CMakeFiles/cmTC_68268.dir/build
+        Building C object CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o
+        /usr/bin/cc   -arch arm64   -v -Wl,-v -MD -MT CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c
+        Apple clang version 17.0.0 (clang-1700.4.4.1)
+        Target: arm64-apple-darwin24.6.0
+        Thread model: posix
+        InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+        clang: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
+         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=26.1 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +zcm -target-feature +zcz -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-GEKE3m -target-linker-version 1230.1 -v -fcoverage-compilation-dir=/Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-GEKE3m -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c
+        clang -cc1 version 17.0.0 (clang-1700.4.4.1) default target arm64-apple-darwin24.6.0
+        ignoring nonexistent directory "/usr/local/include"
+        ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include"
+        ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include
+         /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include
+         /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
+         /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+         /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks (framework directory)
+        End of search list.
+        Linking C executable cmTC_68268
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_68268.dir/link.txt --verbose=1
+        Apple clang version 17.0.0 (clang-1700.4.4.1)
+        Target: arm64-apple-darwin24.6.0
+        Thread model: posix
+        InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 15.0.0 26.1 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_68268 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a
+        @(#)PROGRAM:ld PROJECT:ld-1230.1
+        BUILD 16:18:08 Oct 17 2025
+        configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em armv8m.main armv8.1m.main
+        will use ld-classic for: armv6 armv7 armv7s i386 armv6m armv7k armv7m armv7em
+        LTO support using: LLVM version 17.0.0 (static support for 29, runtime is 29)
+        TAPI support using: Apple TAPI version 17.0.0 (tapi-1700.3.8)
+        Library search paths:
+        	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib
+        	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift
+        Framework search paths:
+        	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks
+        /usr/bin/cc  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o -o cmTC_68268
         
       exitCode: 0
   -
     kind: "message-v1"
     backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:122 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:2 (project)"
     message: |
-      Parsed C implicit link information:
-        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
-        linker tool for 'C': C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/HostX64/x64/link.exe
-        implicit libs: []
-        implicit objs: []
-        implicit dirs: []
-        implicit fwks: []
+      Effective list of requested architectures (possibly empty)  : ""
+      Effective list of architectures found in the ABI info binary: "arm64"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include]
+          add: [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include]
+          add: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        end of search list found
+        collapse include dir [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include] ==> [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include]
+        collapse include dir [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include]
+        collapse include dir [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include] ==> [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        implicit include dirs: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include;/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
       
       
   -
     kind: "message-v1"
     backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:2 (project)"
     message: |
-      Running the C compiler's linker: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/HostX64/x64/link.exe" "-v"
-      Microsoft (R) Incremental Linker Version 14.42.34435.0
-      Copyright (C) Microsoft Corporation.  All rights reserved.
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: '/Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-GEKE3m']
+        ignore line: []
+        ignore line: [Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_68268/fast]
+        ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_68268.dir/build.make CMakeFiles/cmTC_68268.dir/build]
+        ignore line: [Building C object CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/cc   -arch arm64   -v -Wl -v -MD -MT CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [Apple clang version 17.0.0 (clang-1700.4.4.1)]
+        ignore line: [Target: arm64-apple-darwin24.6.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+        ignore line: [clang: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
+        ignore line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=26.1 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +zcm -target-feature +zcz -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-GEKE3m -target-linker-version 1230.1 -v -fcoverage-compilation-dir=/Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-GEKE3m -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [clang -cc1 version 17.0.0 (clang-1700.4.4.1) default target arm64-apple-darwin24.6.0]
+        ignore line: [ignoring nonexistent directory "/usr/local/include"]
+        ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include"]
+        ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include]
+        ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include]
+        ignore line: [ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)]
+        ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks (framework directory)]
+        ignore line: [End of search list.]
+        ignore line: [Linking C executable cmTC_68268]
+        ignore line: [/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_68268.dir/link.txt --verbose=1]
+        ignore line: [Apple clang version 17.0.0 (clang-1700.4.4.1)]
+        ignore line: [Target: arm64-apple-darwin24.6.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+        link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 15.0.0 26.1 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_68268 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
+          arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
+          arg [-demangle] ==> ignore
+          arg [-lto_library] ==> ignore, skip following value
+          arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+          arg [-dynamic] ==> ignore
+          arg [-arch] ==> ignore
+          arg [arm64] ==> ignore
+          arg [-platform_version] ==> ignore
+          arg [macos] ==> ignore
+          arg [15.0.0] ==> ignore
+          arg [26.1] ==> ignore
+          arg [-syslibroot] ==> ignore
+          arg [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk] ==> ignore
+          arg [-mllvm] ==> ignore
+          arg [-enable-linkonceodr-outlining] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_68268] ==> ignore
+          arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
+          arg [-search_paths_first] ==> ignore
+          arg [-headerpad_max_install_names] ==> ignore
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_68268.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lSystem] ==> lib [System]
+          arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
+        linker tool for 'C': /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
+        Library search paths: [;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift]
+        Framework search paths: [;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks]
+        remove lib [System]
+        remove lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
+        collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+        collapse library dir [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib]
+        collapse library dir [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift]
+        collapse framework dir [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks]
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: [/usr/local/lib;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift]
+        implicit fwks: [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the C compiler's linker: "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" "-v"
+      @(#)PROGRAM:ld PROJECT:ld-1230.1
+      BUILD 16:18:08 Oct 17 2025
+      configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em armv8m.main armv8.1m.main
+      will use ld-classic for: armv6 armv7 armv7s i386 armv6m armv7k armv7m armv7em
+      LTO support using: LLVM version 17.0.0 (static support for 29, runtime is 29)
+      TAPI support using: Apple TAPI version 17.0.0 (tapi-1700.3.8)
   -
     kind: "try_compile-v1"
     backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:2 (project)"
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "E:/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-k93f0d"
-      binary: "E:/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-k93f0d"
+      source: "/Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-wdckRW"
+      binary: "/Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-wdckRW"
     cmakeVariables:
-      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
-      CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
       CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
-      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: ""
     buildResult:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'E:/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-k93f0d'
+        Change Dir: '/Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-wdckRW'
         
-        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_6a290.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
-        MSBuild version 17.12.12+1cce77968 for .NET Framework
-        Build started 2/7/2026 3:48:54 PM.
-        
-        Project "E:\\2026-spring-software-patterns\\build\\CMakeFiles\\CMakeScratch\\TryCompile-k93f0d\\cmTC_6a290.vcxproj" on node 1 (default targets).
-        PrepareForBuild:
-          Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "E:\\2026-spring-software-patterns\\build\\CMakeFiles\\CMakeScratch\\TryCompile-k93f0d\\Debug\\".
-          Creating directory "cmTC_6a290.dir\\Debug\\cmTC_6a290.tlog\\".
-        InitializeBuildStatus:
-          Creating "cmTC_6a290.dir\\Debug\\cmTC_6a290.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_6a290.dir\\Debug\\cmTC_6a290.tlog\\unsuccessfulbuild".
-        ClCompile:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_6a290.dir\\Debug\\\\" /Fd"cmTC_6a290.dir\\Debug\\vc143.pdb" /external:W1 /TP /errorReport:queue "D:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
-          Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34435 for x64
-          Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_6a290.dir\\Debug\\\\" /Fd"cmTC_6a290.dir\\Debug\\vc143.pdb" /external:W1 /TP /errorReport:queue "D:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
-          CMakeCXXCompilerABI.cpp
-        Link:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.42.34433\\bin\\HostX64\\x64\\link.exe /OUT:"E:\\2026-spring-software-patterns\\build\\CMakeFiles\\CMakeScratch\\TryCompile-k93f0d\\Debug\\cmTC_6a290.exe" /INCREMENTAL /ILK:"cmTC_6a290.dir\\Debug\\cmTC_6a290.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-k93f0d/Debug/cmTC_6a290.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"E:/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-k93f0d/Debug/cmTC_6a290.lib" /MACHINE:X64  /machine:x64 cmTC_6a290.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_6a290.vcxproj -> E:\\2026-spring-software-patterns\\build\\CMakeFiles\\CMakeScratch\\TryCompile-k93f0d\\Debug\\cmTC_6a290.exe
-        FinalizeBuildStatus:
-          Deleting file "cmTC_6a290.dir\\Debug\\cmTC_6a290.tlog\\unsuccessfulbuild".
-          Touching "cmTC_6a290.dir\\Debug\\cmTC_6a290.tlog\\cmTC_6a290.lastbuildstate".
-        Done Building Project "E:\\2026-spring-software-patterns\\build\\CMakeFiles\\CMakeScratch\\TryCompile-k93f0d\\cmTC_6a290.vcxproj" (default targets).
-        
-        Build succeeded.
-            0 Warning(s)
-            0 Error(s)
-        
-        Time Elapsed 00:00:00.82
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_dc0b7/fast
+        /Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_dc0b7.dir/build.make CMakeFiles/cmTC_dc0b7.dir/build
+        Building CXX object CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -arch arm64   -v -Wl,-v -MD -MT CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Apple clang version 17.0.0 (clang-1700.4.4.1)
+        Target: arm64-apple-darwin24.6.0
+        Thread model: posix
+        InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+        clang++: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
+        ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"
+         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=26.1 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +zcm -target-feature +zcz -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-wdckRW -target-linker-version 1230.1 -v -fcoverage-compilation-dir=/Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-wdckRW -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        clang -cc1 version 17.0.0 (clang-1700.4.4.1) default target arm64-apple-darwin24.6.0
+        ignoring nonexistent directory "/usr/local/include"
+        ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include"
+        ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1
+         /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include
+         /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include
+         /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
+         /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
+         /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks (framework directory)
+        End of search list.
+        Linking CXX executable cmTC_dc0b7
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dc0b7.dir/link.txt --verbose=1
+        Apple clang version 17.0.0 (clang-1700.4.4.1)
+        Target: arm64-apple-darwin24.6.0
+        Thread model: posix
+        InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 15.0.0 26.1 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_dc0b7 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a
+        @(#)PROGRAM:ld PROJECT:ld-1230.1
+        BUILD 16:18:08 Oct 17 2025
+        configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em armv8m.main armv8.1m.main
+        will use ld-classic for: armv6 armv7 armv7s i386 armv6m armv7k armv7m armv7em
+        LTO support using: LLVM version 17.0.0 (static support for 29, runtime is 29)
+        TAPI support using: Apple TAPI version 17.0.0 (tapi-1700.3.8)
+        Library search paths:
+        	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib
+        	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift
+        Framework search paths:
+        	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks
+        /usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_dc0b7
         
       exitCode: 0
   -
     kind: "message-v1"
     backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:122 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:2 (project)"
     message: |
-      Parsed CXX implicit link information:
-        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
-        linker tool for 'CXX': C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/HostX64/x64/link.exe
-        implicit libs: []
-        implicit objs: []
-        implicit dirs: []
-        implicit fwks: []
+      Effective list of requested architectures (possibly empty)  : ""
+      Effective list of architectures found in the ABI info binary: "arm64"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1]
+          add: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include]
+          add: [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include]
+          add: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        end of search list found
+        collapse include dir [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1]
+        collapse include dir [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include] ==> [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include]
+        collapse include dir [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include]
+        collapse include dir [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include] ==> [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        implicit include dirs: [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1;/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include;/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
       
       
   -
     kind: "message-v1"
     backtrace:
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
-      - "D:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:2 (project)"
     message: |
-      Running the CXX compiler's linker: "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.42.34433/bin/HostX64/x64/link.exe" "-v"
-      Microsoft (R) Incremental Linker Version 14.42.34435.0
-      Copyright (C) Microsoft Corporation.  All rights reserved.
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: '/Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-wdckRW']
+        ignore line: []
+        ignore line: [Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_dc0b7/fast]
+        ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_dc0b7.dir/build.make CMakeFiles/cmTC_dc0b7.dir/build]
+        ignore line: [Building CXX object CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -arch arm64   -v -Wl -v -MD -MT CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Apple clang version 17.0.0 (clang-1700.4.4.1)]
+        ignore line: [Target: arm64-apple-darwin24.6.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+        ignore line: [clang++: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
+        ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"]
+        ignore line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx15.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=26.1 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu apple-m1 -target-feature +zcm -target-feature +zcz -target-feature +v8.5a -target-feature +aes -target-feature +altnzcv -target-feature +ccdp -target-feature +complxnum -target-feature +crc -target-feature +dotprod -target-feature +fp-armv8 -target-feature +fp16fml -target-feature +fptoint -target-feature +fullfp16 -target-feature +jsconv -target-feature +lse -target-feature +neon -target-feature +pauth -target-feature +perfmon -target-feature +predres -target-feature +ras -target-feature +rcpc -target-feature +rdm -target-feature +sb -target-feature +sha2 -target-feature +sha3 -target-feature +specrestrict -target-feature +ssbs -target-abi darwinpcs -debugger-tuning=lldb -fdebug-compilation-dir=/Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-wdckRW -target-linker-version 1230.1 -v -fcoverage-compilation-dir=/Users/lfan/Documents/GitHub/2026-spring-software-patterns/build/CMakeFiles/CMakeScratch/TryCompile-wdckRW -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [clang -cc1 version 17.0.0 (clang-1700.4.4.1) default target arm64-apple-darwin24.6.0]
+        ignore line: [ignoring nonexistent directory "/usr/local/include"]
+        ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include"]
+        ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1]
+        ignore line: [ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include]
+        ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include]
+        ignore line: [ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)]
+        ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks (framework directory)]
+        ignore line: [End of search list.]
+        ignore line: [Linking CXX executable cmTC_dc0b7]
+        ignore line: [/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dc0b7.dir/link.txt --verbose=1]
+        ignore line: [Apple clang version 17.0.0 (clang-1700.4.4.1)]
+        ignore line: [Target: arm64-apple-darwin24.6.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+        link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 15.0.0 26.1 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_dc0b7 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
+          arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
+          arg [-demangle] ==> ignore
+          arg [-lto_library] ==> ignore, skip following value
+          arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+          arg [-dynamic] ==> ignore
+          arg [-arch] ==> ignore
+          arg [arm64] ==> ignore
+          arg [-platform_version] ==> ignore
+          arg [macos] ==> ignore
+          arg [15.0.0] ==> ignore
+          arg [26.1] ==> ignore
+          arg [-syslibroot] ==> ignore
+          arg [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk] ==> ignore
+          arg [-mllvm] ==> ignore
+          arg [-enable-linkonceodr-outlining] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_dc0b7] ==> ignore
+          arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
+          arg [-search_paths_first] ==> ignore
+          arg [-headerpad_max_install_names] ==> ignore
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_dc0b7.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lc++] ==> lib [c++]
+          arg [-lSystem] ==> lib [System]
+          arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
+        linker tool for 'CXX': /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
+        Library search paths: [;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift]
+        Framework search paths: [;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks]
+        remove lib [System]
+        remove lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
+        collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+        collapse library dir [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib]
+        collapse library dir [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift]
+        collapse framework dir [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks]
+        implicit libs: [c++]
+        implicit objs: []
+        implicit dirs: [/usr/local/lib;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/swift]
+        implicit fwks: [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" "-v"
+      @(#)PROGRAM:ld PROJECT:ld-1230.1
+      BUILD 16:18:08 Oct 17 2025
+      configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em armv8m.main armv8.1m.main
+      will use ld-classic for: armv6 armv7 armv7s i386 armv6m armv7k armv7m armv7em
+      LTO support using: LLVM version 17.0.0 (static support for 29, runtime is 29)
+      TAPI support using: Apple TAPI version 17.0.0 (tapi-1700.3.8)
 ...
