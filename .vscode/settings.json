@@ -5,6 +5,9 @@
     "XMLSerializer.C": "cpp",
     "Document.C": "cpp",
     "Test.C": "cpp",
-    "XMLTokenizer.C": "cpp"
+    "XMLTokenizer.C": "cpp",
+    "Element.C": "cpp",
+    "Text.C": "cpp",
+    "Node.C": "cpp"
   }
 }
