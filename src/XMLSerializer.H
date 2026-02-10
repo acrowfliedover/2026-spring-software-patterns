@@ -6,13 +6,13 @@
 
 namespace dom { class Document; class Element; class Attr; class Text; }
 
-class XMLSerializer
+class XMLSerializer // strategy class
 {
 private:
 	std::fstream		file;
 	int			indentationLevel;
 	bool			pretty;
-	
+
 	virtual void prettyIndentation();
 public:
 	XMLSerializer(const std::string & filename);

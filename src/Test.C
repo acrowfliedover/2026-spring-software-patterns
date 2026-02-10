@@ -48,9 +48,9 @@ void testTokenizer(int argc, char **argv)
 {
 	dom::Document *document = new Document_Impl;
 
-	dom::Element *element = document->createElement("NewElement");
-	dom::Text *text = document->createTextNode("Text Data");
-	dom::Attr *attr = document->createAttribute("NewAttribute");
+	dom::Element *element = document->createElement("NewElement"); //concrete product
+	dom::Text *text = document->createTextNode("Text Data"); //concrete product
+	dom::Attr *attr = document->createAttribute("NewAttribute"); //concrete product
 
 	printf("Element Tag = '%s'\n", element->getTagName().c_str());
 	printf("Text Data = '%s'\n", text->getValue().c_str());

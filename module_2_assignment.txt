@@ -1,1 +1,3 @@
-1. Factory pattern: The factory methods are there in the 
+1. Factory pattern: The factory methods are already inplace. I have added comments indicating where the factory pattern components in Document.H and Test.C 
+2. Strategy pattern: I am a little confused on how does the polymorphism work with the strategies. So I have to resort to adding "serializeWith" functions. The components are listed in comments in XMLSerializer.C and XMLSerializer.H 
+3. Decorator Pattern

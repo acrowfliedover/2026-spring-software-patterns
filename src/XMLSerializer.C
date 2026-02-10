@@ -13,27 +13,27 @@ void XMLSerializer::prettyIndentation()
 		file << "\t";
 }
 
-void XMLSerializer::serializePretty(dom::Node * node)
+void XMLSerializer::serializePretty(dom::Node * node) //context
 {
 	pretty = true;
 	indentationLevel = 0;
 	node->serializeWith(*this);
 }
 
-void XMLSerializer::serializeMinimal(dom::Node * node)
+void XMLSerializer::serializeMinimal(dom::Node * node) //context
 {
 	pretty = false;
 	node->serializeWith(*this);
 }
 
-void XMLSerializer::serialize(dom::Document * doc)
+void XMLSerializer::serialize(dom::Document * doc) //concrete strategy
 {
 	file << "<? xml version=\"1.0\" encoding=\"UTF-8\"?>";
 	if (pretty) file << "\n";
 	doc->getDocumentElement()->serializeWith(*this);
 }
 
-void XMLSerializer::serialize(dom::Element * el)
+void XMLSerializer::serialize(dom::Element * el) //concrete strategy
 {
 	if (pretty) prettyIndentation();
 	file << "<" << el->getTagName();
@@ -59,12 +59,12 @@ void XMLSerializer::serialize(dom::Element * el)
 	}
 }
 
-void XMLSerializer::serialize(dom::Attr * a)
+void XMLSerializer::serialize(dom::Attr * a) //concrete strategy
 {
 	file << " " << a->getName() << "=\"" << a->getValue() << "\"";
 }
 
-void XMLSerializer::serialize(dom::Text * t)
+void XMLSerializer::serialize(dom::Text * t) //concrete strategy
 {
 	if (pretty) prettyIndentation();
 	file << t->getData();

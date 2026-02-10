@@ -12,26 +12,27 @@ namespace dom
 	class Attr;
 	class NodeList;
 
-	class Document : public virtual Node
+	class Document : public virtual Node // abstract creator class
 	{
 	public:
-		virtual Element *createElement(const std::string &tagName) = 0;
-		virtual Text *createTextNode(const std::string &data) = 0;
-		virtual Attr *createAttribute(const std::string &name) = 0;
+		virtual Element *createElement(const std::string &tagName) = 0; //abstract factory method
+		virtual Text *createTextNode(const std::string &data) = 0; //abstract factory method
+		virtual Attr *createAttribute(const std::string &name) = 0; //abstract factory method
 		virtual Element *getDocumentElement() = 0;
 	};
 };
 
-class Document_Impl : public virtual dom::Document, public virtual Node_Impl
+class Document_Impl : public virtual dom::Document, public virtual Node_Impl 
+// concrete creator class
 {
 public:
 	Document_Impl(void);
 
 	virtual ~Document_Impl();
 
-	virtual dom::Element *createElement(const std::string &tagName);
-	virtual dom::Text *createTextNode(const std::string &data);
-	virtual dom::Attr *createAttribute(const std::string &name);
+	virtual dom::Element *createElement(const std::string &tagName); // concrete factory method
+	virtual dom::Text *createTextNode(const std::string &data); // concrete factory method
+	virtual dom::Attr *createAttribute(const std::string &name); // concrete factory method
 	virtual dom::Element *getDocumentElement();
 	virtual void serializeWith(class XMLSerializer & s);
 };
