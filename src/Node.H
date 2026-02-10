@@ -4,6 +4,8 @@
 #include <string>
 #include "NodeList.H"
 
+class XMLSerializer;
+
 namespace dom
 {
 	class Document;
@@ -35,6 +37,7 @@ namespace dom
 		virtual Node *			appendChild(Node * newChild)			= 0;
 		virtual bool			hasChildNodes(void)				= 0;
 		virtual const std::string &	getLocalName(void)				= 0;
+		virtual void			serializeWith(XMLSerializer & s)		= 0;
 	};
 
 	class DOMException

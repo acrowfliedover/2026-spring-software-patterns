@@ -4,17 +4,25 @@
 
 #include "Node.H"
 
+namespace dom { class Document; class Element; class Attr; class Text; }
+
 class XMLSerializer
 {
 private:
 	std::fstream		file;
 	int			indentationLevel;
-
-	virtual void		prettyIndentation();
+	bool			pretty;
+	
+	virtual void prettyIndentation();
 public:
-	XMLSerializer(const std::string & filename) : indentationLevel(0), file(filename.c_str(), std::ios_base::out)	{}
-	~XMLSerializer() {}
+	XMLSerializer(const std::string & filename);
 
-	virtual void		serializePretty(dom::Node * node);
-	virtual void		serializeMinimal(dom::Node * node);
+	virtual void serializePretty(dom::Node * node);
+	virtual void serializeMinimal(dom::Node * node);
+
+	void serialize(dom::Document * node);
+	void serialize(dom::Element * node);
+	void serialize(dom::Attr * node);
+	void serialize(dom::Text * node);
+
 };

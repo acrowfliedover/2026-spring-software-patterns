@@ -1,4 +1,5 @@
 #include "Text.H"
+#include "XMLSerializer.H"
 #include <stdexcept>
 
 Text_Impl::Text_Impl(const std::string value, dom::Document *document) : Node_Impl("", dom::Node::TEXT_NODE)
@@ -104,4 +105,9 @@ dom::Text *Text_Impl::splitText(int offset)
 	{
 		throw dom::DOMException(dom::DOMException::INDEX_SIZE_ERR, "Index larget than Text node's value.");
 	}
+}
+
+void Text_Impl::serializeWith(XMLSerializer & s)
+{
+	s.serialize(this);
 }

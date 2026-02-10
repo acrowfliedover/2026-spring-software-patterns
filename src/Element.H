@@ -55,6 +55,7 @@ public:
 
 	virtual dom::NamedNodeMap *	getAttributes(void)	{ return &attributes; }
 	virtual bool			hasAttributes(void)	{ return attributes.size() > 0; }
+	virtual void			serializeWith(class XMLSerializer & s);
 };
 
 #endif // ELEMENT_H

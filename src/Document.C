@@ -3,6 +3,7 @@
 #include "Text.H"
 #include "Attr.H"
 #include "NodeList.H"
+#include "XMLSerializer.H"
 
 Document_Impl::Document_Impl(void) : Node_Impl("", dom::Node::DOCUMENT_NODE)
 {
@@ -33,4 +34,9 @@ dom::Element *Document_Impl::getDocumentElement()
 			return dynamic_cast<dom::Element *>(*i.operator->());
 
 	return 0;
+}
+
+void Document_Impl::serializeWith(XMLSerializer & s)
+{
+	s.serialize(this);
 }

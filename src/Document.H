@@ -33,6 +33,7 @@ public:
 	virtual dom::Text *createTextNode(const std::string &data);
 	virtual dom::Attr *createAttribute(const std::string &name);
 	virtual dom::Element *getDocumentElement();
+	virtual void serializeWith(class XMLSerializer & s);
 };
 
 #endif // DOCUMENT_H

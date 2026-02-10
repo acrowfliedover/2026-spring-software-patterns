@@ -1,6 +1,7 @@
 #include "Element.H"
 #include "Attr.H"
 #include "Document.H"
+#include "XMLSerializer.H"
 
 Element_Impl::Element_Impl(const std::string & tagName, dom::Document * document) : Node_Impl(tagName, dom::Node::ELEMENT_NODE),
   attributes(document)
@@ -138,4 +139,9 @@ dom::Attr *		Element_Impl::setAttributeNode(dom::Attr * newAttr)
 	dynamic_cast<Node_Impl *>(dynamic_cast<Node *>(newAttr))->setParent(this);
 	attributes.push_back(newAttr);
 	return oldAttribute;
+}
+
+void Element_Impl::serializeWith(XMLSerializer & s)
+{
+	s.serialize(this);
 }

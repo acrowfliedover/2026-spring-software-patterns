@@ -1,4 +1,5 @@
 #include "Attr.H"
+#include "XMLSerializer.H"
 
 Attr_Impl::Attr_Impl(const std::string & tagName, dom::Document * document) : Node_Impl(tagName, dom::Node::ATTRIBUTE_NODE)
 {
@@ -32,4 +33,9 @@ void			Attr_Impl::setValue(const std::string & value)
 dom::Element *		Attr_Impl::getOwnerElement(void)
 {
 	return (dom::Element *)Node_Impl::getParentNode();
+}
+
+void Attr_Impl::serializeWith(XMLSerializer & s)
+{
+	s.serialize(this);
 }

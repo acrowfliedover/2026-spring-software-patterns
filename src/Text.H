@@ -50,6 +50,7 @@ public:
 	virtual void			deleteData(int offset, int count);
 	virtual void			replaceData(int offset, int count, const std::string & arg);
 	virtual dom::Text *		splitText(int offset);
+	virtual void			serializeWith(class XMLSerializer & s);
 };
 
 #endif // TEXT_H

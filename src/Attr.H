@@ -37,6 +37,7 @@ public:
 	virtual const std::string &	getValue(void);
 	virtual void			setValue(const std::string & value);
 	virtual dom::Element *		getOwnerElement(void);
+	virtual void			serializeWith(class XMLSerializer & s);
 };
 
 #endif // ATTR_H
