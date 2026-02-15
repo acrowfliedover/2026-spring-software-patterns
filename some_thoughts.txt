@@ -1,0 +1,14 @@
+Make any modifications necessary to the DOM interfaces and implementation to make the DOM tree fit the Composite pattern. Consider following Kerievsky’s refactoring “Extract Composite” to move methods out of subclasses.
+
+Which classes are Leaf nodes and which are Composite nodes in the DOM structure?
+
+What behaviors need to be implemented differently between Leaf and Composite nodes?
+
+Do you need abstract Leaf and/or Composite classes to implement the distinction between those two roles?
+
+What is the composite pattern essentially? 
+1. It is a class structure so there are two types of subclasses
+    a) Leaf classes like in this case the text, attribute
+    b) Composite classes, like here the element, where it can contain more elements and leaves
+
+To answer how are they implemented differently, first need to know how to implement a leaf node

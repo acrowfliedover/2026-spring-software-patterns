@@ -10,9 +10,9 @@ namespace dom
 	class NodeList : public std::list<Node *>
 	{
 	public:
-		virtual iterator	find(Node *n)
+		virtual iterator find(Node *n)
 		{
-			iterator	i;
+			iterator i;
 
 			for (i = begin(); i != end(); i++)
 				if (*i.operator->() == n)
