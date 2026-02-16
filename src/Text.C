@@ -95,8 +95,9 @@ dom::Text *Text_Impl::splitText(int offset)
 
 		setValue(substringData(0, offset));
 
-		if (getParentNode() != 0)
-			insertBefore(text, getNextSibling());
+		dom::Node *parent = getParentNode();
+		if (parent != 0)
+			parent->insertBefore(text, getNextSibling());
 
 		return text;
 	}

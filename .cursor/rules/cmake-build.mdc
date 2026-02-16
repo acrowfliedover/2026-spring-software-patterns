@@ -1,0 +1,33 @@
+---
+description: Use CMake with Makefile generator (not Visual Studio) for building this C++ project
+alwaysApply: true
+---
+
+# Build: CMake with Makefiles
+
+For this project, **always use the CMake build that produces a Makefile and .o object files**. Do not use the Visual Studio generator.
+
+## Generator
+
+- Prefer **"MinGW Makefiles"** on Windows (with GCC/MinGW) or **"Unix Makefiles"** on Linux/macOS.
+- Avoid **Visual Studio** or **Ninja** unless the user explicitly asks for them.
+
+## Configure and build
+
+From the project root:
+
+**Windows (PowerShell, with MinGW):**
+```powershell
+cd build
+cmake -G "MinGW Makefiles" -DCMAKE_CXX_COMPILER=g++.exe ../src
+cmake --build .
+```
+
+**Unix-like (Linux/macOS):**
+```bash
+mkdir -p build && cd build
+cmake ../src
+cmake --build .
+```
+
+The executable is produced in `build/` (or `build/Debug/` depending on generator). Use this flow when asked to build or run the project.

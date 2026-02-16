@@ -2,11 +2,11 @@
 #define NODE_H
 
 #include <string>
-#include "NodeList.H"
 
 namespace dom
 {
 	class Document;
+	class NodeList;
 
 	class Node
 	{
@@ -68,7 +68,6 @@ private:
 	std::string value;
 	short nodeType;
 	dom::Node *parent;
-	dom::NodeList nodes;
 
 	dom::Node *getSibling(int direction);
 

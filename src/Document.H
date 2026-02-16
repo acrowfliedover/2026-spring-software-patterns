@@ -4,6 +4,7 @@
 #include <string>
 
 #include "Node.H"
+#include "NodeList.H"
 
 namespace dom
 {
@@ -24,6 +25,11 @@ namespace dom
 
 class Document_Impl : public virtual dom::Document, public virtual Node_Impl
 {
+private:
+	dom::NodeList childList;
+
+	void setSingleChild(dom::Node *child);
+
 public:
 	Document_Impl(void);
 
@@ -33,6 +39,15 @@ public:
 	virtual dom::Text *createTextNode(const std::string &data);
 	virtual dom::Attr *createAttribute(const std::string &name);
 	virtual dom::Element *getDocumentElement();
+
+	virtual dom::NodeList *getChildNodes(void);
+	virtual dom::Node *getFirstChild(void);
+	virtual dom::Node *getLastChild(void);
+	virtual dom::Node *insertBefore(dom::Node *newChild, dom::Node *refChild);
+	virtual dom::Node *replaceChild(dom::Node *newChild, dom::Node *oldChild);
+	virtual dom::Node *removeChild(dom::Node *oldChild);
+	virtual dom::Node *appendChild(dom::Node *newChild);
+	virtual bool hasChildNodes(void);
 };
 
 #endif // DOCUMENT_H

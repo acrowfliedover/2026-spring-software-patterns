@@ -4,6 +4,7 @@
 #include <string>
 
 #include "Node.H"
+#include "NodeList.H"
 #include "NamedNodeMap.H"
 
 namespace dom
@@ -35,6 +36,7 @@ namespace dom
 class Element_Impl : public virtual dom::Element, Node_Impl
 {
 private:
+	dom::NodeList nodes;
 	NamedNodeMap_Impl attributes;
 
 protected:
@@ -44,6 +46,15 @@ public:
 	friend class Document_Impl;
 
 	virtual ~Element_Impl();
+
+	virtual dom::NodeList *getChildNodes(void);
+	virtual dom::Node *getFirstChild(void);
+	virtual dom::Node *getLastChild(void);
+	virtual dom::Node *insertBefore(dom::Node *newChild, dom::Node *refChild);
+	virtual dom::Node *replaceChild(dom::Node *newChild, dom::Node *oldChild);
+	virtual dom::Node *removeChild(dom::Node *oldChild);
+	virtual dom::Node *appendChild(dom::Node *newChild);
+	virtual bool hasChildNodes(void);
 
 	virtual const std::string &getAttribute(const std::string &name);
 	virtual dom::Attr *getAttributeNode(const std::string &name);

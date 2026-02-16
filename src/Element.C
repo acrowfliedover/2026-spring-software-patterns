@@ -12,6 +12,103 @@ Element_Impl::~Element_Impl()
 {
 }
 
+dom::NodeList *Element_Impl::getChildNodes(void)
+{
+	return &nodes;
+}
+
+dom::Node *Element_Impl::getFirstChild(void)
+{
+	return nodes.size() == 0 ? 0 : *nodes.begin();
+}
+
+dom::Node *Element_Impl::getLastChild(void)
+{
+	return nodes.size() == 0 ? 0 : *(--nodes.end());
+}
+
+dom::Node *Element_Impl::insertBefore(dom::Node *newChild, dom::Node *refChild)
+{
+	if (newChild->getOwnerDocument() != getOwnerDocument())
+		throw dom::DOMException(dom::DOMException::WRONG_DOCUMENT_ERR, "New Child is not a part of this document.");
+
+	dom::Node *parent = newChild->getParentNode();
+	if (parent != 0)
+		parent->removeChild(newChild);
+
+	if (refChild == 0)
+	{
+		nodes.push_back(newChild);
+		(dynamic_cast<Node_Impl *>(newChild))->setParent(this);
+		return newChild;
+	}
+
+	dom::NodeList::iterator index = nodes.find(refChild);
+
+	if (index == nodes.end())
+		throw dom::DOMException(dom::DOMException::NOT_FOUND_ERR, "Reference Child is not a child of this node.");
+
+	nodes.insert(++index, newChild);
+	(dynamic_cast<Node_Impl *>(newChild))->setParent(this);
+
+	return newChild;
+}
+
+dom::Node *Element_Impl::replaceChild(dom::Node *newChild, dom::Node *oldChild)
+{
+	if (newChild->getOwnerDocument() != getOwnerDocument())
+		throw dom::DOMException(dom::DOMException::WRONG_DOCUMENT_ERR, "New Child is not a part of this document.");
+
+	dom::Node *parent = newChild->getParentNode();
+	if (parent != 0)
+		parent->removeChild(newChild);
+
+	dom::NodeList::iterator index = nodes.find(oldChild);
+
+	if (index == nodes.end())
+		throw dom::DOMException(dom::DOMException::NOT_FOUND_ERR, "Old Child is not a child of this node.");
+
+	nodes.insert(index, newChild);
+	(dynamic_cast<Node_Impl *>(newChild))->setParent(this);
+	(dynamic_cast<Node_Impl *>(*index))->setParent(0);
+	nodes.erase(index);
+
+	return oldChild;
+}
+
+dom::Node *Element_Impl::removeChild(dom::Node *oldChild)
+{
+	dom::NodeList::iterator index = nodes.find(oldChild);
+
+	if (index == nodes.end())
+		throw dom::DOMException(dom::DOMException::NOT_FOUND_ERR, "Old Child is not a child of this node.");
+
+	(dynamic_cast<Node_Impl *>(*index))->setParent(0);
+	nodes.erase(index);
+
+	return oldChild;
+}
+
+dom::Node *Element_Impl::appendChild(dom::Node *newChild)
+{
+	if (newChild->getOwnerDocument() != getOwnerDocument())
+		throw dom::DOMException(dom::DOMException::WRONG_DOCUMENT_ERR, "New Child is not a part of this document.");
+
+	dom::Node *parent = newChild->getParentNode();
+	if (parent != 0)
+		parent->removeChild(newChild);
+
+	nodes.push_back(newChild);
+	(dynamic_cast<Node_Impl *>(newChild))->setParent(this);
+
+	return newChild;
+}
+
+bool Element_Impl::hasChildNodes(void)
+{
+	return nodes.size() > 0;
+}
+
 const std::string &Element_Impl::getAttribute(const std::string &name)
 {
 	for (dom::NodeList::iterator i = attributes.begin(); i != attributes.end(); i++)

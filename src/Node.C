@@ -1,4 +1,5 @@
 #include "Node.H"
+#include "NodeList.H"
 
 Node_Impl::Node_Impl(const std::string &n, short type) : name(n), nodeType(type), parent(0), document(0)
 {
@@ -35,17 +36,22 @@ dom::Node *Node_Impl::getParentNode(void)
 
 dom::NodeList *Node_Impl::getChildNodes(void)
 {
-	return &nodes;
+	//
+	// Default "Leaf" behavior for Composite:
+	// nodes that aren't composites have no children.
+	//
+	static dom::NodeList empty;
+	return &empty;
 }
 
 dom::Node *Node_Impl::getFirstChild(void)
 {
-	return *nodes.begin();
+	return 0;
 }
 
 dom::Node *Node_Impl::getLastChild(void)
 {
-	return *(--nodes.end());
+	return 0;
 }
 
 dom::Node *Node_Impl::getPreviousSibling(void)
@@ -65,81 +71,27 @@ dom::Document *Node_Impl::getOwnerDocument(void)
 
 dom::Node *Node_Impl::insertBefore(dom::Node *newChild, dom::Node *refChild)
 {
-	if (newChild->getOwnerDocument() != getOwnerDocument())
-		throw dom::DOMException(dom::DOMException::WRONG_DOCUMENT_ERR, "New Child is not a part of this document.");
-
-	if (newChild->getParentNode() != 0)
-		newChild->getParentNode()->removeChild(newChild);
-
-	if (refChild == 0)
-	{
-		nodes.push_back(newChild);
-		(dynamic_cast<Node_Impl *>(newChild))->setParent(this);
-		return newChild;
-	}
-
-	dom::NodeList::iterator index = nodes.find(refChild);
-
-	if (index == nodes.end())
-		throw dom::DOMException(dom::DOMException::NOT_FOUND_ERR, "Reference Child is not a child of this node.");
-
-	nodes.insert(++index, newChild);
-	(dynamic_cast<Node_Impl *>(newChild))->setParent(this);
-
-	return newChild;
+	throw dom::DOMException(dom::DOMException::HIERARCHY_REQUEST_ERR, "This node type cannot have children.");
 }
 
 dom::Node *Node_Impl::replaceChild(dom::Node *newChild, dom::Node *oldChild)
 {
-	if (newChild->getOwnerDocument() != getOwnerDocument())
-		throw dom::DOMException(dom::DOMException::WRONG_DOCUMENT_ERR, "New Child is not a part of this document.");
-
-	if (newChild->getParentNode() != 0)
-		newChild->getParentNode()->removeChild(newChild);
-
-	dom::NodeList::iterator index = nodes.find(oldChild);
-
-	if (index == nodes.end())
-		throw dom::DOMException(dom::DOMException::NOT_FOUND_ERR, "Old Child is not a child of this node.");
-
-	nodes.insert(index, newChild);
-	(dynamic_cast<Node_Impl *>(newChild))->setParent(this);
-	(dynamic_cast<Node_Impl *>(*index))->setParent(0);
-	nodes.erase(index);
-
-	return oldChild;
+	throw dom::DOMException(dom::DOMException::HIERARCHY_REQUEST_ERR, "This node type cannot have children.");
 }
 
 dom::Node *Node_Impl::removeChild(dom::Node *oldChild)
 {
-	dom::NodeList::iterator index = nodes.find(oldChild);
-
-	if (index == nodes.end())
-		throw dom::DOMException(dom::DOMException::NOT_FOUND_ERR, "Old Child is not a child of this node.");
-
-	(dynamic_cast<Node_Impl *>(*index))->setParent(0);
-	nodes.erase(index);
-
-	return oldChild;
+	throw dom::DOMException(dom::DOMException::HIERARCHY_REQUEST_ERR, "This node type cannot have children.");
 }
 
 dom::Node *Node_Impl::appendChild(dom::Node *newChild)
 {
-	if (newChild->getOwnerDocument() != getOwnerDocument())
-		throw dom::DOMException(dom::DOMException::WRONG_DOCUMENT_ERR, "New Child is not a part of this document.");
-
-	if (newChild->getParentNode() != 0)
-		newChild->getParentNode()->removeChild(newChild);
-
-	nodes.push_back(newChild);
-	(dynamic_cast<Node_Impl *>(newChild))->setParent(this);
-
-	return newChild;
+	throw dom::DOMException(dom::DOMException::HIERARCHY_REQUEST_ERR, "This node type cannot have children.");
 }
 
 bool Node_Impl::hasChildNodes(void)
 {
-	return nodes.size() > 0;
+	return false;
 }
 
 const std::string &Node_Impl::getLocalName(void)
@@ -157,11 +109,12 @@ dom::Node *Node_Impl::getSibling(int direction)
 	if (parent == 0)
 		return 0;
 
-	dom::NodeList::iterator i = parent->getChildNodes()->find(this);
+	dom::NodeList *childList = parent->getChildNodes();
+	dom::NodeList::iterator i = childList->find(this);
 
 	if (direction < 0)
 	{
-		if (i == parent->getChildNodes()->begin())
+		if (i == childList->begin())
 			return 0;
 		else
 			return *(--i);
@@ -170,7 +123,7 @@ dom::Node *Node_Impl::getSibling(int direction)
 	{
 		i++;
 
-		if (i == parent->getChildNodes()->end())
+		if (i == childList->end())
 			return 0;
 		else
 			return *i;
