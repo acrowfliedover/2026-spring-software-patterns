@@ -2,4 +2,4 @@ Make any modifications necessary to the DOM interfaces and implementation to mak
 
 Extract the recursive traversal logic from the original XMLSerializer class into an Iterator.
 
-1. 
+1. For the composite pattern, the leaf nodes are the attr and text nodes.

@@ -14,20 +14,11 @@ namespace dom
 	class Iterator
 	{
 	public:
-		enum Kind
-		{
-			NONE = 0,
-			ENTER_ELEMENT,
-			EXIT_ELEMENT,
-			TEXT
-		};
-
 		virtual ~Iterator() {}
 		virtual void first(void) = 0;
 		virtual void next(void) = 0;
 		virtual bool isDone(void) const = 0;
 		virtual Node *currentNode(void) const = 0;
-		virtual Kind currentKind(void) const = 0;
 	};
 };
 
