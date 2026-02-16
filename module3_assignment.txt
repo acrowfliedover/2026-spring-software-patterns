@@ -1,0 +1,5 @@
+Make any modifications necessary to the DOM interfaces and implementation to make the DOM tree fit the Composite pattern.
+
+Extract the recursive traversal logic from the original XMLSerializer class into an Iterator.
+
+1. 

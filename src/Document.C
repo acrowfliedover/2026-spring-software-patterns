@@ -85,8 +85,7 @@ dom::Node *Document_Impl::replaceChild(dom::Node *newChild, dom::Node *oldChild)
 	if (newChild->getOwnerDocument() != getOwnerDocument())
 		throw dom::DOMException(dom::DOMException::WRONG_DOCUMENT_ERR, "New Child is not a part of this document.");
 
-	dom::NodeList::iterator index = childList.find(oldChild);
-	if (index == childList.end())
+	if (childList.size() == 0 || *childList.begin() != oldChild)
 		throw dom::DOMException(dom::DOMException::NOT_FOUND_ERR, "Old Child is not a child of this node.");
 
 	dom::Node *parent = newChild->getParentNode();
@@ -94,22 +93,17 @@ dom::Node *Document_Impl::replaceChild(dom::Node *newChild, dom::Node *oldChild)
 		parent->removeChild(newChild);
 
 	(dynamic_cast<Node_Impl *>(oldChild))->setParent(0);
-	childList.clear();
-	childList.push_back(newChild);
-	(dynamic_cast<Node_Impl *>(newChild))->setParent(this);
+	setSingleChild(newChild);
 	return oldChild;
 }
 
 dom::Node *Document_Impl::removeChild(dom::Node *oldChild)
 {
-	dom::NodeList::iterator index = childList.find(oldChild);
-
-	if (index == childList.end())
+	if (childList.size() == 0 || *childList.begin() != oldChild)
 		throw dom::DOMException(dom::DOMException::NOT_FOUND_ERR, "Old Child is not a child of this node.");
 
-	(dynamic_cast<Node_Impl *>(*index))->setParent(0);
-	childList.erase(index);
-
+	(dynamic_cast<Node_Impl *>(*childList.begin()))->setParent(0);
+	childList.clear();
 	return oldChild;
 }
 
