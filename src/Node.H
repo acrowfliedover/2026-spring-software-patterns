@@ -7,6 +7,7 @@ namespace dom
 {
 	class Document;
 	class NodeList;
+	class Iterator;
 
 	class Node
 	{
@@ -35,6 +36,11 @@ namespace dom
 		virtual Node *appendChild(Node *newChild) = 0;
 		virtual bool hasChildNodes(void) = 0;
 		virtual const std::string &getLocalName(void) = 0;
+
+		//
+		// Iterator pattern: Aggregate interface operation
+		//
+		virtual Iterator *createIterator(void) = 0;
 	};
 
 	class DOMException
@@ -96,6 +102,7 @@ public:
 	virtual dom::Node *appendChild(dom::Node *newChild);
 	virtual bool hasChildNodes(void);
 	virtual const std::string &getLocalName(void);
+	virtual dom::Iterator *createIterator(void);
 
 	virtual void setParent(dom::Node *parent);
 };
