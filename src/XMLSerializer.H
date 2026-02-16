@@ -7,7 +7,8 @@
 //
 // Iterator pattern roles (kept in XMLSerializer files per assignment request):
 // - Iterator interface: dom::Iterator
-// - Concrete Iterator: implemented in XMLSerializer.C
+// - Concrete Iterators (one per node class): NullIterator, ElementIterator,
+//   AttrIterator, TextIterator; implemented in XMLSerializer.C
 //
 namespace dom
 {

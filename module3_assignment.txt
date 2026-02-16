@@ -2,4 +2,11 @@ Make any modifications necessary to the DOM interfaces and implementation to mak
 
 Extract the recursive traversal logic from the original XMLSerializer class into an Iterator.
 
-1. For the composite pattern, the leaf nodes are the attr and text nodes.
+1. For the composite pattern, the leaf nodes are the attr and text nodes. The composite nodes are the element node and the special case of Document node. The component interface is the Node class and the client is any function using the Node interface. 
+
+2. For the iterator pattern, I've created iterator classes so we can use the iterators to perform the serialization action. The client is the serializer, the Aggregate is the Node class, the iterator is the Iterator class. The concrete aggregate are the node classes, and the concrete iterators are the iterators for each of the node classes.
+
+a) We are using DFS for the iterators, so we have to store them in a stack while iterating.
+b) The createIterator method creates an iterator for the corresponding node class. 
+c) The serializer calls the serialization method.
+d) The iterator holds the serialization algorithm.

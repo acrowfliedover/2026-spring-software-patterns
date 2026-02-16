@@ -51,7 +51,39 @@ namespace
 		}
 	};
 
-	class XMLSerializationIterator : public dom::Iterator
+	class AttrIterator : public dom::Iterator
+	{
+	private:
+		dom::Attr *attr;
+		bool done;
+
+	public:
+		AttrIterator(dom::Attr *a) : attr(a), done(true) {}
+
+		virtual ~AttrIterator() {}
+
+		virtual void first(void)
+		{
+			done = (attr == 0);
+		}
+
+		virtual void next(void)
+		{
+			done = true;
+		}
+
+		virtual bool isDone(void) const
+		{
+			return done;
+		}
+
+		virtual dom::Node *currentNode(void) const
+		{
+			return done ? 0 : attr;
+		}
+	};
+
+	class ElementIterator : public dom::Iterator
 	{
 	private:
 		dom::Element *root;
@@ -70,8 +102,6 @@ namespace
 				return;
 			}
 
-			// After yielding an opening Element that has children, schedule:
-			//   children in order, then the same Element again for closing.
 			if (currentEvent_ == 0)
 			{
 				dom::Element *elem = dynamic_cast<dom::Element *>(currentNode_);
@@ -106,9 +136,9 @@ namespace
 		}
 
 	public:
-		XMLSerializationIterator(dom::Element *r) : root(r), currentNode_(0), currentEvent_(0), done(true) {}
+		ElementIterator(dom::Element *r) : root(r), currentNode_(0), currentEvent_(0), done(true) {}
 
-		virtual ~XMLSerializationIterator() {}
+		virtual ~ElementIterator() {}
 
 		virtual void first(void)
 		{
@@ -224,10 +254,17 @@ void XMLSerializer::serializePretty(dom::Node *node)
 		else
 		{
 			dom::Text *text = dynamic_cast<dom::Text *>(n);
+			dom::Attr *attr = dynamic_cast<dom::Attr *>(n);
 			if (text != 0)
 			{
 				prettyIndentation();
 				file << text->getData();
+				file << "\n";
+			}
+			else if (attr != 0)
+			{
+				prettyIndentation();
+				file << attr->getName() << "=\"" << attr->getValue() << "\"";
 				file << "\n";
 			}
 		}
@@ -285,8 +322,11 @@ void XMLSerializer::serializeMinimal(dom::Node *node)
 		else
 		{
 			dom::Text *text = dynamic_cast<dom::Text *>(n);
+			dom::Attr *attr = dynamic_cast<dom::Attr *>(n);
 			if (text != 0)
 				file << text->getData();
+			else if (attr != 0)
+				file << attr->getName() << "=\"" << attr->getValue() << "\"";
 		}
 	}
 
@@ -298,11 +338,14 @@ dom::Iterator *Node_Impl::createIterator(void)
 	if (dynamic_cast<dom::Document *>(this) != 0)
 	{
 		dom::Element *root = dynamic_cast<dom::Document *>(this)->getDocumentElement();
-		return root ? (dom::Iterator *)new XMLSerializationIterator(root) : (dom::Iterator *)new NullIterator();
+		return root ? (dom::Iterator *)new ElementIterator(root) : (dom::Iterator *)new NullIterator();
 	}
 
 	if (dynamic_cast<dom::Element *>(this) != 0)
-		return (dom::Iterator *)new XMLSerializationIterator(dynamic_cast<dom::Element *>(this));
+		return (dom::Iterator *)new ElementIterator(dynamic_cast<dom::Element *>(this));
+
+	if (dynamic_cast<dom::Attr *>(this) != 0)
+		return (dom::Iterator *)new AttrIterator(dynamic_cast<dom::Attr *>(this));
 
 	if (dynamic_cast<dom::Text *>(this) != 0)
 		return (dom::Iterator *)new TextIterator(dynamic_cast<dom::Text *>(this));
