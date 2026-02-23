@@ -3,4 +3,21 @@ For the template methods, we need to identify what are the list of procedures fo
 About the builder pattern and the abstract factory, let's think about it.
 Implement a Builder using XMLTokenizer to construct a DOM tree. Use Abstract Factory to create the Builder’s object creation component. (I won’t grade on the bugginess of your parser. I’m interested in the Builder.)
 
+So what is it building? Create a DOM tree. So essentially instead of printing things out, I need another thing to do. So I'm creating a completely different algorithm and function and the output the DOM tree. That is just the document/node tree.
 
+The goal is to use the product of the tokenizer to create an actual product (object)
+What is the builder? 
+The builder has a list of potential actions, and the director uses the some combination of these actions to create an actual product. (Calling the builder's make product function at the end)
+The director constructs the builder. It has multiple usages of the builders, each following a list of steps. 
+
+The builder's object creation component is the get result, so the builder holds some attributes, and at the end create this product. How to use abstract factory though?
+
+I think the builder pattern is used to create the node itself. Whether it's document, element, attr or text. The builder is not to create the tree but to create the node. Then how do we create the tree?
+
+So we should use builder to build the nodes, which the director will guide for each node and pass in the parameters.
+
+So the client will iterate each token and process it, feed to the director for each of the stuff? But we don't finish all the tokens for each node. How to continue to add tokens while building? 
+
+The director needs to take the whole file, process the whole file, so the iteration happens in the director. 
+
+So the director should: 
