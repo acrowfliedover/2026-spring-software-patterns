@@ -1,3 +1,6 @@
 For the template methods, we need to identify what are the list of procedures for each serialization method. Which procedures are shared at each step? 
-We see that the traversal algorithm is the same, just the output methods are different. 
-Therefore the traversal algorithm lies in the 
+
+About the builder pattern and the abstract factory, let's think about it.
+Implement a Builder using XMLTokenizer to construct a DOM tree. Use Abstract Factory to create the Builder’s object creation component. (I won’t grade on the bugginess of your parser. I’m interested in the Builder.)
+
+

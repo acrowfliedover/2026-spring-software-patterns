@@ -16,25 +16,26 @@ class XMLSerializer
 {
 protected:
 	std::fstream file;
-	int indentationLevel;
-
-	virtual void prettyIndentation();
 
 public:
-	XMLSerializer(const std::string &filename) : indentationLevel(0), file(filename.c_str(), std::ios_base::out) {}
-	~XMLSerializer() {}
+	XMLSerializer(const std::string &filename) : file(filename.c_str(), std::ios_base::out) {}
+	virtual ~XMLSerializer() {}
 
 	virtual void serialize(dom::Node *node);
 
-	virtual void case_document(dom::Document *node);
-	virtual void case_element(dom::Element *node);
-	virtual void case_text(dom::Text *node);
+	virtual void case_document(dom::Document *node) = 0;
+	virtual void case_element(dom::Element *node) = 0;
+	virtual void case_text(dom::Text *node) = 0;
 };
 
 class PrettyXMLSerializer : public XMLSerializer
 {
+protected:
+	int indentationLevel;
+	void prettyIndentation();
+
 public:
-	PrettyXMLSerializer(const std::string &filename) : XMLSerializer(filename) {}
+	PrettyXMLSerializer(const std::string &filename) : XMLSerializer(filename), indentationLevel(0) {}
 	~PrettyXMLSerializer() {}
 
 	virtual void case_document(dom::Document *node);

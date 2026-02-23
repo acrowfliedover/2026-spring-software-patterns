@@ -17,7 +17,7 @@ void XMLSerializer::serialize(dom::Node *node){
 	}
 }
 
-void XMLSerializer::prettyIndentation()
+void PrettyXMLSerializer::prettyIndentation()
 {
 	for (int i = 0; i < indentationLevel; i++)
 		file << "\t";
