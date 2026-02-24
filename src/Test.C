@@ -6,10 +6,12 @@
 #include "XMLTokenizer.H"
 #include "XMLSerializer.H"
 #include "XMLValidator.H"
+#include "XMLDirector.H"
 
 void testTokenizer(int argc, char **argv);
 void testSerializer(int argc, char **argv);
 void testValidator(int argc, char **argv);
+void testBuilder(int argc, char **argv);
 
 void printUsage(void)
 {
@@ -17,6 +19,7 @@ void printUsage(void)
 	printf("\tTest t [file] ...\n");
 	printf("\tTest s [file1] [file2]\n");
 	printf("\tTest v [file]\n");
+	printf("\tTest b [input.xml] [output.xml]\n");
 }
 
 int main(int argc, char **argv)
@@ -40,6 +43,10 @@ int main(int argc, char **argv)
 	case 'V':
 	case 'v':
 		testValidator(argc, argv);
+		break;
+	case 'B':
+	case 'b':
+		testBuilder(argc, argv);
 		break;
 	}
 }
@@ -139,6 +146,28 @@ void testSerializer(int argc, char **argv)
 	xmlSerializer2.serialize(document);
 
 	// delete Document and tree.
+}
+
+void testBuilder(int argc, char **argv)
+{
+	if (argc < 4)
+	{
+		printUsage();
+		exit(0);
+	}
+
+	DOMBuilder builder;
+	XMLTokenizer tokenizer(argv[2]);
+	XMLDirector director(&builder);
+
+	director.construct(tokenizer);
+
+	dom::Document *document = builder.getResult();
+
+	PrettyXMLSerializer xmlSerializer(argv[3]);
+	xmlSerializer.serialize(document);
+
+	printf("Builder: DOM tree constructed from '%s' and serialized to '%s'\n", argv[2], argv[3]);
 }
 
 void testValidator(int argc, char **argv)

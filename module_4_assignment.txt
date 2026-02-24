@@ -1,0 +1,11 @@
+1. Reimplement the serialization algorithm or some part of it, either the original or your Strategy, using Template Method, by identifying the variant and invariant parts of the algorithm. Apply Fowler’s refactoring “Form Template Method.”
+
+The template method pattern is rather straight forward for me, each step for the templateMethod corresponds to a type of node. So the abstract class would be the XMLSerializer, the concrete classes would be the PrettyXMLSerilizer and MinimalXMLSerializer. I also moved the indentation related logic into the PrettyXMLSerilizer as it makes more sense. 
+So each primitive method would be the process for each cases of nodes (Document, Element, Attr, Text). Luckly the case for Attr are the same for Pretty and Minimal, so we can put that in the template method instead of creating another primitive method. 
+
+The specific steps for each node case may be divided further into smaller steps and made more detailed methods, but I think the current implementation is a good enough representation of the template method pattern.
+
+2. Implement a Builder using XMLTokenizer to construct a DOM tree. Use Abstract Factory to create the Builder’s object creation component. (I won’t grade on the bugginess of your parser. I’m interested in the Builder.)
+Follow Kerievsky’s refactoring
+
+

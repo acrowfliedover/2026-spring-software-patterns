@@ -18,6 +18,10 @@ target_sources(Patterns PUBLIC
 	Test.C
 	Text.C
 	Text.H
+	XMLBuilder.C
+	XMLBuilder.H
+	XMLDirector.C
+	XMLDirector.H
 	XMLSerializer.C
 	XMLSerializer.H
 	XMLTokenizer.C
