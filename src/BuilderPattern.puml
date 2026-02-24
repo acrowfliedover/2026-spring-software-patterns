@@ -1,0 +1,79 @@
+@startuml Builder Pattern - XML DOM Builder
+
+skinparam classAttributeIconSize 0
+skinparam classFontStyle bold
+
+title Builder Pattern (XML DOM Builder)
+
+abstract class AbstractXMLBuilder {
+  __abstract__
+  + addChild(name : string, value : string, nodeType : short) : void
+  + goToChild(index : int) : void
+  + goToParent() : void
+  + getResult() : Document *
+}
+
+class DOMBuilder {
+  - document : Document *
+  - currentNode : Node *
+  __
+  + DOMBuilder()
+  + addChild(name : string, value : string, nodeType : short) : void
+  + goToChild(index : int) : void
+  + goToParent() : void
+  + getResult() : Document *
+}
+
+class XMLDirector {
+  - builder : AbstractXMLBuilder *
+  __
+  + XMLDirector(builder : AbstractXMLBuilder *)
+  + construct(tokenizer : XMLTokenizer &) : void
+}
+
+class "dom::Document\n(Product)" as Document {
+  + createElement(name : string) : Element *
+  + createTextNode(data : string) : Text *
+  + createAttribute(name : string) : Attr *
+  + appendChild(child : Node *) : Node *
+  + getDocumentElement() : Element *
+}
+
+class Client {
+  __
+  + testBuilder(argv : char **) : void
+  __
+  Creates builder and director,
+  calls director.construct(tokenizer),
+  gets product via builder.getResult()
+}
+
+class XMLTokenizer {
+  + getNextToken() : XMLToken *
+  + getLineNumber() : int
+}
+
+AbstractXMLBuilder <|-- DOMBuilder : inherits
+XMLDirector o-- AbstractXMLBuilder : builder
+XMLDirector ..> XMLTokenizer : uses in construct()
+DOMBuilder --> Document : builds
+AbstractXMLBuilder ..> Document : getResult() returns
+
+Client --> DOMBuilder : creates
+Client --> XMLDirector : creates, uses
+Client ..> Document : gets product\nvia getResult()
+Client ..> XMLTokenizer : creates
+
+note right of XMLDirector
+  Director orchestrates construction
+  by calling builder methods based
+  on tokenizer input.
+end note
+
+note right of DOMBuilder
+  ConcreteBuilder constructs
+  and assembles the DOM (Document)
+  step by step.
+end note
+
+@enduml

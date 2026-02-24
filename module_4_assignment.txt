@@ -8,4 +8,7 @@ The specific steps for each node case may be divided further into smaller steps 
 2. Implement a Builder using XMLTokenizer to construct a DOM tree. Use Abstract Factory to create the Builder’s object creation component. (I won’t grade on the bugginess of your parser. I’m interested in the Builder.)
 Follow Kerievsky’s refactoring
 
+I create the XMLBuilder and XMLDirector classes to implement the builder pattern. The director handles the logic of iterating through the tokens and pre-process the tokens to be fed to the builders to create the corresponding nodes. The builder can go up or down the tree to create the elements and nodes. 
+
+I'm not sure how I can include the abstract factory pattern in this implementation though. The nodes already have factory methods that create the corresponding nodes. In order to use abstract factory, we have to use a "create node" function, which doesn't really make sense in this case. Maybe if I implement the builder pattern differently (instead of building the whole tree, we build part of the tree), we can use the abstract factory pattern some how. 
 
