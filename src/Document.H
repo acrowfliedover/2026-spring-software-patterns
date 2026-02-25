@@ -2,8 +2,12 @@
 #define DOCUMENT_H
 
 #include <string>
+#include <fstream>
+#include <stack>
+#include <memory>
 
 #include "Node.H"
+#include "ValidChildren.H"
 
 namespace dom
 {
@@ -12,29 +16,114 @@ namespace dom
 	class Attr;
 	class NodeList;
 
-	class Document : public virtual Node // abstract creator class
+	class Iterator
 	{
 	public:
-		virtual Element *createElement(const std::string &tagName) = 0; //abstract factory method
-		virtual Text *createTextNode(const std::string &data) = 0; //abstract factory method
-		virtual Attr *createAttribute(const std::string &name) = 0; //abstract factory method
-		virtual Element *getDocumentElement() = 0;
+		virtual bool	hasNext()	= 0;
+		virtual Node *	next()		= 0;
+		virtual ~Iterator() {}
+	};
+
+	class Document : public virtual Node
+	{
+	public:
+		//
+		// Serialization Data Extraction Strategy
+		//
+		virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)	= 0;
+		virtual std::shared_ptr<Element>	createElement(const std::string & tagName)		= 0;
+		virtual std::shared_ptr<Text>		createTextNode(const std::string & data)		= 0;
+		virtual std::shared_ptr<Attr>		createAttribute(const std::string & name)		= 0;
+		virtual std::shared_ptr<Element>	getDocumentElement()					= 0;
+
+		//
+		// Iterator Factory
+		//
+		virtual std::shared_ptr<Iterator>	createIterator(Node * node)		= 0;
 	};
 };
 
-class Document_Impl : public virtual dom::Document, public virtual Node_Impl 
-// concrete creator class
+class Document_Impl : public virtual dom::Document, public virtual Node_Impl
 {
 public:
 	Document_Impl(void);
 
 	virtual ~Document_Impl();
 
-	virtual dom::Element *createElement(const std::string &tagName); // concrete factory method
-	virtual dom::Text *createTextNode(const std::string &data); // concrete factory method
-	virtual dom::Attr *createAttribute(const std::string &name); // concrete factory method
-	virtual dom::Element *getDocumentElement();
-	virtual void serializeWith(class XMLSerializer & s);
+	//
+	// Serialization Data Extraction Strategy
+	//
+	virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
+
+	virtual std::shared_ptr<dom::Element>	createElement(const std::string & tagName);
+	virtual std::shared_ptr<dom::Text>	createTextNode(const std::string & data);
+	virtual std::shared_ptr<dom::Attr>	createAttribute(const std::string & name);
+	virtual std::shared_ptr<dom::Element>	getDocumentElement();
+
+	//
+	// Iterator Factory
+	//
+	std::shared_ptr<dom::Iterator>		createIterator(dom::Node * node);
+};
+
+class DOMIterator : public virtual dom::Iterator
+{
+private:
+	dom::Node *			firstNode;
+	std::stack<dom::NodeList *>	listStack;
+	std::stack<int>			indexStack;
+
+	friend class Document_Impl;
+
+	DOMIterator(dom::Node * startWithNode, Document_Impl * document);
+	dom::Node * elementAt(dom::NodeList * currentList, int currentIndex);
+public:
+	virtual bool		hasNext();
+	virtual dom::Node *	next();
+};
+
+class DocumentDecorator : public virtual dom::Document
+{
+};
+
+class XMLValidator;
+
+class DocumentValidator : public virtual DocumentDecorator, public virtual Node_Impl
+{
+private:
+	std::shared_ptr<dom::Document>	component;
+	std::shared_ptr<ValidChildren>	schemaElement;
+	std::shared_ptr<XMLValidator>	validator;
+public:
+	DocumentValidator(dom::Document * _component, std::shared_ptr<XMLValidator> xmlValidator);
+
+	//
+	// Serialization Data Extraction Strategy
+	//
+	virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
+	  { component->serialize(writer, whitespace); }
+
+	//
+	// Iterator Factory
+	//
+	std::shared_ptr<dom::Iterator>		createIterator(dom::Node * node)
+	  { return component->createIterator(node); }
+	virtual std::shared_ptr<dom::Element>	createElement(const std::string & tagName);
+	//
+	// Undecorated pass-through methods.
+	//
+	virtual std::shared_ptr<dom::Text>	createTextNode(const std::string & data) { return component->createTextNode(data); }
+	virtual std::shared_ptr<dom::Attr>	createAttribute(const std::string & name){ return component->createAttribute(name);}
+	virtual std::shared_ptr<dom::Element>	getDocumentElement()			 { return component->getDocumentElement(); }
+
+	//
+	// Decorated Methods
+	//
+	virtual std::shared_ptr<dom::Node>	insertBefore(std::shared_ptr<dom::Node> newChild,
+						  std::shared_ptr<dom::Node> refChild);
+	virtual std::shared_ptr<dom::Node>	replaceChild(std::shared_ptr<dom::Node> newChild,
+						  std::shared_ptr<dom::Node> oldChild);
+	virtual std::shared_ptr<dom::Node>	appendChild(std::shared_ptr<dom::Node> newChild);
 };
 
 #endif // DOCUMENT_H

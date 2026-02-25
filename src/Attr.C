@@ -1,5 +1,5 @@
 #include "Attr.H"
-#include "XMLSerializer.H"
+#include "Element.H"
 
 Attr_Impl::Attr_Impl(const std::string & tagName, dom::Document * document) : Node_Impl(tagName, dom::Node::ATTRIBUTE_NODE)
 {
@@ -14,6 +14,11 @@ Attr_Impl::Attr_Impl(const std::string & tagName, const std::string & value, dom
 }
 
 Attr_Impl::~Attr_Impl() {}
+
+void Attr_Impl::serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
+{
+	*writer << " " << getName() << "=\"" << getValue() << "\"";
+}
 
 const std::string &	Attr_Impl::getName(void)
 {
@@ -32,10 +37,5 @@ void			Attr_Impl::setValue(const std::string & value)
 
 dom::Element *		Attr_Impl::getOwnerElement(void)
 {
-	return (dom::Element *)Node_Impl::getParentNode();
-}
-
-void Attr_Impl::serializeWith(XMLSerializer & s)
-{
-	s.serialize(this);
+	return dynamic_cast<dom::Element *>(Node_Impl::getParentNode());
 }

@@ -2,6 +2,8 @@
 #define ATTR_H
 
 #include <string>
+#include <fstream>
+#include <memory>
 
 #include "Node.H"
 
@@ -14,6 +16,11 @@ namespace dom
 	{
 	public:
 		virtual ~Attr() {}
+
+		//
+		// Serialization Data Extraction Strategy
+		//
+		virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)	= 0;
 
 		virtual const std::string &	getName(void)				= 0;
 		virtual const std::string &	getValue(void)				= 0;
@@ -33,11 +40,23 @@ public:
 
 	virtual ~Attr_Impl();
 
+	//
+	// Serialization Data Extraction Strategy
+	//
+	virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
+
 	virtual const std::string &	getName(void);
 	virtual const std::string &	getValue(void);
 	virtual void			setValue(const std::string & value);
 	virtual dom::Element *		getOwnerElement(void);
-	virtual void			serializeWith(class XMLSerializer & s);
+
+	//
+	// Overridden functions for conforming to Composite Leaf node behavior.
+	//
+	virtual Node *			insertBefore(Node * newChild, Node * refChild)	{ return 0; }
+	virtual Node *			replaceChild(Node * newChild, Node * oldChild)	{ return 0; }
+	virtual Node *			removeChild(Node * oldChild)			{ return 0; }
+	virtual Node *			appendChild(Node * newChild)			{ return 0; }
 };
 
 #endif // ATTR_H

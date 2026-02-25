@@ -2,6 +2,7 @@
 #define NAMEDNODEMAP_H
 
 #include <string>
+#include <memory>
 
 #include "NodeList.H"
 
@@ -12,9 +13,9 @@ namespace dom
 	class NamedNodeMap : public NodeList
 	{
 	public:
-		virtual Node *	getNamedItem(const std::string & name)		{ return 0; }
-		virtual Node *	setNamedItem(Node * arg)			{ return 0; }
-		virtual Node *	removeNamedItem(const std::string & name)	{ return 0; }
+		virtual std::shared_ptr<Node>	getNamedItem(const std::string & name)		{ return 0; }
+		virtual std::shared_ptr<Node>	setNamedItem(std::shared_ptr<Node> arg)		{ return 0; }
+		virtual std::shared_ptr<Node>	removeNamedItem(const std::string & name)	{ return 0; }
 	};
 };
 
@@ -27,9 +28,9 @@ public:
 
 	virtual ~NamedNodeMap_Impl();
 
-	virtual dom::Node *	getNamedItem(const std::string & name);
-	virtual dom::Node *	setNamedItem(dom::Node * arg);
-	virtual dom::Node *	removeNamedItem(const std::string & name);
+	virtual std::shared_ptr<dom::Node>	getNamedItem(const std::string & name);
+	virtual std::shared_ptr<dom::Node>	setNamedItem(std::shared_ptr<dom::Node> arg);
+	virtual std::shared_ptr<dom::Node>	removeNamedItem(const std::string & name);
 };
 
 #endif // NAMEDNODEMAP_H

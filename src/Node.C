@@ -38,22 +38,22 @@ dom::NodeList *		Node_Impl::getChildNodes(void)
 	return &nodes;
 }
 
-dom::Node *		Node_Impl::getFirstChild(void)
+std::shared_ptr<dom::Node>		Node_Impl::getFirstChild(void)
 {
 	return *nodes.begin();
 }
 
-dom::Node *		Node_Impl::getLastChild(void)
+std::shared_ptr<dom::Node>		Node_Impl::getLastChild(void)
 {
 	return *(--nodes.end());
 }
 
-dom::Node *		Node_Impl::getPreviousSibling(void)
+std::shared_ptr<dom::Node>		Node_Impl::getPreviousSibling(void)
 {
 	return getSibling(-1);
 }
 
-dom::Node *		Node_Impl::getNextSibling(void)
+std::shared_ptr<dom::Node>		Node_Impl::getNextSibling(void)
 {
 	return getSibling(1);
 }
@@ -63,7 +63,8 @@ dom::Document *		Node_Impl::getOwnerDocument(void)
 	return document;
 }
 
-dom::Node *		Node_Impl::insertBefore(dom::Node * newChild, dom::Node * refChild)
+std::shared_ptr<dom::Node>		Node_Impl::insertBefore(std::shared_ptr<dom::Node> newChild,
+					  std::shared_ptr<dom::Node> refChild)
 {
 	if (newChild->getOwnerDocument() != getOwnerDocument())
 		throw dom::DOMException(dom::DOMException::WRONG_DOCUMENT_ERR, "New Child is not a part of this document.");
@@ -74,22 +75,23 @@ dom::Node *		Node_Impl::insertBefore(dom::Node * newChild, dom::Node * refChild)
 	if (refChild == 0)
 	{
 		nodes.push_back(newChild);
-		(dynamic_cast<Node_Impl *>(newChild))->setParent(this);
+		(std::dynamic_pointer_cast<Node_Impl>(newChild))->setParent(this);
 		return newChild;
 	}
 
-	dom::NodeList::iterator	index	= nodes.find(refChild);
+	dom::NodeList::const_iterator	index	= nodes.find(refChild.get());
 
 	if (index == nodes.end())
 		throw dom::DOMException(dom::DOMException::NOT_FOUND_ERR, "Reference Child is not a child of this node.");
 
 	nodes.insert(++index, newChild);
-	(dynamic_cast<Node_Impl *>(newChild))->setParent(this);
+	(std::dynamic_pointer_cast<Node_Impl>(newChild))->setParent(this);
 
 	return newChild;
 }
 
-dom::Node *		Node_Impl::replaceChild(dom::Node * newChild, dom::Node * oldChild)
+std::shared_ptr<dom::Node>		Node_Impl::replaceChild(std::shared_ptr<dom::Node> newChild,
+					  std::shared_ptr<dom::Node> oldChild)
 {
 	if (newChild->getOwnerDocument() != getOwnerDocument())
 		throw dom::DOMException(dom::DOMException::WRONG_DOCUMENT_ERR, "New Child is not a part of this document.");
@@ -97,33 +99,33 @@ dom::Node *		Node_Impl::replaceChild(dom::Node * newChild, dom::Node * oldChild)
 	if (newChild->getParentNode() != 0)
 		newChild->getParentNode()->removeChild(newChild);
 
-	dom::NodeList::iterator	index	= nodes.find(oldChild);
+	dom::NodeList::const_iterator	index	= nodes.find(oldChild.get());
 
 	if (index == nodes.end())
 		throw dom::DOMException(dom::DOMException::NOT_FOUND_ERR, "Old Child is not a child of this node.");
 
 	nodes.insert(index, newChild);
-	(dynamic_cast<Node_Impl *>(newChild))->setParent(this);
-	(dynamic_cast<Node_Impl *>(*index))->setParent(0);
+	(std::dynamic_pointer_cast<Node_Impl>(newChild))->setParent(this);
+	(std::dynamic_pointer_cast<Node_Impl>(*index))->setParent(0);
 	nodes.erase(index);
 
 	return oldChild;
 }
 
-dom::Node *		Node_Impl::removeChild(dom::Node * oldChild)
+std::shared_ptr<dom::Node>		Node_Impl::removeChild(std::shared_ptr<dom::Node> oldChild)
 {
-	dom::NodeList::iterator	index	= nodes.find(oldChild);
+	dom::NodeList::const_iterator	index	= nodes.find(oldChild.get());
 
 	if (index == nodes.end())
 		throw dom::DOMException(dom::DOMException::NOT_FOUND_ERR, "Old Child is not a child of this node.");
 
-	(dynamic_cast<Node_Impl *>(*index))->setParent(0);
+	(std::dynamic_pointer_cast<Node_Impl>(*index))->setParent(0);
 	nodes.erase(index);
 
 	return oldChild;
 }
 
-dom::Node *		Node_Impl::appendChild(dom::Node * newChild)
+std::shared_ptr<dom::Node>		Node_Impl::appendChild(std::shared_ptr<dom::Node> newChild)
 {
 	if (newChild->getOwnerDocument() != getOwnerDocument())
 		throw dom::DOMException(dom::DOMException::WRONG_DOCUMENT_ERR, "New Child is not a part of this document.");
@@ -132,7 +134,7 @@ dom::Node *		Node_Impl::appendChild(dom::Node * newChild)
 		newChild->getParentNode()->removeChild(newChild);
 
 	nodes.push_back(newChild);
-	(dynamic_cast<Node_Impl *>(newChild))->setParent(this);
+	(std::dynamic_pointer_cast<Node_Impl>(newChild))->setParent(this);
 
 	return newChild;
 }
@@ -152,7 +154,7 @@ void Node_Impl::setParent(dom::Node * parent)
 	this->parent	= parent;
 }
 
-dom::Node *		Node_Impl::getSibling(int direction)
+std::shared_ptr<dom::Node>		Node_Impl::getSibling(int direction)
 {
 	if (parent == 0)
 		return 0;

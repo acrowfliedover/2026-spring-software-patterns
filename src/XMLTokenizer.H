@@ -1,7 +1,11 @@
+#ifndef XMLTOKENIZER_H
+#define XMLTOKENIZER_H
+
 #include <string>
 #include <fstream>
 #include <ios>
 #include <regex>
+#include <memory>
 
 class XMLTokenizer
 {
@@ -76,7 +80,9 @@ public:
 	XMLTokenizer(const std::string & filename);
 	~XMLTokenizer() {}
 
-	virtual int		getLineNumber(void)	{ return line_number; }
-	virtual int		getLineCharacter(void)	{ return index; }
-	virtual XMLToken *	getNextToken(void);
+	virtual int				getLineNumber(void)	{ return line_number; }
+	virtual int				getLineCharacter(void)	{ return index; }
+	virtual std::shared_ptr<XMLToken>	getNextToken(void);
 };
+
+#endif // XMLTOKENIZER_H

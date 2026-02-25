@@ -1,28 +1,55 @@
 #include <string>
 #include <fstream>
 #include <ios>
+#include <memory>
 
 #include "Node.H"
 
-namespace dom { class Document; class Element; class Attr; class Text; }
-
-class XMLSerializer // strategy class
+//
+// XMLSerializer is Serialization Strategy Context
+// Node is Serialization Strategy and output stream Strategy Context
+// Document, Element, Attr, Text are Serialization Concrete Strategies
+// java.io.Writer is output stream Strategy
+// java.io.BufferedWriter is output stream Concrete Strategy
+//
+class XMLSerializer
 {
 private:
-	std::fstream		file;
-	int			indentationLevel;
-	bool			pretty;
-
-	virtual void prettyIndentation();
+	std::fstream *		file;
 public:
-	XMLSerializer(const std::string & filename);
+	XMLSerializer(std::fstream * _file) : file(_file)	{}
+	~XMLSerializer() {}
+private:
+	class PrettyWhitespaceStrategy : public WhitespaceStrategy
+	{
+	private:
+		int	indentationLevel;
+	public:
+		PrettyWhitespaceStrategy(void) : indentationLevel(0)	{}
 
-	virtual void serializePretty(dom::Node * node);
-	virtual void serializeMinimal(dom::Node * node);
+		virtual void	prettyIndentation(std::fstream * wwriter)
+		{
+			for (int i = 0; i < indentationLevel; i++)
+				*wwriter << "\t";
+		}
 
-	void serialize(dom::Document * node);
-	void serialize(dom::Element * node);
-	void serialize(dom::Attr * node);
-	void serialize(dom::Text * node);
+		virtual void incrementIndentation(void)		{ indentationLevel++; }
+		virtual void decrementIndentation(void)		{ indentationLevel--; }
+		virtual void newLine(std::fstream * wwriter)	{ *wwriter << "\n"; }
+	};
 
+	class MinimalWhitespaceStrategy : public WhitespaceStrategy
+	{
+	public:
+		virtual void prettyIndentation(std::fstream * wwriter)	{}
+		virtual void incrementIndentation(void)			{}
+		virtual void decrementIndentation(void)			{}
+		virtual void newLine(std::fstream * wwriter)		{}
+	};
+public:
+	//
+	// Strategized serialization
+	//
+	virtual void		serializePretty(std::shared_ptr<dom::Node> node);
+	virtual void		serializeMinimal(std::shared_ptr<dom::Node> node);
 };

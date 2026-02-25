@@ -70,7 +70,7 @@ XMLTokenizer::XMLTokenizer(const std::string & filename) :
 {
 }
 
-XMLTokenizer::XMLToken *	XMLTokenizer::getNextToken(void)
+std::shared_ptr<XMLTokenizer::XMLToken>	XMLTokenizer::getNextToken(void)
 {
 	if (line.size() == 0)
 	{
@@ -79,7 +79,7 @@ XMLTokenizer::XMLToken *	XMLTokenizer::getNextToken(void)
 		line_number++;
 
 		if (line.size() == 0)
-			return new XMLToken(std::string(""), XMLToken::NULL_TOKEN);
+			return std::make_shared<XMLToken>(std::string(""), XMLToken::NULL_TOKEN);
 	}
 
 	std::smatch	what;
@@ -88,7 +88,9 @@ XMLTokenizer::XMLToken *	XMLTokenizer::getNextToken(void)
 	{
 		if (!tag_found && std::regex_search(line, what, prolog_identifier))
 		{
-			XMLToken * token = new XMLToken(std::string(what[0].first, what[0].second), XMLToken::PROLOG_IDENTIFIER);
+			std::shared_ptr<XMLToken>
+			  token(new XMLToken(std::string(what[0].first, what[0].second), XMLToken::PROLOG_IDENTIFIER));
+
 			update_matchers(what[0], what.suffix());
 			tag_found	= true;
 			return	token;
@@ -96,7 +98,9 @@ XMLTokenizer::XMLToken *	XMLTokenizer::getNextToken(void)
 
 		if (!tag_found && std::regex_search(line, what, element))
 		{
-			XMLToken *	token	= new XMLToken(std::string(what[0].first, what[0].second), XMLToken::ELEMENT);
+			std::shared_ptr<XMLToken>
+			  token(new XMLToken(std::string(what[0].first, what[0].second), XMLToken::ELEMENT));
+
 			update_matchers(what[0], what.suffix());
 			tag_found	= true;
 			return	token;
@@ -104,7 +108,9 @@ XMLTokenizer::XMLToken *	XMLTokenizer::getNextToken(void)
 
 		if (pending_attribute_value && std::regex_search(line, what, attribute_value))
 		{
-			XMLToken *	token = new XMLToken(std::string(what[0].first, what[0].second), XMLToken::ATTRIBUTE_VALUE);
+			std::shared_ptr<XMLToken>
+			  token(new XMLToken(std::string(what[0].first, what[0].second), XMLToken::ATTRIBUTE_VALUE));
+
 			update_matchers(what[0], what.suffix());
 			pending_attribute_value	= false;
 			return	token;
@@ -112,7 +118,9 @@ XMLTokenizer::XMLToken *	XMLTokenizer::getNextToken(void)
 
 		if (std::regex_search(line, what, attribute))
 		{
-			XMLToken *	token	= new XMLToken(std::string(what[0].first, what[0].second), XMLToken::ATTRIBUTE);
+			std::shared_ptr<XMLToken>
+			  token(new XMLToken(std::string(what[0].first, what[0].second), XMLToken::ATTRIBUTE));
+
 			update_matchers(what[0], what.suffix());
 			pending_attribute_value	= true;
 			return	token;
@@ -120,7 +128,9 @@ XMLTokenizer::XMLToken *	XMLTokenizer::getNextToken(void)
 
 		if (std::regex_search(line, what, null_tag_end))
 		{
-			XMLToken *	token	= new XMLToken(std::string(what[0].first, what[0].second), XMLToken::NULL_TAG_END);
+			std::shared_ptr<XMLToken>
+			  token(new XMLToken(std::string(what[0].first, what[0].second), XMLToken::NULL_TAG_END));
+
 			inside_tag		= false;
 			pending_attribute_value	= false;
 			tag_found		= false;
@@ -130,7 +140,9 @@ XMLTokenizer::XMLToken *	XMLTokenizer::getNextToken(void)
 
 		if (std::regex_search(line, what, tag_end))
 		{
-			XMLToken *	token	= new XMLToken(std::string(what[0].first, what[0].second), XMLToken::TAG_END);
+			std::shared_ptr<XMLToken>
+			  token(new XMLToken(std::string(what[0].first, what[0].second), XMLToken::TAG_END));
+
 			inside_tag		= false;
 			pending_attribute_value	= false;
 			tag_found		= false;
@@ -142,7 +154,9 @@ XMLTokenizer::XMLToken *	XMLTokenizer::getNextToken(void)
 
 	if (std::regex_search(line, what, prolog_start))
 	{
-		XMLToken *	token	= new XMLToken(std::string(what[0].first, what[0].second), XMLToken::PROLOG_START);
+		std::shared_ptr<XMLToken>
+		  token(new XMLToken(std::string(what[0].first, what[0].second), XMLToken::PROLOG_START));
+
 		inside_tag		= true;
 		update_matchers(what[0], what.suffix());
 		return	token;
@@ -150,7 +164,9 @@ XMLTokenizer::XMLToken *	XMLTokenizer::getNextToken(void)
 
 	if (std::regex_search(line, what, prolog_end))
 	{
-		XMLToken *	token	= new XMLToken(std::string(what[0].first, what[0].second), XMLToken::PROLOG_END);
+		std::shared_ptr<XMLToken>
+		  token(new XMLToken(std::string(what[0].first, what[0].second), XMLToken::PROLOG_END));
+
 		inside_tag		= false;
 		update_matchers(what[0], what.suffix());
 		return	token;
@@ -158,7 +174,9 @@ XMLTokenizer::XMLToken *	XMLTokenizer::getNextToken(void)
 
 	if (std::regex_search(line, what, tag_close_start))
 	{
-		XMLToken *	token	= new XMLToken(std::string(what[0].first, what[0].second), XMLToken::TAG_CLOSE_START);
+		std::shared_ptr<XMLToken>
+		  token(new XMLToken(std::string(what[0].first, what[0].second), XMLToken::TAG_CLOSE_START));
+
 		inside_tag		= true;
 		update_matchers(what[0], what.suffix());
 		return	token;
@@ -166,14 +184,16 @@ XMLTokenizer::XMLToken *	XMLTokenizer::getNextToken(void)
 
 	if (std::regex_search(line, what, tag_start))
 	{
-		XMLToken *	token	= new XMLToken(std::string(what[0].first, what[0].second), XMLToken::TAG_START);
+		std::shared_ptr<XMLToken>
+		  token(new XMLToken(std::string(what[0].first, what[0].second), XMLToken::TAG_START));
+
 		inside_tag		= true;
 		update_matchers(what[0], what.suffix());
 		return	token;
 	}
 	if (std::regex_search(line, what, value))
 	{
-		XMLToken *	token	= new XMLToken(std::string(what[0].first, what[0].second), XMLToken::VALUE);
+		std::shared_ptr<XMLToken>	token(new XMLToken(std::string(what[0].first, what[0].second), XMLToken::VALUE));
 		update_matchers(what[0], what.suffix());
 		return	token;
 	}
@@ -184,7 +204,7 @@ XMLTokenizer::XMLToken *	XMLTokenizer::getNextToken(void)
 		return	getNextToken();
 	}
 
-	return new XMLToken(std::string(""), XMLToken::NULL_TOKEN);
+	return std::make_shared<XMLToken>(std::string(""), XMLToken::NULL_TOKEN);
 }
 
 void		XMLTokenizer::update_matchers(const std::ssub_match & matcher, const std::ssub_match & suffix)
