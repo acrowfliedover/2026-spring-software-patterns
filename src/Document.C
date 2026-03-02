@@ -5,12 +5,27 @@
 #include "NodeList.H"
 #include "XMLValidator.H"
 
+std::shared_ptr<Document_Impl> Document_Impl::instance;
+
 Document_Impl::Document_Impl(void) : Node_Impl("", dom::Node::DOCUMENT_NODE)
 {
 	Node_Impl::document	= this;
 }
 
 Document_Impl::~Document_Impl() {}
+
+std::shared_ptr<Document_Impl> Document_Impl::getInstance()
+{
+	if (!instance)
+		instance = std::shared_ptr<Document_Impl>(new Document_Impl());
+
+	return instance;
+}
+
+void Document_Impl::resetInstance()
+{
+	instance.reset();
+}
 
 void Document_Impl::serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
 {
@@ -48,7 +63,7 @@ std::shared_ptr<dom::Iterator> Document_Impl::createIterator(dom::Node * node)
 	return std::shared_ptr<DOMIterator>(new DOMIterator(node, this));
 }
 
-DocumentValidator::DocumentValidator(dom::Document * _component, std::shared_ptr<XMLValidator> xmlValidator) :
+DocumentValidator::DocumentValidator(std::shared_ptr<dom::Document> _component, std::shared_ptr<XMLValidator> xmlValidator) :
   Node_Impl("", dom::Node::DOCUMENT_NODE),
   component(_component),
   schemaElement(*xmlValidator->findSchemaElement("")),
