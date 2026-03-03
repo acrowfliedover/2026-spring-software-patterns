@@ -4,3 +4,5 @@ Since the Document class serves as both the abstract factory and the top node of
 
 If an XML file is very large we may not want to instantiate the entire DOM structure in memory all at once, but leave branches of the Composite structure pending until they are needed. Achieve part of that behavior by implementing a virtual Proxy for Element that allows deferring parsing of the Element’s children until they are needed.
 The Proxy will need to keep some kind of reference into the file for where it needs to resume parsing when the real Element is required.
+
+
