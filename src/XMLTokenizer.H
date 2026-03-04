@@ -3,7 +3,6 @@
 
 #include <string>
 #include <fstream>
-#include <ios>
 #include <regex>
 #include <memory>
 
@@ -46,6 +45,17 @@ private:
 
 	virtual void		update_matchers(const std::ssub_match &, const std::ssub_match & suffix);
 public:
+	struct TokenizerState
+	{
+		std::streampos	file_position;
+		std::string	line;
+		int		line_number;
+		int		index;
+		bool		inside_tag;
+		bool		pending_attribute_value;
+		bool		tag_found;
+	};
+
 	class XMLToken
 	{
 	public:
@@ -82,6 +92,8 @@ public:
 
 	virtual int				getLineNumber(void)	{ return line_number; }
 	virtual int				getLineCharacter(void)	{ return index; }
+	virtual TokenizerState			captureState(void);
+	virtual void				restoreState(const TokenizerState & state);
 	virtual std::shared_ptr<XMLToken>	getNextToken(void);
 };
 

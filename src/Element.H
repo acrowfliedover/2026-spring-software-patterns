@@ -7,6 +7,7 @@
 #include "Node.H"
 #include "NamedNodeMap.H"
 #include "ValidChildren.H"
+#include "XMLTokenizer.H"
 
 namespace dom
 {
@@ -39,7 +40,7 @@ namespace dom
 	};
 };
 
-class Element_Impl : public virtual dom::Element, Node_Impl
+class Element_Impl : public virtual dom::Element, public Node_Impl
 {
 private:
 	NamedNodeMap_Impl	attributes;
@@ -67,6 +68,49 @@ public:
 
 	virtual dom::NamedNodeMap *		getAttributes(void)	{ return &attributes; }
 	virtual bool				hasAttributes(void)	{ return attributes.size() > 0; }
+};
+
+class ElementProxy_Impl : public Element_Impl
+{
+private:
+	std::shared_ptr<dom::Document>	factory;
+	std::string			sourceFilename;
+	XMLTokenizer::TokenizerState	childTokenizerState;
+	bool				hasDeferredChildren;
+	bool				childrenLoaded;
+	bool				loadingChildren;
+
+	static std::string		trim(const std::string & s);
+	static std::string		getAttributeName(const std::string & token);
+	static std::string		getAttributeValue(const std::string & token);
+	static void			skipElementBody(XMLTokenizer & tokenizer);
+	void				materializeChildren();
+public:
+	ElementProxy_Impl(const std::string & tagName, std::shared_ptr<dom::Document> documentFactory,
+	  const std::string & filename);
+
+	virtual ~ElementProxy_Impl();
+
+	static std::shared_ptr<dom::Element>	createProxyElement(std::shared_ptr<dom::Document> documentFactory,
+	  const std::string & filename, XMLTokenizer & tokenizer, const std::string & tagToken);
+
+	//
+	// Child-sensitive methods trigger materialization.
+	//
+	virtual void				serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
+	virtual std::shared_ptr<dom::NodeList>	getElementsByTagName(const std::string & tagName);
+	virtual dom::NodeList *			getChildNodes(void);
+	virtual std::shared_ptr<dom::Node>	getFirstChild(void);
+	virtual std::shared_ptr<dom::Node>	getLastChild(void);
+	virtual std::shared_ptr<dom::Node>	getPreviousSibling(void);
+	virtual std::shared_ptr<dom::Node>	getNextSibling(void);
+	virtual std::shared_ptr<dom::Node>	insertBefore(std::shared_ptr<dom::Node> newChild,
+					  std::shared_ptr<dom::Node> refChild);
+	virtual std::shared_ptr<dom::Node>	replaceChild(std::shared_ptr<dom::Node> newChild,
+					  std::shared_ptr<dom::Node> oldChild);
+	virtual std::shared_ptr<dom::Node>	removeChild(std::shared_ptr<dom::Node> oldChild);
+	virtual std::shared_ptr<dom::Node>	appendChild(std::shared_ptr<dom::Node> newChild);
+	virtual bool				hasChildNodes(void);
 };
 
 class ElementDecorator : public virtual dom::Element
