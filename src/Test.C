@@ -62,7 +62,7 @@ int main(int argc, char** argv)
 
 void testTokenizer(int argc, char** argv)
 {
-	std::shared_ptr<dom::Document>	document(Document_Impl::getInstance());
+	std::shared_ptr<dom::Document>	document(std::make_shared<Document_Impl>());
 
 	std::shared_ptr<dom::Element>	element(document->createElement("NewElement"));
 	std::shared_ptr<dom::Text>	text(document->createTextNode("Text Data"));
@@ -115,7 +115,7 @@ void testSerializer(int argc, char** argv)
 	//   </element>
 	// </document>
 	//
-	std::shared_ptr<dom::Document>	document(Document_Impl::getInstance());
+	std::shared_ptr<dom::Document>	document(std::make_shared<Document_Impl>());
 	std::shared_ptr<dom::Element>	root(document->createElement("document"));
 	document->appendChild(root);
 
@@ -189,7 +189,7 @@ void testValidator(int argc, char** argv)
 	schemaElement->addValidChild("attribute2", true);
 	schemaElement->setCanHaveText(true);
 
-	std::shared_ptr<dom::Document>	document(new DocumentValidator(Document_Impl::getInstance(), xmlValidator));
+	std::shared_ptr<dom::Document>	document(new DocumentValidator(new Document_Impl, xmlValidator));
 	std::shared_ptr<dom::Element>	root;
 	std::shared_ptr<dom::Element>	child;
 	std::shared_ptr<dom::Attr>	attr;
@@ -238,7 +238,7 @@ void testIterator(int argc, char** argv)
 	//   </element>
 	// </document>
 	//
-	std::shared_ptr<dom::Document>	document(Document_Impl::getInstance());
+	std::shared_ptr<dom::Document>	document(new Document_Impl);
 	std::shared_ptr<dom::Element>	root(document->createElement("document"));
 	document->appendChild(root);
 	printf("< 0x%08lx > (Last and highest node out of iterator)\n", (unsigned long )root.get());
@@ -275,7 +275,7 @@ void testIterator(int argc, char** argv)
 
 void testDirector(int argc, char** argv)
 {
-	std::shared_ptr<dom::Document>	document(Document_Impl::getInstance());
+	std::shared_ptr<dom::Document>	document(new Document_Impl);
 	std::shared_ptr<Builder>	builder(new Builder(document));
 	Director	director(argv[2], builder);
 	std::fstream	file(argv[3], std::ios_base::out);

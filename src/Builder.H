@@ -3,7 +3,6 @@
 
 #include <stack>
 #include <string>
-#include <memory>
 
 namespace dom
 {
@@ -25,7 +24,6 @@ public:
 	Builder(std::shared_ptr<dom::Document> _factory) : factory(_factory), currentElement(0), currentAttr(0) {}
 
 	virtual std::shared_ptr<dom::Document>	getDocument(void)	{ return factory; }	// aka getResult
-	virtual void				buildFromFile(const std::string & filename);
 
 	virtual void		addValue(const std::string & text);
 	virtual void		confirmElement(const std::string & tag);

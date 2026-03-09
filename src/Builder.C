@@ -1,42 +1,11 @@
 #include "Builder.H"
+#include <iostream>
 
 #include <ctype.h>
 #include "Document.H"
 #include "Element.H"
 #include "Attr.H"
 #include "Text.H"
-#include "XMLTokenizer.H"
-
-void Builder::buildFromFile(const std::string & filename)
-{
-	XMLTokenizer				tokenizer(filename);
-	std::shared_ptr<XMLTokenizer::XMLToken>	token;
-
-	currentElement	= 0;
-	currentAttr	= 0;
-
-	while (elementStack.size() > 0)
-		elementStack.pop();
-
-	for (;;)
-	{
-		token	= tokenizer.getNextToken();
-
-		if (token->getTokenType() == XMLTokenizer::XMLToken::NULL_TOKEN)
-			return;
-
-		if (token->getTokenType() == XMLTokenizer::XMLToken::TAG_START)
-		{
-			std::shared_ptr<XMLTokenizer::XMLToken>	tagToken(tokenizer.getNextToken());
-
-			if (tagToken->getTokenType() == XMLTokenizer::XMLToken::ELEMENT)
-			{
-				factory->appendChild(ElementProxy_Impl::createProxyElement(factory, filename, tokenizer, tagToken->getToken()));
-				return;
-			}
-		}
-	}
-}
 
 void Builder::addValue(const std::string & text)
 {
@@ -107,17 +76,11 @@ void Builder::valueAttribute(const std::string & value)
 
 const std::string Builder::trim(const std::string & s) const
 {
-	size_t	start_index	= 0;
-	size_t	stop_index	= s.size();
+	int	start_index;
+	int	stop_index;
 
-	while (start_index < s.size() && isspace(static_cast<unsigned char>(s[start_index])))
-		start_index++;
+	for (start_index = 0; start_index < s.size() && isspace(s[start_index]); start_index++);
+	for (stop_index = s.size() - 1; stop_index >= start_index && isspace(s[stop_index]); stop_index--);
 
-	while (stop_index > start_index && isspace(static_cast<unsigned char>(s[stop_index - 1])))
-		stop_index--;
-
-	if (start_index >= stop_index)
-		return std::string("");
-
-	return std::string(s, start_index, stop_index - start_index);
+	return std::string(s, start_index, stop_index - start_index + 1);
 }

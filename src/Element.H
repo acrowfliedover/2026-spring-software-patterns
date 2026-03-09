@@ -7,7 +7,6 @@
 #include "Node.H"
 #include "NamedNodeMap.H"
 #include "ValidChildren.H"
-#include "XMLTokenizer.H"
 
 namespace dom
 {
@@ -40,7 +39,7 @@ namespace dom
 	};
 };
 
-class Element_Impl : public virtual dom::Element, public Node_Impl
+class Element_Impl : public virtual dom::Element, Node_Impl
 {
 private:
 	NamedNodeMap_Impl	attributes;
@@ -68,49 +67,6 @@ public:
 
 	virtual dom::NamedNodeMap *		getAttributes(void)	{ return &attributes; }
 	virtual bool				hasAttributes(void)	{ return attributes.size() > 0; }
-};
-
-class ElementProxy_Impl : public Element_Impl
-{
-private:
-	std::shared_ptr<dom::Document>	factory;
-	std::string			sourceFilename;
-	XMLTokenizer::TokenizerState	childTokenizerState;
-	bool				hasDeferredChildren;
-	bool				childrenLoaded;
-	bool				loadingChildren;
-
-	static std::string		trim(const std::string & s);
-	static std::string		getAttributeName(const std::string & token);
-	static std::string		getAttributeValue(const std::string & token);
-	static void			skipElementBody(XMLTokenizer & tokenizer);
-	void				materializeChildren();
-public:
-	ElementProxy_Impl(const std::string & tagName, std::shared_ptr<dom::Document> documentFactory,
-	  const std::string & filename);
-
-	virtual ~ElementProxy_Impl();
-
-	static std::shared_ptr<dom::Element>	createProxyElement(std::shared_ptr<dom::Document> documentFactory,
-	  const std::string & filename, XMLTokenizer & tokenizer, const std::string & tagToken);
-
-	//
-	// Child-sensitive methods trigger materialization.
-	//
-	virtual void				serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
-	virtual std::shared_ptr<dom::NodeList>	getElementsByTagName(const std::string & tagName);
-	virtual dom::NodeList *			getChildNodes(void);
-	virtual std::shared_ptr<dom::Node>	getFirstChild(void);
-	virtual std::shared_ptr<dom::Node>	getLastChild(void);
-	virtual std::shared_ptr<dom::Node>	getPreviousSibling(void);
-	virtual std::shared_ptr<dom::Node>	getNextSibling(void);
-	virtual std::shared_ptr<dom::Node>	insertBefore(std::shared_ptr<dom::Node> newChild,
-					  std::shared_ptr<dom::Node> refChild);
-	virtual std::shared_ptr<dom::Node>	replaceChild(std::shared_ptr<dom::Node> newChild,
-					  std::shared_ptr<dom::Node> oldChild);
-	virtual std::shared_ptr<dom::Node>	removeChild(std::shared_ptr<dom::Node> oldChild);
-	virtual std::shared_ptr<dom::Node>	appendChild(std::shared_ptr<dom::Node> newChild);
-	virtual bool				hasChildNodes(void);
 };
 
 class ElementDecorator : public virtual dom::Element
@@ -181,6 +137,66 @@ public:
 	virtual std::shared_ptr<dom::Node>	removeChild(std::shared_ptr<Node> oldChild) { return component->removeChild(oldChild);}
 	virtual bool				hasChildNodes(void)			{ return component->hasChildNodes(); }
 	virtual const std::string &		getLocalName(void)			{ return component->getLocalName(); }
+};
+
+class Director;
+
+class ElementProxy : public virtual dom::Element
+{
+private:
+	dom::Element *	realSubject;
+	bool		realized;
+	Director *	director;
+
+	void	realize(void);
+public:
+	ElementProxy(dom::Element * _realSubject, Director * _director) :
+	  realSubject(_realSubject),
+	  director(_director),
+	  realized(false)
+	{
+	}
+	virtual ~ElementProxy() {}
+
+	virtual dom::NodeList *			getChildNodes(void);
+	virtual std::shared_ptr<dom::Node>	getFirstChild(void);
+	virtual std::shared_ptr<dom::Node>	getLastChild(void);
+	virtual bool				hasChildNodes(void);
+
+	//
+	// Passthrough Element members.
+	//
+	virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
+	  { realSubject->serialize(writer, whitespace); }
+
+	virtual const std::string &		getAttribute(const std::string & name)	{ return realSubject->getAttribute(name); }
+	virtual std::shared_ptr<dom::Attr>	getAttributeNode(const std::string & name)
+	  { return realSubject->getAttributeNode(name); }
+	virtual std::shared_ptr<dom::NodeList>	getElementsByTagName(const std::string & tagName)
+	  { return realSubject->getElementsByTagName(tagName); }
+	virtual const std::string &	getTagName(void)				{ return realSubject->getTagName(); }
+	virtual bool			hasAttribute(const std::string & name)		{ return realSubject->hasAttribute(name); }
+	virtual void			removeAttribute(const std::string & name)	{ realSubject->removeAttribute(name); }
+	virtual std::shared_ptr<dom::Attr>	removeAttributeNode(std::shared_ptr<dom::Attr> oldAttr)
+	  {return realSubject->removeAttributeNode(oldAttr);}
+	virtual void				setAttribute(const std::string & name, const std::string & value)
+	  { realSubject->setAttribute(name, value); }
+	virtual std::shared_ptr<dom::Attr>	setAttributeNode(std::shared_ptr<dom::Attr> newAttr)
+	  { return realSubject->setAttributeNode(newAttr); }
+
+	virtual dom::NamedNodeMap *	getAttributes(void)				{ return realSubject->getAttributes(); }
+	virtual bool			hasAttributes(void)				{ return realSubject->hasAttributes(); }
+	virtual const std::string &	getNodeName(void)				{ return realSubject->getNodeName(); }
+	virtual const std::string &	getNodeValue(void)				{ return realSubject->getNodeValue(); }
+	virtual void			setNodeValue(const std::string & nodeValue)	{ realSubject->setNodeValue(nodeValue); }
+	virtual short			getNodeType(void)				{ return realSubject->getNodeType(); }
+	virtual dom::Node *		getParentNode(void)				{ return realSubject->getParentNode(); }
+	virtual std::shared_ptr<dom::Node>	getPreviousSibling(void)		{ return realSubject->getPreviousSibling();}
+	virtual std::shared_ptr<dom::Node>	getNextSibling(void)			{ return realSubject->getNextSibling(); }
+	virtual dom::Document *		getOwnerDocument(void)				{ return realSubject->getOwnerDocument(); }
+	virtual std::shared_ptr<dom::Node>	removeChild(std::shared_ptr<dom::Node> oldChild)
+	  {return realSubject->removeChild(oldChild);}
+	virtual const std::string &	getLocalName(void)				{ return realSubject->getLocalName(); }
 };
 
 #endif // ELEMENT_H

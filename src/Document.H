@@ -45,14 +45,8 @@ namespace dom
 
 class Document_Impl : public virtual dom::Document, public virtual Node_Impl
 {
-private:
-	static std::shared_ptr<Document_Impl>	instance;
-
-	Document_Impl(void);
-
 public:
-	static std::shared_ptr<Document_Impl>	getInstance();
-	static void				resetInstance();
+	Document_Impl(void);
 
 	virtual ~Document_Impl();
 
@@ -101,7 +95,7 @@ private:
 	std::shared_ptr<ValidChildren>	schemaElement;
 	std::shared_ptr<XMLValidator>	validator;
 public:
-	DocumentValidator(std::shared_ptr<dom::Document> _component, std::shared_ptr<XMLValidator> xmlValidator);
+	DocumentValidator(dom::Document * _component, std::shared_ptr<XMLValidator> xmlValidator);
 
 	//
 	// Serialization Data Extraction Strategy
