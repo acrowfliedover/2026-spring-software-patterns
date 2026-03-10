@@ -141,13 +141,12 @@ void testSerializer(int argc, char** argv)
 	//
 	// Serialize
 	//
-	std::fstream *	file	= 0;
-	XMLSerializer	xmlSerializer(file = new std::fstream(argv[2], std::ios_base::out));
+	std::fstream	file(argv[2], std::ios_base::out);
+	XMLSerializer	xmlSerializer(&file);
 	xmlSerializer.serializePretty(document);
-	delete file;
-	XMLSerializer	xmlSerializer2(file = new std::fstream(argv[3], std::ios_base::out));
+	std::fstream	file2(argv[3], std::ios_base::out);
+	XMLSerializer	xmlSerializer2(&file2);
 	xmlSerializer2.serializeMinimal(document);
-	delete file;
 
 	// delete Document and tree.
 }
@@ -178,7 +177,7 @@ void testValidator(int argc, char** argv)
 	// element contains:  element
 	// element contains attributes:  attribute, attribute2
 	//
-	std::shared_ptr<XMLValidator>	xmlValidator(new XMLValidator);
+	std::shared_ptr<XMLValidator>	xmlValidator(std::make_shared<XMLValidator>());
 	std::shared_ptr<ValidChildren>	schemaElement(xmlValidator->addSchemaElement(""));
 	schemaElement->addValidChild("document", false);
 	schemaElement	= xmlValidator->addSchemaElement("document");
@@ -215,10 +214,9 @@ void testValidator(int argc, char** argv)
 	//
 	// Serialize
 	//
-	std::fstream *	file	= 0;
-	XMLSerializer	xmlSerializer(file = new std::fstream(argv[2], std::ios_base::out));
+	std::fstream	file(argv[2], std::ios_base::out);
+	XMLSerializer	xmlSerializer(&file);
 	xmlSerializer.serializePretty(document);
-	delete file;
 
 	// delete Document and tree.
 }
@@ -238,7 +236,7 @@ void testIterator(int argc, char** argv)
 	//   </element>
 	// </document>
 	//
-	std::shared_ptr<dom::Document>	document(new Document_Impl);
+	std::shared_ptr<dom::Document>	document(std::make_shared<Document_Impl>());
 	std::shared_ptr<dom::Element>	root(document->createElement("document"));
 	document->appendChild(root);
 	printf("< 0x%08lx > (Last and highest node out of iterator)\n", (unsigned long )root.get());
@@ -275,8 +273,8 @@ void testIterator(int argc, char** argv)
 
 void testDirector(int argc, char** argv)
 {
-	std::shared_ptr<dom::Document>	document(new Document_Impl);
-	std::shared_ptr<Builder>	builder(new Builder(document));
+	std::shared_ptr<dom::Document>	document(std::make_shared<Document_Impl>());
+	std::shared_ptr<Builder>	builder(std::make_shared<Builder>(document));
 	Director	director(argv[2], builder);
 	std::fstream	file(argv[3], std::ios_base::out);
 	XMLSerializer	xmlSerializer(&file);
