@@ -3,6 +3,7 @@
 
 #include <stack>
 #include <string>
+#include <memory>
 
 namespace dom
 {
