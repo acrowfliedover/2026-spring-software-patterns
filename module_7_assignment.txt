@@ -12,3 +12,4 @@ Adapter	Your wrapper classes that implement the Target (e.g. inherit DOMNode/DOM
 Adaptee	The project’s DOM interface + implementation: dom::Node, dom::Document, and the real objects (Node_Impl, Document_Impl, Element, Text, Attr). This is what actually stores and manipulates the tree.
 
 So I shouldn't need to change the adaptee. Or the target. I should just add an adapter class that does the conversion. 
+Should I use Object or Composition?

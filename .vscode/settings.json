@@ -8,6 +8,7 @@
     "XMLTokenizer.C": "cpp",
     "Element.C": "cpp",
     "Text.C": "cpp",
-    "Node.C": "cpp"
+    "Node.C": "cpp",
+    "DOMDocumentAdapter.C": "cpp"
   }
 }

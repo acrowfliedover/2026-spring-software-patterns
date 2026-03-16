@@ -22,7 +22,7 @@
 #if !defined(XERCESC_INCLUDE_GUARD_DOMDOCUMENT_HPP)
 #define XERCESC_INCLUDE_GUARD_DOMDOCUMENT_HPP
 
-#include <xercesc/dom/DOMNode.hpp>
+#include "DOMNode.hpp"
 
 namespace XERCES
 {

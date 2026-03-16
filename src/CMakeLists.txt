@@ -31,4 +31,11 @@ target_sources(Patterns PUBLIC
 	ValidChildren.C
 	ValidChildren.H
 	WhitespaceStrategy.H
+	DOMNode.hpp
+	DOMDocument.hpp
+	XercesStubs.hpp
+	XercesConvert.hpp
+	DOMNodeAdapter.hpp
+	DOMDocumentAdapter.hpp
+	DOMDocumentAdapter.C
 	)
