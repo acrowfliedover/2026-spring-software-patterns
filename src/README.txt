@@ -1,21 +1,6 @@
-To build the C++ code:
-- Install cmake for your system.
-- Make a build directory, e.g., "mkdir ../build".
-- Change to the build directory and run cmake, e.g., "cmake <path to src>".
-- Build the executable.  On *nix this means run "make" in the build directory.
+I chose the adapter pattern because it's another name for wrapper. Essentially what we want to accomplish is to use the Xerces interface over our current DOM implementation, so that an Xerces user can use our project. 
+It is not the bridge pattern because we don't have any refined abstractions. We don't have another layer of methods we want to create, we just want to translate the existing methods of one interface to another. 
 
-To run the C++ code:
-- In the build directory run "./Patterns" to see the options.
-- For example "./Patterns t Test1.xml".
-
-To build the Java code:
-- Make an output directory, e.g., "mkdir ../classes".
-- Run javac.  On *nix this means something like
-  "javac -d ../classes/ `find edu/ -name \*.java`".
-
-
-To run the Java code:
-- Each of the three classes in the patterns_class directory conatins a main()
-  function.
-- Run it with a command like
-  "java -classpath ../classes edu.jhu.apl.patterns_class.XMLTokenizer Test1.xml".
+We are adding a XercesConvert.hpp file to convert XMLCh strings to standard strings.
+We add some wrapper to the Element, Text and Attr so they can be fully utilized. 
+We are using adaptation by composition since we don't want to modify the target or adaptee's code. 
