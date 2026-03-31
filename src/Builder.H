@@ -3,6 +3,9 @@
 
 #include <stack>
 #include <string>
+#include <vector>
+#include <memory>
+#include "ParseObserver.H"
 
 namespace dom
 {
@@ -19,11 +22,21 @@ private:
 	std::shared_ptr<dom::Element>			currentElement;
 	std::shared_ptr<dom::Attr>			currentAttr;
 
+	std::vector<std::shared_ptr<ParseObserver>>	observers;
+	int						depth;
+
 	virtual const std::string	trim(const std::string & s) const;
 public:
-	Builder(std::shared_ptr<dom::Document> _factory) : factory(_factory), currentElement(0), currentAttr(0) {}
+	Builder(std::shared_ptr<dom::Document> _factory) : factory(_factory), currentElement(0), currentAttr(0), depth(0) {}
 
 	virtual std::shared_ptr<dom::Document>	getDocument(void)	{ return factory; }	// aka getResult
+
+	//
+	// Observer Subject interface
+	//
+	virtual void		attach(std::shared_ptr<ParseObserver> observer);
+	virtual void		detach(std::shared_ptr<ParseObserver> observer);
+	virtual void		notify(const ParseEvent & event);
 
 	virtual void		addValue(const std::string & text);
 	virtual void		confirmElement(const std::string & tag);

@@ -1,5 +1,6 @@
 #include "Builder.H"
 #include <iostream>
+#include <algorithm>
 
 #include <ctype.h>
 #include "Document.H"
@@ -7,51 +8,79 @@
 #include "Attr.H"
 #include "Text.H"
 
+void Builder::attach(std::shared_ptr<ParseObserver> observer)
+{
+	observers.push_back(observer);
+}
+
+void Builder::detach(std::shared_ptr<ParseObserver> observer)
+{
+	observers.erase(
+		std::remove(observers.begin(), observers.end(), observer),
+		observers.end()
+	);
+}
+
+void Builder::notify(const ParseEvent & event)
+{
+	for (auto & observer : observers)
+		observer->update(event);
+}
+
 void Builder::addValue(const std::string & text)
 {
-	elementStack.top()->appendChild(factory->createTextNode(trim(text)));
+	std::string trimmed = trim(text);
+	elementStack.top()->appendChild(factory->createTextNode(trimmed));
+	notify(ParseEvent(ParseEvent::TEXT_ADDED, trimmed, depth));
 }
 
 void Builder::confirmElement(const std::string & tag)
 {
 	// Throw an exception if trim(tag) != currentElement.getTagName()
+	notify(ParseEvent(ParseEvent::ELEMENT_CONFIRMED, trim(tag), depth));
 }
 
 void Builder::createAttribute(const std::string & attribute)
 {
 	std::string	trimmed	= trim(attribute);
 	currentAttr	= factory->createAttribute(std::string(trimmed, 0, trimmed.size() - 1));
+	notify(ParseEvent(ParseEvent::ATTRIBUTE_CREATED, std::string(trimmed, 0, trimmed.size() - 1), depth));
 }
 
 void Builder::createElement(const std::string & tag)
 {
-	currentElement	= factory->createElement(trim(tag));
+	std::string trimmed = trim(tag);
+	currentElement	= factory->createElement(trimmed);
 
-	if (elementStack.size() == 0)	// This is the root element.
+	if (elementStack.size() == 0)
 		factory->appendChild(currentElement);
 	else
 		elementStack.top()->appendChild(currentElement);
+
+	notify(ParseEvent(ParseEvent::ELEMENT_CREATED, trimmed, depth));
 }
 
 void Builder::createProlog(void)
 {
-	// null method in this implementation
+	notify(ParseEvent(ParseEvent::PROLOG_START, depth));
 }
 
 void Builder::endProlog(void)
 {
-	// null method in this implementation
+	notify(ParseEvent(ParseEvent::PROLOG_END, depth));
 }
 
 void Builder::identifyProlog(const std::string & id)
 {
-	// null method in this implementation
+	notify(ParseEvent(ParseEvent::PROLOG_ID, trim(id), depth));
 }
 
 bool Builder::popElement(void)
 {
 	currentElement	= elementStack.top();
 	elementStack.pop();
+	depth--;
+	notify(ParseEvent(ParseEvent::ELEMENT_POPPED, depth));
 	return elementStack.size() > 0;
 }
 
@@ -61,17 +90,22 @@ void Builder::pushElement(void)
 	{
 		elementStack.push(currentElement);
 		currentElement	= 0;
+		depth++;
+		notify(ParseEvent(ParseEvent::ELEMENT_PUSHED, depth));
 	}
 }
 
 void Builder::valueAttribute(const std::string & value)
 {
 	std::string	trimmed	= trim(value);
-	currentAttr->setValue(std::string(trimmed, 1, trimmed.size() - 2));
+	std::string	attrValue = std::string(trimmed, 1, trimmed.size() - 2);
+	currentAttr->setValue(attrValue);
 
-	if (currentElement != 0)	// Discard prolog attributes.  This implementation currently doesn't have
-					// anything to do with them.
+	if (currentElement != 0)
 		currentElement->setAttributeNode(currentAttr);
+
+	notify(ParseEvent(ParseEvent::ATTRIBUTE_VALUE,
+		currentAttr->getName() + "=\"" + attrValue + "\"", depth));
 }
 
 const std::string Builder::trim(const std::string & s) const

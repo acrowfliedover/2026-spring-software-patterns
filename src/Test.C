@@ -10,12 +10,15 @@
 #include "XMLValidator.H"
 #include "Builder.H"
 #include "Director.H"
+#include "ParseMediator.H"
+#include "ConsoleParseObserver.H"
 
 void testTokenizer(int argc, char** argv);
 void testSerializer(int argc, char** argv);
 void testValidator(int argc, char** argv);
 void testIterator(int argc, char** argv);
 void testDirector(int argc, char** argv);
+void testObserver(int argc, char** argv);
 
 void printUsage(void)
 {
@@ -25,6 +28,7 @@ void printUsage(void)
 	printf("\tTest v [file]\n");
 	printf("\tTest i\n");
 	printf("\tTest d [file1] [file2]\n");
+	printf("\tTest o [file1] [file2]\n");
 }
 
 int main(int argc, char** argv)
@@ -56,6 +60,10 @@ int main(int argc, char** argv)
 	case 'D':
 	case 'd':
 		testDirector(argc, argv);
+		break;
+	case 'O':
+	case 'o':
+		testObserver(argc, argv);
 		break;
 	}
 }
@@ -281,4 +289,35 @@ void testDirector(int argc, char** argv)
 	std::fstream	file(argv[3], std::ios_base::out);
 	XMLSerializer	xmlSerializer(&file);
 	xmlSerializer.serializePretty(document);
+}
+
+void testObserver(int argc, char** argv)
+{
+	if (argc < 4)
+	{
+		printUsage();
+		exit(0);
+	}
+
+	std::shared_ptr<dom::Document>	document(new Document_Impl);
+	std::shared_ptr<Builder>	builder(new Builder(document));
+
+	std::shared_ptr<ParseMediator>		mediator(new ParseMediator);
+	std::shared_ptr<ConsoleParseObserver>	console(new ConsoleParseObserver);
+
+	mediator->addObserver(console);
+	builder->attach(mediator);
+
+	printf("--- Observer/Mediator: Parsing '%s' ---\n\n", argv[2]);
+	Director	director(argv[2], builder);
+
+	printf("\n--- Parsing complete: %d elements, %d attributes, %d text nodes ---\n\n",
+		mediator->getElementCount(),
+		mediator->getAttributeCount(),
+		mediator->getTextCount());
+
+	std::fstream	file(argv[3], std::ios_base::out);
+	XMLSerializer	xmlSerializer(&file);
+	xmlSerializer.serializePretty(document);
+	printf("Serialized result written to '%s'\n", argv[3]);
 }
