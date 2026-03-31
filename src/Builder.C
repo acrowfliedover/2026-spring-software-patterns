@@ -1,30 +1,33 @@
 #include "Builder.H"
-#include <iostream>
-#include <algorithm>
-
 #include <ctype.h>
 #include "Document.H"
 #include "Element.H"
 #include "Attr.H"
+#include "ParseMediator.H"
 #include "Text.H"
+
+Builder::Builder(std::shared_ptr<dom::Document> _factory, std::shared_ptr<ParseMediator> _changeManager)
+	: factory(_factory),
+	  currentElement(0),
+	  currentAttr(0),
+	  changeManager(_changeManager ? _changeManager : std::make_shared<ParseMediator>()),
+	  depth(0)
+{
+}
 
 void Builder::attach(std::shared_ptr<ParseObserver> observer)
 {
-	observers.push_back(observer);
+	changeManager->addObserver(this, observer);
 }
 
 void Builder::detach(std::shared_ptr<ParseObserver> observer)
 {
-	observers.erase(
-		std::remove(observers.begin(), observers.end(), observer),
-		observers.end()
-	);
+	changeManager->removeObserver(this, observer);
 }
 
 void Builder::notify(const ParseEvent & event)
 {
-	for (auto & observer : observers)
-		observer->update(event);
+	changeManager->update(this, event);
 }
 
 void Builder::addValue(const std::string & text)
@@ -36,7 +39,6 @@ void Builder::addValue(const std::string & text)
 
 void Builder::confirmElement(const std::string & tag)
 {
-	// Throw an exception if trim(tag) != currentElement.getTagName()
 	notify(ParseEvent(ParseEvent::ELEMENT_CONFIRMED, trim(tag), depth));
 }
 

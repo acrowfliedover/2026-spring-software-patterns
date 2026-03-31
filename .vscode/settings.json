@@ -9,6 +9,9 @@
     "Element.C": "cpp",
     "Text.C": "cpp",
     "Node.C": "cpp",
-    "DOMDocumentAdapter.C": "cpp"
+    "DOMDocumentAdapter.C": "cpp",
+    "Builder.C": "cpp",
+    "ParseMediator.C": "cpp",
+    "Director.C": "cpp"
   }
 }

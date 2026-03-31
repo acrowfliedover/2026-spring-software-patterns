@@ -300,21 +300,19 @@ void testObserver(int argc, char** argv)
 	}
 
 	std::shared_ptr<dom::Document>	document(new Document_Impl);
-	std::shared_ptr<Builder>	builder(new Builder(document));
-
 	std::shared_ptr<ParseMediator>		mediator(new ParseMediator);
+	std::shared_ptr<Builder>		builder(new Builder(document, mediator));
 	std::shared_ptr<ConsoleParseObserver>	console(new ConsoleParseObserver);
 
-	mediator->addObserver(console);
-	builder->attach(mediator);
+	builder->attach(console);
 
-	printf("--- Observer/Mediator: Parsing '%s' ---\n\n", argv[2]);
+	printf("--- Observer/ChangeManager: Parsing '%s' ---\n\n", argv[2]);
 	Director	director(argv[2], builder);
 
 	printf("\n--- Parsing complete: %d elements, %d attributes, %d text nodes ---\n\n",
-		mediator->getElementCount(),
-		mediator->getAttributeCount(),
-		mediator->getTextCount());
+		mediator->getElementCount(builder.get()),
+		mediator->getAttributeCount(builder.get()),
+		mediator->getTextCount(builder.get()));
 
 	std::fstream	file(argv[3], std::ios_base::out);
 	XMLSerializer	xmlSerializer(&file);

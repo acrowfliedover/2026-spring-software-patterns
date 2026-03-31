@@ -1,0 +1,63 @@
+@startuml change_manager_pattern
+
+' Use embedded layout (no Graphviz/dot.exe) — avoids Windows temp lock on dot.exe
+!pragma layout smetana
+
+skinparam classAttributeIconSize 0
+
+abstract class Subject {
+    # changeManager : ChangeManager
+    + Attach(o : Observer)
+    + Detach(o : Observer)
+    + Notify()
+}
+
+note right of Subject::Attach
+  changeManager.Register(this, o)
+end note
+
+note right of Subject::Notify
+  changeManager.Notify(this)
+end note
+
+interface Observer {
+    + Update(s : Subject)
+}
+
+abstract class ChangeManager {
+    # subjectObserverMap : Map<Subject, List<Observer>>
+    + {abstract} Register(s : Subject, o : Observer)
+    + {abstract} Unregister(s : Subject, o : Observer)
+    + {abstract} Notify(s : Subject)
+}
+
+class SimpleChangeManager {
+    + Register(s : Subject, o : Observer)
+    + Unregister(s : Subject, o : Observer)
+    + Notify(s : Subject)
+}
+
+note right of SimpleChangeManager::Notify
+  for each o in subjectObserverMap[s]:
+      o.Update(s)
+end note
+
+class DAGChangeManager {
+    + Register(s : Subject, o : Observer)
+    + Unregister(s : Subject, o : Observer)
+    + Notify(s : Subject)
+}
+
+note right of DAGChangeManager::Notify
+  marks DAG, updates observers
+  once for all affected subjects
+end note
+
+ChangeManager <|-- SimpleChangeManager
+ChangeManager <|-- DAGChangeManager
+
+Subject -right-> "1" ChangeManager : delegates to
+ChangeManager --> "*" Subject : maps
+ChangeManager --> "*" Observer : notifies
+
+@enduml

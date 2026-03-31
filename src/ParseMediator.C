@@ -1,49 +1,76 @@
 #include "ParseMediator.H"
 #include <algorithm>
 
-ParseMediator::ParseMediator()
-	: elementCount(0), attributeCount(0), textCount(0), currentDepth(0)
+void ParseMediator::addObserver(const Builder * subject, std::shared_ptr<ParseObserver> observer)
 {
+	observersBySubject[subject].push_back(observer);
+	stateBySubject[subject];
 }
 
-void ParseMediator::addObserver(std::shared_ptr<ParseObserver> observer)
+void ParseMediator::removeObserver(const Builder * subject, std::shared_ptr<ParseObserver> observer)
 {
-	colleagues.push_back(observer);
-}
+	std::map<const Builder *, std::vector<std::shared_ptr<ParseObserver>>>::iterator subjectObservers =
+		observersBySubject.find(subject);
 
-void ParseMediator::removeObserver(std::shared_ptr<ParseObserver> observer)
-{
-	colleagues.erase(
-		std::remove(colleagues.begin(), colleagues.end(), observer),
-		colleagues.end()
+	if (subjectObservers == observersBySubject.end())
+		return;
+
+	subjectObservers->second.erase(
+		std::remove(subjectObservers->second.begin(), subjectObservers->second.end(), observer),
+		subjectObservers->second.end()
 	);
 }
 
-void ParseMediator::update(const ParseEvent & event)
+void ParseMediator::update(const Builder * subject, const ParseEvent & event)
 {
+	ParseState & state = stateBySubject[subject];
+	state.currentDepth = event.depth;
+
 	switch (event.type)
 	{
 	case ParseEvent::ELEMENT_CREATED:
-		elementCount++;
+		state.elementCount++;
 		break;
 	case ParseEvent::ATTRIBUTE_VALUE:
-		attributeCount++;
+		state.attributeCount++;
 		break;
 	case ParseEvent::TEXT_ADDED:
-		textCount++;
-		break;
-	case ParseEvent::ELEMENT_PUSHED:
-		currentDepth++;
-		break;
-	case ParseEvent::ELEMENT_POPPED:
-		currentDepth--;
+		state.textCount++;
 		break;
 	default:
 		break;
 	}
 
-	ParseEvent enriched(event.type, event.data, currentDepth);
+	std::map<const Builder *, std::vector<std::shared_ptr<ParseObserver>>>::iterator subjectObservers =
+		observersBySubject.find(subject);
 
-	for (auto & colleague : colleagues)
-		colleague->update(enriched);
+	if (subjectObservers == observersBySubject.end())
+		return;
+
+	for (auto & observer : subjectObservers->second)
+		observer->update(event);
+}
+
+int ParseMediator::getElementCount(const Builder * subject) const
+{
+	std::map<const Builder *, ParseState>::const_iterator state = stateBySubject.find(subject);
+	return state == stateBySubject.end() ? 0 : state->second.elementCount;
+}
+
+int ParseMediator::getAttributeCount(const Builder * subject) const
+{
+	std::map<const Builder *, ParseState>::const_iterator state = stateBySubject.find(subject);
+	return state == stateBySubject.end() ? 0 : state->second.attributeCount;
+}
+
+int ParseMediator::getTextCount(const Builder * subject) const
+{
+	std::map<const Builder *, ParseState>::const_iterator state = stateBySubject.find(subject);
+	return state == stateBySubject.end() ? 0 : state->second.textCount;
+}
+
+int ParseMediator::getCurrentDepth(const Builder * subject) const
+{
+	std::map<const Builder *, ParseState>::const_iterator state = stateBySubject.find(subject);
+	return state == stateBySubject.end() ? 0 : state->second.currentDepth;
 }
