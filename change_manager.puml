@@ -4,60 +4,93 @@
 !pragma layout smetana
 
 skinparam classAttributeIconSize 0
+left to right direction
 
-abstract class Subject {
-    # changeManager : ChangeManager
-    + Attach(o : Observer)
-    + Detach(o : Observer)
-    + Notify()
+interface ParseObserver <<Observer>> {
+    + update(event : ParseEvent)
 }
 
-note right of Subject::Attach
-  changeManager.Register(this, o)
+class ConsoleParseObserver <<ConcreteObserver>> {
+    - printIndent(depth : int)
+    + update(event : ParseEvent)
+}
+
+class Builder <<Subject>> <<ConcreteSubject>> <<Colleague>> <<ConcreteColleague>> {
+    - changeManager : ParseMediator
+    + Builder(_factory : dom::Document, _changeManager : ParseMediator)
+    + getDocument() : dom::Document
+    + attach(observer : ParseObserver)
+    + detach(observer : ParseObserver)
+    + notify(event : ParseEvent)
+    + addValue(text : string)
+    + confirmElement(tag : string)
+    + createAttribute(attribute : string)
+    + createElement(tag : string)
+    + createProlog()
+    + endProlog()
+    + identifyProlog(id : string)
+    + popElement() : bool
+    + pushElement()
+    + valueAttribute(value : string)
+}
+
+class ParseMediator <<Mediator>> <<ConcreteMediator>> <<ChangeManager>> {
+    - observersBySubject : Map<Builder, List<ParseObserver>>
+    - stateBySubject : Map<Builder, ParseState>
+    + addObserver(subject : Builder, observer : ParseObserver)
+    + removeObserver(subject : Builder, observer : ParseObserver)
+    + update(subject : Builder, event : ParseEvent)
+    + getElementCount(subject : Builder) : int
+    + getAttributeCount(subject : Builder) : int
+    + getTextCount(subject : Builder) : int
+    + getCurrentDepth(subject : Builder) : int
+}
+
+class ParseState {
+    + elementCount : int
+    + attributeCount : int
+    + textCount : int
+    + currentDepth : int
+}
+
+class ParseEvent {
+    + type : EventType
+    + data : string
+    + depth : int
+}
+
+class Director <<Client>> {
+    + Director(filename : string, builder : Builder)
+}
+
+ParseObserver <|.. ConsoleParseObserver
+Builder --> ParseMediator : delegates attach/detach/notify
+ParseMediator --> Builder : manages subject state
+ParseMediator --> ParseObserver : registers and updates
+ParseMediator *-- ParseState
+ParseObserver ..> ParseEvent
+Builder ..> ParseEvent
+Director --> Builder : drives construction
+
+note right of Builder
+  Subject role: Builder
+  ConcreteSubject role: Builder
+  Colleague role: Builder
+  ConcreteColleague role: Builder
 end note
 
-note right of Subject::Notify
-  changeManager.Notify(this)
+note right of ParseMediator
+  Mediator role: ParseMediator
+  ConcreteMediator role: ParseMediator
+  ChangeManager role: ParseMediator
 end note
 
-interface Observer {
-    + Update(s : Subject)
-}
-
-abstract class ChangeManager {
-    # subjectObserverMap : Map<Subject, List<Observer>>
-    + {abstract} Register(s : Subject, o : Observer)
-    + {abstract} Unregister(s : Subject, o : Observer)
-    + {abstract} Notify(s : Subject)
-}
-
-class SimpleChangeManager {
-    + Register(s : Subject, o : Observer)
-    + Unregister(s : Subject, o : Observer)
-    + Notify(s : Subject)
-}
-
-note right of SimpleChangeManager::Notify
-  for each o in subjectObserverMap[s]:
-      o.Update(s)
+note right of ParseObserver
+  Observer role: ParseObserver
 end note
 
-class DAGChangeManager {
-    + Register(s : Subject, o : Observer)
-    + Unregister(s : Subject, o : Observer)
-    + Notify(s : Subject)
-}
-
-note right of DAGChangeManager::Notify
-  marks DAG, updates observers
-  once for all affected subjects
+note right of ConsoleParseObserver
+  ConcreteObserver role: ConsoleParseObserver
 end note
-
-ChangeManager <|-- SimpleChangeManager
-ChangeManager <|-- DAGChangeManager
-
-Subject -right-> "1" ChangeManager : delegates to
-ChangeManager --> "*" Subject : maps
-ChangeManager --> "*" Observer : notifies
 
 @enduml
