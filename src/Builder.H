@@ -1,12 +1,11 @@
 #ifndef BUILDER_H
 #define BUILDER_H
 
-#include <memory>
+#include "Subject.H"
 #include <stack>
 #include <string>
-#include "ParseObserver.H"
 
-class ParseMediator;
+class Observer;
 
 namespace dom
 {
@@ -15,24 +14,20 @@ namespace dom
 	class Attr;
 };
 
-class Builder
+class Builder : public Subject
 {
 private:
 	std::shared_ptr<dom::Document>			factory;
 	std::stack<std::shared_ptr<dom::Element>>	elementStack;
 	std::shared_ptr<dom::Element>			currentElement;
 	std::shared_ptr<dom::Attr>			currentAttr;
-	std::shared_ptr<ParseMediator>			changeManager;
-	int						depth;
 
 	virtual const std::string	trim(const std::string & s) const;
 public:
-	Builder(std::shared_ptr<dom::Document> _factory, std::shared_ptr<ParseMediator> _changeManager = std::shared_ptr<ParseMediator>());
+	Builder(std::shared_ptr<dom::Document> _factory, std::shared_ptr<Observer> _observer) :
+	  factory(_factory), currentElement(nullptr), currentAttr(nullptr) { if (_observer) attach(_observer); }
 
-	virtual std::shared_ptr<dom::Document>	getDocument(void)	{ return factory; }
-	virtual void		attach(std::shared_ptr<ParseObserver> observer);
-	virtual void		detach(std::shared_ptr<ParseObserver> observer);
-	virtual void		notify(const ParseEvent & event);
+	virtual std::shared_ptr<dom::Document>	getDocument(void)	{ return factory; }	// aka getResult
 
 	virtual void		addValue(const std::string & text);
 	virtual void		confirmElement(const std::string & tag);

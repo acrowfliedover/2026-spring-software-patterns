@@ -1,88 +1,60 @@
 #include "Builder.H"
+#include <iostream>
+
 #include <ctype.h>
 #include "Document.H"
 #include "Element.H"
 #include "Attr.H"
-#include "ParseMediator.H"
 #include "Text.H"
-
-Builder::Builder(std::shared_ptr<dom::Document> _factory, std::shared_ptr<ParseMediator> _changeManager)
-	: factory(_factory),
-	  currentElement(0),
-	  currentAttr(0),
-	  changeManager(_changeManager ? _changeManager : std::make_shared<ParseMediator>()),
-	  depth(0)
-{
-}
-
-void Builder::attach(std::shared_ptr<ParseObserver> observer)
-{
-	changeManager->addObserver(this, observer);
-}
-
-void Builder::detach(std::shared_ptr<ParseObserver> observer)
-{
-	changeManager->removeObserver(this, observer);
-}
-
-void Builder::notify(const ParseEvent & event)
-{
-	changeManager->update(this, event);
-}
 
 void Builder::addValue(const std::string & text)
 {
-	std::string trimmed = trim(text);
-	elementStack.top()->appendChild(factory->createTextNode(trimmed));
-	notify(ParseEvent(ParseEvent::TEXT_ADDED, trimmed, depth));
+	elementStack.top()->appendChild(factory->createTextNode(trim(text)));
+	notify(elementStack.top(), dom::Node::TEXT_NODE, text);
 }
 
 void Builder::confirmElement(const std::string & tag)
 {
-	notify(ParseEvent(ParseEvent::ELEMENT_CONFIRMED, trim(tag), depth));
+	// Throw an exception if trim(tag) != currentElement.getTagName()
 }
 
 void Builder::createAttribute(const std::string & attribute)
 {
 	std::string	trimmed	= trim(attribute);
 	currentAttr	= factory->createAttribute(std::string(trimmed, 0, trimmed.size() - 1));
-	notify(ParseEvent(ParseEvent::ATTRIBUTE_CREATED, std::string(trimmed, 0, trimmed.size() - 1), depth));
+	notify(currentElement, dom::Node::ATTRIBUTE_NODE, attribute);
 }
 
 void Builder::createElement(const std::string & tag)
 {
-	std::string trimmed = trim(tag);
-	currentElement	= factory->createElement(trimmed);
+	currentElement	= factory->createElement(trim(tag));
+	notify(currentElement, dom::Node::ELEMENT_NODE, tag);
 
-	if (elementStack.size() == 0)
+	if (elementStack.size() == 0)	// This is the root element.
 		factory->appendChild(currentElement);
 	else
 		elementStack.top()->appendChild(currentElement);
-
-	notify(ParseEvent(ParseEvent::ELEMENT_CREATED, trimmed, depth));
 }
 
 void Builder::createProlog(void)
 {
-	notify(ParseEvent(ParseEvent::PROLOG_START, depth));
+	// null method in this implementation
 }
 
 void Builder::endProlog(void)
 {
-	notify(ParseEvent(ParseEvent::PROLOG_END, depth));
+	// null method in this implementation
 }
 
 void Builder::identifyProlog(const std::string & id)
 {
-	notify(ParseEvent(ParseEvent::PROLOG_ID, trim(id), depth));
+	// null method in this implementation
 }
 
 bool Builder::popElement(void)
 {
 	currentElement	= elementStack.top();
 	elementStack.pop();
-	depth--;
-	notify(ParseEvent(ParseEvent::ELEMENT_POPPED, depth));
 	return elementStack.size() > 0;
 }
 
@@ -92,22 +64,17 @@ void Builder::pushElement(void)
 	{
 		elementStack.push(currentElement);
 		currentElement	= 0;
-		depth++;
-		notify(ParseEvent(ParseEvent::ELEMENT_PUSHED, depth));
 	}
 }
 
 void Builder::valueAttribute(const std::string & value)
 {
 	std::string	trimmed	= trim(value);
-	std::string	attrValue = std::string(trimmed, 1, trimmed.size() - 2);
-	currentAttr->setValue(attrValue);
+	currentAttr->setValue(std::string(trimmed, 1, trimmed.size() - 2));
 
-	if (currentElement != 0)
+	if (currentElement != 0)	// Discard prolog attributes.  This implementation currently doesn't have
+					// anything to do with them.
 		currentElement->setAttributeNode(currentAttr);
-
-	notify(ParseEvent(ParseEvent::ATTRIBUTE_VALUE,
-		currentAttr->getName() + "=\"" + attrValue + "\"", depth));
 }
 
 const std::string Builder::trim(const std::string & s) const

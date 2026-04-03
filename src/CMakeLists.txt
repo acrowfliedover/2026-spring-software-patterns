@@ -9,22 +9,24 @@ target_sources(Patterns PUBLIC
 	Attr.H
 	Builder.C
 	Builder.H
-	ConsoleParseObserver.C
-	ConsoleParseObserver.H
 	Director.C
 	Director.H
 	Document.C
 	Document.H
 	Element.C
 	Element.H
+	Mediator.C
+	Mediator.H
 	NamedNodeMap.C
 	NamedNodeMap.H
 	Node.C
 	Node.H
 	NodeList.H
-	ParseMediator.C
-	ParseMediator.H
-	ParseObserver.H
+	Observer.H
+	StdOutObserver.C
+	StdOutObserver.H
+	Subject.C
+	Subject.H
 	Test.C
 	Text.C
 	Text.H

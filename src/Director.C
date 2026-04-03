@@ -53,7 +53,7 @@ Director::Director(const std::string & filename, std::shared_ptr<Builder> builde
 				case XMLTokenizer::XMLToken::ATTRIBUTE:
 					builder->createAttribute(token->getToken());
 					break;
-				case XMLTokenizer::XMLToken::TAG_END:
+				case XMLTokenizer::XMLToken::PROLOG_END:
 					builder->endProlog();
 					documentLocation	= PARSING_ELEMENT;
 					break;
@@ -77,7 +77,7 @@ Director::Director(const std::string & filename, std::shared_ptr<Builder> builde
 				case XMLTokenizer::XMLToken::ATTRIBUTE:
 					builder->createAttribute(token->getToken());
 					break;
-				case XMLTokenizer::XMLToken::TAG_END:
+				case XMLTokenizer::XMLToken::PROLOG_END:
 					builder->endProlog();
 					documentLocation	= PARSING_ELEMENT;
 					break;
@@ -88,7 +88,6 @@ Director::Director(const std::string & filename, std::shared_ptr<Builder> builde
 			default:
 				break;
 			}
-			break;
 		case PARSING_ELEMENT:
 			switch(lastToken)
 			{

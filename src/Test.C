@@ -10,15 +10,13 @@
 #include "XMLValidator.H"
 #include "Builder.H"
 #include "Director.H"
-#include "ParseMediator.H"
-#include "ConsoleParseObserver.H"
+#include "StdOutObserver.H"
 
 void testTokenizer(int argc, char** argv);
 void testSerializer(int argc, char** argv);
 void testValidator(int argc, char** argv);
 void testIterator(int argc, char** argv);
 void testDirector(int argc, char** argv);
-void testObserver(int argc, char** argv);
 
 void printUsage(void)
 {
@@ -28,7 +26,6 @@ void printUsage(void)
 	printf("\tTest v [file]\n");
 	printf("\tTest i\n");
 	printf("\tTest d [file1] [file2]\n");
-	printf("\tTest o [file1] [file2]\n");
 }
 
 int main(int argc, char** argv)
@@ -60,10 +57,6 @@ int main(int argc, char** argv)
 	case 'D':
 	case 'd':
 		testDirector(argc, argv);
-		break;
-	case 'O':
-	case 'o':
-		testObserver(argc, argv);
 		break;
 	}
 }
@@ -284,38 +277,11 @@ void testIterator(int argc, char** argv)
 void testDirector(int argc, char** argv)
 {
 	std::shared_ptr<dom::Document>	document(new Document_Impl);
-	std::shared_ptr<Builder>	builder(new Builder(document));
-	Director	director(argv[2], builder);
-	std::fstream	file(argv[3], std::ios_base::out);
-	XMLSerializer	xmlSerializer(&file);
+	std::shared_ptr<StdOutObserver>	observer(new StdOutObserver);
+	std::shared_ptr<Builder>	builder(new Builder(document, observer));
+	Director			director(argv[2], builder);
+	std::fstream			file(argv[3], std::ios_base::out);
+	XMLSerializer			xmlSerializer(&file);
+
 	xmlSerializer.serializePretty(document);
-}
-
-void testObserver(int argc, char** argv)
-{
-	if (argc < 4)
-	{
-		printUsage();
-		exit(0);
-	}
-
-	std::shared_ptr<dom::Document>	document(new Document_Impl);
-	std::shared_ptr<ParseMediator>		mediator(new ParseMediator);
-	std::shared_ptr<Builder>		builder(new Builder(document, mediator));
-	std::shared_ptr<ConsoleParseObserver>	console(new ConsoleParseObserver);
-
-	builder->attach(console);
-
-	printf("--- Observer/ChangeManager: Parsing '%s' ---\n\n", argv[2]);
-	Director	director(argv[2], builder);
-
-	printf("\n--- Parsing complete: %d elements, %d attributes, %d text nodes ---\n\n",
-		mediator->getElementCount(builder.get()),
-		mediator->getAttributeCount(builder.get()),
-		mediator->getTextCount(builder.get()));
-
-	std::fstream	file(argv[3], std::ios_base::out);
-	XMLSerializer	xmlSerializer(&file);
-	xmlSerializer.serializePretty(document);
-	printf("Serialized result written to '%s'\n", argv[3]);
 }
