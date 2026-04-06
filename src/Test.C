@@ -19,6 +19,7 @@ void testValidator(int argc, char** argv);
 void testIterator(int argc, char** argv);
 void testDirector(int argc, char** argv);
 void testChainOfResponsibility(int argc, char** argv);
+void testMemento(int argc, char** argv);
 
 void printUsage(void)
 {
@@ -29,6 +30,7 @@ void printUsage(void)
 	printf("\tTest i\n");
 	printf("\tTest d [file1] [file2]\n");
 	printf("\tTest c\n");
+	printf("\tTest m\n");
 }
 
 int main(int argc, char** argv)
@@ -64,6 +66,10 @@ int main(int argc, char** argv)
 	case 'C':
 	case 'c':
 		testChainOfResponsibility(argc, argv);
+		break;
+	case 'M':
+	case 'm':
+		testMemento(argc, argv);
 		break;
 	}
 }
@@ -291,6 +297,41 @@ void testDirector(int argc, char** argv)
 	XMLSerializer			xmlSerializer(&file);
 
 	xmlSerializer.serializePretty(document);
+}
+
+void testMemento(int argc, char** argv)
+{
+	(void)argc;
+	(void)argv;
+
+	std::shared_ptr<XMLValidator>	xmlValidator(new XMLValidator);
+
+	std::shared_ptr<ValidChildren>	root(xmlValidator->addSchemaElement(""));
+	root->addValidChild("document", false);
+
+	std::shared_ptr<ValidChildren>	doc(xmlValidator->addSchemaElement("document"));
+	doc->addValidChild("element", false);
+
+	std::shared_ptr<ValidChildren>	el(xmlValidator->addSchemaElement("element"));
+	el->addValidChild("attribute", true);
+
+	std::cout << "--- original schema (originator) ---\n";
+	xmlValidator->printSchema();
+
+	XMLValidator::Memento	memento = xmlValidator->createMemento();
+
+	std::cout << "\n--- caretaker stored memento; modifying schema ---\n";
+	doc->setCanHaveText(true);
+	xmlValidator->addSchemaElement("extra")->addValidChild("junk", false);
+
+	std::cout << "\n--- schema after modification ---\n";
+	xmlValidator->printSchema();
+
+	std::cout << "\n--- caretaker restores from memento ---\n";
+	xmlValidator->setMemento(memento);
+
+	std::cout << "\n--- schema after restore (should match original) ---\n";
+	xmlValidator->printSchema();
 }
 
 void testChainOfResponsibility(int argc, char** argv)
