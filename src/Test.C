@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <iostream>
 #include <fstream>
 #include <ios>
 #include "Attr.H"
@@ -17,6 +18,7 @@ void testSerializer(int argc, char** argv);
 void testValidator(int argc, char** argv);
 void testIterator(int argc, char** argv);
 void testDirector(int argc, char** argv);
+void testChainOfResponsibility(int argc, char** argv);
 
 void printUsage(void)
 {
@@ -26,6 +28,7 @@ void printUsage(void)
 	printf("\tTest v [file]\n");
 	printf("\tTest i\n");
 	printf("\tTest d [file1] [file2]\n");
+	printf("\tTest c\n");
 }
 
 int main(int argc, char** argv)
@@ -57,6 +60,10 @@ int main(int argc, char** argv)
 	case 'D':
 	case 'd':
 		testDirector(argc, argv);
+		break;
+	case 'C':
+	case 'c':
+		testChainOfResponsibility(argc, argv);
 		break;
 	}
 }
@@ -284,4 +291,35 @@ void testDirector(int argc, char** argv)
 	XMLSerializer			xmlSerializer(&file);
 
 	xmlSerializer.serializePretty(document);
+}
+
+void testChainOfResponsibility(int argc, char** argv)
+{
+	(void)argc;
+	(void)argv;
+
+	std::shared_ptr<dom::Document>	document(std::make_shared<Document_Impl>());
+	std::shared_ptr<dom::Element>	root(document->createElement("handlers"));
+	document->appendChild(root);
+
+	std::shared_ptr<dom::Element>	h1(document->createElement("handler"));
+	h1->setAttribute("message", "type1");
+	root->appendChild(h1);
+
+	std::shared_ptr<dom::Element>	leaf1(document->createElement("handler"));
+	leaf1->setAttribute("message", "type2");
+	h1->appendChild(leaf1);
+
+	std::shared_ptr<dom::Element>	leaf2(document->createElement("handler"));
+	leaf2->setAttribute("message", "type2");
+	h1->appendChild(leaf2);
+
+	std::cout << "--- type1 at first leaf (bubbles to parent) ---\n";
+	leaf1->handleEvent("type1");
+
+	std::cout << "\n--- type2 at first leaf (handled locally) ---\n";
+	leaf1->handleEvent("type2");
+
+	std::cout << "\n--- type3 at first leaf (unhandled) ---\n";
+	leaf1->handleEvent("type3");
 }

@@ -36,6 +36,8 @@ namespace dom
 
 		virtual dom::NamedNodeMap *		getAttributes(void)						= 0;
 		virtual bool				hasAttributes(void)						= 0;
+
+		virtual void				handleEvent(const std::string & message)			= 0;
 	};
 };
 
@@ -67,6 +69,8 @@ public:
 
 	virtual dom::NamedNodeMap *		getAttributes(void)	{ return &attributes; }
 	virtual bool				hasAttributes(void)	{ return attributes.size() > 0; }
+
+	virtual void				handleEvent(const std::string & message);
 };
 
 class ElementDecorator : public virtual dom::Element
@@ -123,6 +127,7 @@ public:
 	//
 	virtual dom::NamedNodeMap *		getAttributes(void)			{ return component->getAttributes(); }
 	virtual bool				hasAttributes(void)			{ return component->hasAttributes(); }
+	virtual void				handleEvent(const std::string & message) { component->handleEvent(message); }
 	virtual const std::string &		getNodeName(void)			{ return component->getNodeName(); }
 	virtual const std::string &		getNodeValue(void)			{ return component->getNodeValue(); }
 	virtual void				setNodeValue(const std::string & nodeValue) { component->setNodeValue(nodeValue); }
@@ -186,6 +191,7 @@ public:
 
 	virtual dom::NamedNodeMap *	getAttributes(void)				{ return realSubject->getAttributes(); }
 	virtual bool			hasAttributes(void)				{ return realSubject->hasAttributes(); }
+	virtual void			handleEvent(const std::string & message)	{ realSubject->handleEvent(message); }
 	virtual const std::string &	getNodeName(void)				{ return realSubject->getNodeName(); }
 	virtual const std::string &	getNodeValue(void)				{ return realSubject->getNodeValue(); }
 	virtual void			setNodeValue(const std::string & nodeValue)	{ realSubject->setNodeValue(nodeValue); }

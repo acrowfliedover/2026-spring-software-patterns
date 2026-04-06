@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Element.H"
 #include "Attr.H"
 #include "Text.H"
@@ -12,6 +14,27 @@ Element_Impl::Element_Impl(const std::string & tagName, dom::Document * document
 
 Element_Impl::~Element_Impl()
 {
+}
+
+void Element_Impl::handleEvent(const std::string & message)
+{
+	if (getTagName() == "handler" && getAttribute("message") == message)
+	{
+		std::cout << "handler (message=\"" << getAttribute("message") << "\") handled event: " << message << "\n";
+		return;
+	}
+	if (getTagName() == "handler")
+		std::cout << "handler (message=\"" << getAttribute("message") << "\") cannot handle event: " << message
+			  << ", passing to parent\n";
+
+	dom::Node *	p	= getParentNode();
+	if (p)
+		if (dom::Element * parentEl = dynamic_cast<dom::Element *>(p))
+		{
+			parentEl->handleEvent(message);
+			return;
+		}
+	std::cout << "no more handlers, couldn't handle request\n";
 }
 
 const std::string &	Element_Impl::getAttribute(const std::string & name)
