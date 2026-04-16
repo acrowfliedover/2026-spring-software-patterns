@@ -1,10 +1,11 @@
-#include <iostream>
-
 #include "Element.H"
 #include "Attr.H"
 #include "Text.H"
 #include "Document.H"
 #include "XMLValidator.H"
+
+#include <iostream>
+#include <ios>
 
 Element_Impl::Element_Impl(const std::string & tagName, dom::Document * document) : Node_Impl(tagName, dom::Node::ELEMENT_NODE),
   attributes(document)
@@ -14,27 +15,6 @@ Element_Impl::Element_Impl(const std::string & tagName, dom::Document * document
 
 Element_Impl::~Element_Impl()
 {
-}
-
-void Element_Impl::handleEvent(const std::string & message)
-{
-	if (getTagName() == "handler" && getAttribute("message") == message)
-	{
-		std::cout << "handler (message=\"" << getAttribute("message") << "\") handled event: " << message << "\n";
-		return;
-	}
-	if (getTagName() == "handler")
-		std::cout << "handler (message=\"" << getAttribute("message") << "\") cannot handle event: " << message
-			  << ", passing to parent\n";
-
-	dom::Node *	p	= getParentNode();
-	if (p)
-		if (dom::Element * parentEl = dynamic_cast<dom::Element *>(p))
-		{
-			parentEl->handleEvent(message);
-			return;
-		}
-	std::cout << "no more handlers, couldn't handle request\n";
 }
 
 const std::string &	Element_Impl::getAttribute(const std::string & name)
@@ -291,4 +271,16 @@ bool ElementProxy::hasChildNodes(void)
 		realize();
 
 	return realSubject->hasChildNodes();
+}
+
+void Element_Impl::HandleRequest(std::string & event)
+{
+	const std::string	eventTemplate	= getAttribute("message");
+
+	if (eventTemplate == event)
+		std::cout << "Handling event " << event << "." << std::endl;
+	else if (getParentNode() != 0 && dynamic_cast<dom::Element *>(getParentNode()) != 0)
+		dynamic_cast<dom::Element *>(getParentNode())->HandleRequest(event);
+	else
+		std::cout << "Reached root of DOM tree without handling event '" << event << "'." << std::endl;
 }

@@ -20,6 +20,11 @@ namespace dom
 		virtual ~Element() {}
 
 		//
+		// Chain of Responsibility
+		//
+		virtual void			HandleRequest(std::string & event)					= 0;
+
+		//
 		// Serialization Data Extraction Strategy
 		//
 		virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)		= 0;
@@ -36,8 +41,6 @@ namespace dom
 
 		virtual dom::NamedNodeMap *		getAttributes(void)						= 0;
 		virtual bool				hasAttributes(void)						= 0;
-
-		virtual void				handleEvent(const std::string & message)			= 0;
 	};
 };
 
@@ -51,6 +54,11 @@ public:
 	friend class Document_Impl;
 
 	virtual ~Element_Impl();
+
+	//
+	// Chain of Responsibility
+	//
+	virtual void				HandleRequest(std::string & event);
 
 	//
 	// Serialization Data Extraction Strategy
@@ -69,8 +77,6 @@ public:
 
 	virtual dom::NamedNodeMap *		getAttributes(void)	{ return &attributes; }
 	virtual bool				hasAttributes(void)	{ return attributes.size() > 0; }
-
-	virtual void				handleEvent(const std::string & message);
 };
 
 class ElementDecorator : public virtual dom::Element
@@ -90,6 +96,11 @@ private:
 	std::shared_ptr<ValidChildren>	schemaElement;
 public:
 	ElementValidator(std::shared_ptr<dom::Element> _component, std::shared_ptr<XMLValidator> xmlValidator);
+
+	//
+	// Chain of Responsibility
+	//
+	virtual void			HandleRequest(std::string & event)		{ component->HandleRequest(event); }
 
 	//
 	// Serialization Data Extraction Strategy
@@ -127,7 +138,6 @@ public:
 	//
 	virtual dom::NamedNodeMap *		getAttributes(void)			{ return component->getAttributes(); }
 	virtual bool				hasAttributes(void)			{ return component->hasAttributes(); }
-	virtual void				handleEvent(const std::string & message) { component->handleEvent(message); }
 	virtual const std::string &		getNodeName(void)			{ return component->getNodeName(); }
 	virtual const std::string &		getNodeValue(void)			{ return component->getNodeValue(); }
 	virtual void				setNodeValue(const std::string & nodeValue) { component->setNodeValue(nodeValue); }
@@ -163,6 +173,7 @@ public:
 	}
 	virtual ~ElementProxy() {}
 
+	virtual void				HandleRequest(std::string & event)	{ realSubject->HandleRequest(event); }
 	virtual dom::NodeList *			getChildNodes(void);
 	virtual std::shared_ptr<dom::Node>	getFirstChild(void);
 	virtual std::shared_ptr<dom::Node>	getLastChild(void);
@@ -191,7 +202,6 @@ public:
 
 	virtual dom::NamedNodeMap *	getAttributes(void)				{ return realSubject->getAttributes(); }
 	virtual bool			hasAttributes(void)				{ return realSubject->hasAttributes(); }
-	virtual void			handleEvent(const std::string & message)	{ realSubject->handleEvent(message); }
 	virtual const std::string &	getNodeName(void)				{ return realSubject->getNodeName(); }
 	virtual const std::string &	getNodeValue(void)				{ return realSubject->getNodeValue(); }
 	virtual void			setNodeValue(const std::string & nodeValue)	{ realSubject->setNodeValue(nodeValue); }

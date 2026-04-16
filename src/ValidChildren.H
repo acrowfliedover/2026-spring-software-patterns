@@ -13,13 +13,13 @@ private:
 	bool				_canHaveText;
 public:
 	ValidChildren(std::string _thisElement) : thisElement(_thisElement), _canHaveText(false)	{}
+	ValidChildren(const ValidChildren & v) :
+	  thisElement(v.thisElement), validChildren(v.validChildren), childIsAttribute(v.childIsAttribute),
+	  _canHaveText(v._canHaveText) {}
 
 	virtual std::string	getThisElement(void)			{ return thisElement; }
 	virtual bool		canHaveText(void)			{ return _canHaveText; }
 	virtual void		setCanHaveText(bool __canHaveText)	{ _canHaveText = __canHaveText; }
-
-	virtual const std::vector<std::string> &	getValidChildren(void) const		{ return validChildren; }
-	virtual const std::vector<bool> &		getChildIsAttribute(void) const		{ return childIsAttribute; }
 
 	virtual void		addValidChild(const std::string & child, bool isAttribute);
 	virtual bool		childIsValid(const std::string & child, bool isAttribute);

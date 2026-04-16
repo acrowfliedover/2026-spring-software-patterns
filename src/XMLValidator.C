@@ -1,5 +1,3 @@
-#include <cstdio>
-
 #include "XMLValidator.H"
 #include "ValidChildren.H"
 
@@ -27,36 +25,40 @@ std::vector<std::shared_ptr<ValidChildren>>::iterator XMLValidator::findSchemaEl
 	return schema.end();
 }
 
-XMLValidator::Memento XMLValidator::createMemento(void)
+std::shared_ptr<Memento> XMLValidator::CreateMemento(void)
 {
-	Memento	m;
-
-	for (std::vector<std::shared_ptr<ValidChildren>>::iterator i = schema.begin(); i != schema.end(); i++)
-		m.state.push_back(std::make_shared<ValidChildren>(**i));
-
-	return m;
+	return std::shared_ptr<Memento>(new Memento_Impl(schema));
 }
 
-void XMLValidator::setMemento(const Memento & m)
+bool XMLValidator::SetMemento(std::shared_ptr<Memento> memento)
 {
-	schema.clear();
-
-	for (std::vector<std::shared_ptr<ValidChildren>>::const_iterator i = m.state.begin(); i != m.state.end(); i++)
-		schema.push_back(std::make_shared<ValidChildren>(**i));
-}
-
-void XMLValidator::printSchema(void) const
-{
-	for (std::vector<std::shared_ptr<ValidChildren>>::const_iterator i = schema.begin(); i != schema.end(); i++)
+	if (std::dynamic_pointer_cast<Memento_Impl>(memento))
 	{
-		const std::shared_ptr<ValidChildren> &	vc	= *i;
+		std::shared_ptr<Memento_Impl>	m(std::dynamic_pointer_cast<Memento_Impl>(memento));
 
-		printf("  element '%s'  canHaveText=%d\n", vc->getThisElement().c_str(), vc->canHaveText() ? 1 : 0);
+		m->GetSchema(schema);
 
-		const std::vector<std::string> &	children	= vc->getValidChildren();
-		const std::vector<bool> &		isAttr		= vc->getChildIsAttribute();
-
-		for (size_t j = 0; j < children.size(); j++)
-			printf("    valid child '%s' (%s)\n", children[j].c_str(), isAttr[j] ? "attribute" : "element");
+		return true;
 	}
+	else
+		return false;
+}
+
+Memento_Impl::Memento_Impl(std::vector<std::shared_ptr<ValidChildren>> & _schema)
+{
+	duplicateSchema(_schema, schema);
+}
+
+void Memento_Impl::GetSchema(std::vector<std::shared_ptr<ValidChildren>> & s)
+{
+	duplicateSchema(schema, s);
+}
+
+void Memento_Impl::duplicateSchema(std::vector<std::shared_ptr<ValidChildren>> & ins,
+  std::vector<std::shared_ptr<ValidChildren>> & outs)
+{
+	outs.clear();
+
+	for (std::vector<std::shared_ptr<ValidChildren>>::iterator iterator = ins.begin(); iterator != ins.end(); iterator++)
+		outs.push_back(std::make_shared<ValidChildren>(**iterator));
 }

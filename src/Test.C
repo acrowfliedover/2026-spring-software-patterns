@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <ios>
 #include "Attr.H"
 #include "Document.H"
@@ -18,8 +18,7 @@ void testSerializer(int argc, char** argv);
 void testValidator(int argc, char** argv);
 void testIterator(int argc, char** argv);
 void testDirector(int argc, char** argv);
-void testChainOfResponsibility(int argc, char** argv);
-void testMemento(int argc, char** argv);
+void testEvent(int argc, char** argv);
 
 void printUsage(void)
 {
@@ -29,8 +28,7 @@ void printUsage(void)
 	printf("\tTest v [file]\n");
 	printf("\tTest i\n");
 	printf("\tTest d [file1] [file2]\n");
-	printf("\tTest c\n");
-	printf("\tTest m\n");
+	printf("\tTest e [file]\n");
 }
 
 int main(int argc, char** argv)
@@ -63,13 +61,9 @@ int main(int argc, char** argv)
 	case 'd':
 		testDirector(argc, argv);
 		break;
-	case 'C':
-	case 'c':
-		testChainOfResponsibility(argc, argv);
-		break;
-	case 'M':
-	case 'm':
-		testMemento(argc, argv);
+	case 'E':
+	case 'e':
+		testEvent(argc, argv);
 		break;
 	}
 }
@@ -203,6 +197,11 @@ void testValidator(int argc, char** argv)
 	schemaElement->addValidChild("attribute2", true);
 	schemaElement->setCanHaveText(true);
 
+	//
+	// Store this in a standard library container or some other container to properly fill the Container role.
+	//
+	std::shared_ptr<Memento>	m(xmlValidator->CreateMemento());
+	xmlValidator->SetMemento(m);
 	std::shared_ptr<dom::Document>	document(new DocumentValidator(new Document_Impl, xmlValidator));
 	std::shared_ptr<dom::Element>	root;
 	std::shared_ptr<dom::Element>	child;
@@ -299,68 +298,35 @@ void testDirector(int argc, char** argv)
 	xmlSerializer.serializePretty(document);
 }
 
-void testMemento(int argc, char** argv)
+void testEvent(int argc, char** argv)
 {
-	(void)argc;
-	(void)argv;
+	if (argc < 3)
+	{
+		printUsage();
+		exit(0);
+	}
 
-	std::shared_ptr<XMLValidator>	xmlValidator(new XMLValidator);
+	std::shared_ptr<dom::Document>	document(new Document_Impl);
+	std::shared_ptr<StdOutObserver>	observer(new StdOutObserver);
+	std::shared_ptr<Builder>	builder(new Builder(document, observer));
+	Director			director(argv[2], builder);
+	int				typeCounter(1);
 
-	std::shared_ptr<ValidChildren>	root(xmlValidator->addSchemaElement(""));
-	root->addValidChild("document", false);
+	//
+	// Iterate over DOM tree and see which Element handles the event with each starting point.
+	//
+	for (std::shared_ptr<dom::Iterator> iterator = document->createIterator(0); iterator->hasNext();)
+	{
+		dom::Node *	node(iterator->next());
 
-	std::shared_ptr<ValidChildren>	doc(xmlValidator->addSchemaElement("document"));
-	doc->addValidChild("element", false);
-
-	std::shared_ptr<ValidChildren>	el(xmlValidator->addSchemaElement("element"));
-	el->addValidChild("attribute", true);
-
-	std::cout << "--- original schema (originator) ---\n";
-	xmlValidator->printSchema();
-
-	XMLValidator::Memento	memento = xmlValidator->createMemento();
-
-	std::cout << "\n--- caretaker stored memento; modifying schema ---\n";
-	doc->setCanHaveText(true);
-	xmlValidator->addSchemaElement("extra")->addValidChild("junk", false);
-
-	std::cout << "\n--- schema after modification ---\n";
-	xmlValidator->printSchema();
-
-	std::cout << "\n--- caretaker restores from memento ---\n";
-	xmlValidator->setMemento(memento);
-
-	std::cout << "\n--- schema after restore (should match original) ---\n";
-	xmlValidator->printSchema();
-}
-
-void testChainOfResponsibility(int argc, char** argv)
-{
-	(void)argc;
-	(void)argv;
-
-	std::shared_ptr<dom::Document>	document(std::make_shared<Document_Impl>());
-	std::shared_ptr<dom::Element>	root(document->createElement("handlers"));
-	document->appendChild(root);
-
-	std::shared_ptr<dom::Element>	h1(document->createElement("handler"));
-	h1->setAttribute("message", "type1");
-	root->appendChild(h1);
-
-	std::shared_ptr<dom::Element>	leaf1(document->createElement("handler"));
-	leaf1->setAttribute("message", "type2");
-	h1->appendChild(leaf1);
-
-	std::shared_ptr<dom::Element>	leaf2(document->createElement("handler"));
-	leaf2->setAttribute("message", "type2");
-	h1->appendChild(leaf2);
-
-	std::cout << "--- type1 at first leaf (bubbles to parent) ---\n";
-	leaf1->handleEvent("type1");
-
-	std::cout << "\n--- type2 at first leaf (handled locally) ---\n";
-	leaf1->handleEvent("type2");
-
-	std::cout << "\n--- type3 at first leaf (unhandled) ---\n";
-	leaf1->handleEvent("type3");
+		if (node != 0 && dynamic_cast<dom::Element *>(node) != 0 && !node->hasChildNodes())
+		{
+			char	tempArray[16];
+			snprintf(tempArray, 16, "type%d", typeCounter);
+			std::string	tempString(tempArray);
+			std::cout << "Sending event type" << typeCounter << " to Element node." << std::endl;
+			dynamic_cast<dom::Element *>(node)->HandleRequest(tempString);
+			typeCounter++;
+		}
+	}
 }
