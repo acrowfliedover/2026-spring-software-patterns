@@ -23,6 +23,7 @@ target_sources(Patterns PUBLIC
 	Node.H
 	NodeList.H
 	Observer.H
+	Prototype.H
 	StdOutObserver.C
 	StdOutObserver.H
 	Subject.C

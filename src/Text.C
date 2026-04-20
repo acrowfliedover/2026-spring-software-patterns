@@ -94,6 +94,11 @@ void			Text_Impl::replaceData(int offset, int count, const std::string & arg)
 	setValue(value.erase(offset, count).insert(offset, arg));
 }
 
+std::shared_ptr<dom::Prototype>		Text_Impl::clone(void)
+{
+	return std::shared_ptr<Text_Impl>(new Text_Impl(getValue(), document));
+}
+
 std::shared_ptr<dom::Text>		Text_Impl::splitText(int offset)
 {
 	try

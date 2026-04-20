@@ -39,3 +39,8 @@ dom::Element *		Attr_Impl::getOwnerElement(void)
 {
 	return dynamic_cast<dom::Element *>(Node_Impl::getParentNode());
 }
+
+std::shared_ptr<dom::Prototype>	Attr_Impl::clone(void)
+{
+	return std::shared_ptr<Attr_Impl>(new Attr_Impl(getName(), getValue(), document));
+}

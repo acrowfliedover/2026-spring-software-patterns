@@ -49,6 +49,11 @@ public:
 	//
 	virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
 
+	//
+	// Prototype
+	//
+	virtual std::shared_ptr<dom::Prototype>	clone(void);
+
 	virtual const std::string &		getName(void);
 	virtual const std::string &		getData(void);
 	virtual const std::string &		getValue(void);

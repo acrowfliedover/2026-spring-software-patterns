@@ -65,6 +65,11 @@ public:
 	//
 	virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
 
+	//
+	// Prototype
+	//
+	virtual std::shared_ptr<dom::Prototype>	clone(void);
+
 	virtual const std::string &		getAttribute(const std::string & name);
 	virtual std::shared_ptr<dom::Attr>	getAttributeNode(const std::string & name);
 	virtual std::shared_ptr<dom::NodeList>	getElementsByTagName(const std::string & tagName);
@@ -107,6 +112,11 @@ public:
 	//
 	virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
 	  { component->serialize(writer, whitespace); }
+
+	//
+	// Prototype
+	//
+	virtual std::shared_ptr<dom::Prototype>	clone(void)			{ return component->clone(); }
 
 	//
 	// Undecorated pass-through methods.
@@ -174,6 +184,12 @@ public:
 	virtual ~ElementProxy() {}
 
 	virtual void				HandleRequest(std::string & event)	{ realSubject->HandleRequest(event); }
+
+	//
+	// Prototype
+	//
+	virtual std::shared_ptr<dom::Prototype>	clone(void)				{ return realSubject->clone(); }
+
 	virtual dom::NodeList *			getChildNodes(void);
 	virtual std::shared_ptr<dom::Node>	getFirstChild(void);
 	virtual std::shared_ptr<dom::Node>	getLastChild(void);

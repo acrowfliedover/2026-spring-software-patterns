@@ -4,13 +4,14 @@
 #include <string>
 #include <memory>
 #include "NodeList.H"
+#include "Prototype.H"
 #include "WhitespaceStrategy.H"
 
 namespace dom
 {
 	class Document;
 
-	class Node
+	class Node : public virtual Prototype
 	{
 	public:
 		static const short		ATTRIBUTE_NODE	= 0;

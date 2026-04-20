@@ -273,6 +273,19 @@ bool ElementProxy::hasChildNodes(void)
 	return realSubject->hasChildNodes();
 }
 
+std::shared_ptr<dom::Prototype>	Element_Impl::clone(void)
+{
+	std::shared_ptr<Element_Impl>	copy(new Element_Impl(getTagName(), getOwnerDocument()));
+
+	for (dom::NamedNodeMap::iterator i = getAttributes()->begin(); i != getAttributes()->end(); i++)
+		copy->setAttributeNode(std::dynamic_pointer_cast<dom::Attr>((*i)->clone()));
+
+	for (dom::NodeList::iterator i = getChildNodes()->begin(); i != getChildNodes()->end(); i++)
+		copy->appendChild(std::dynamic_pointer_cast<dom::Node>((*i)->clone()));
+
+	return copy;
+}
+
 void Element_Impl::HandleRequest(std::string & event)
 {
 	const std::string	eventTemplate	= getAttribute("message");

@@ -55,6 +55,11 @@ public:
 	//
 	virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
 
+	//
+	// Prototype
+	//
+	virtual std::shared_ptr<dom::Prototype>	clone(void);
+
 	virtual std::shared_ptr<dom::Element>	createElement(const std::string & tagName);
 	virtual std::shared_ptr<dom::Text>	createTextNode(const std::string & data);
 	virtual std::shared_ptr<dom::Attr>	createAttribute(const std::string & name);
@@ -102,6 +107,11 @@ public:
 	//
 	virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
 	  { component->serialize(writer, whitespace); }
+
+	//
+	// Prototype
+	//
+	virtual std::shared_ptr<dom::Prototype>	clone(void)		{ return component->clone(); }
 
 	//
 	// Iterator Factory

@@ -19,6 +19,7 @@ void testValidator(int argc, char** argv);
 void testIterator(int argc, char** argv);
 void testDirector(int argc, char** argv);
 void testEvent(int argc, char** argv);
+void testPrototype(int argc, char** argv);
 
 void printUsage(void)
 {
@@ -29,6 +30,7 @@ void printUsage(void)
 	printf("\tTest i\n");
 	printf("\tTest d [file1] [file2]\n");
 	printf("\tTest e [file]\n");
+	printf("\tTest p [file]\n");
 }
 
 int main(int argc, char** argv)
@@ -64,6 +66,10 @@ int main(int argc, char** argv)
 	case 'E':
 	case 'e':
 		testEvent(argc, argv);
+		break;
+	case 'P':
+	case 'p':
+		testPrototype(argc, argv);
 		break;
 	}
 }
@@ -329,4 +335,47 @@ void testEvent(int argc, char** argv)
 			typeCounter++;
 		}
 	}
+}
+
+void testPrototype(int argc, char** argv)
+{
+	if (argc < 3)
+	{
+		printUsage();
+		exit(0);
+	}
+
+	//
+	// Build a small subtree under a <container>, clone it, and graft the clone
+	// back next to the original so serialization shows both copies.
+	//
+	std::shared_ptr<dom::Document>	document(std::make_shared<Document_Impl>());
+	std::shared_ptr<dom::Element>	container(document->createElement("container"));
+	document->appendChild(container);
+
+	std::shared_ptr<dom::Element>	original(document->createElement("subtree"));
+	original->setAttribute("id", "original");
+	std::shared_ptr<dom::Element>	inner(document->createElement("inner"));
+	inner->setAttribute("key", "value");
+	inner->appendChild(document->createTextNode("payload"));
+	original->appendChild(inner);
+	container->appendChild(original);
+
+	std::shared_ptr<dom::Element>	copy(std::dynamic_pointer_cast<dom::Element>(original->clone()));
+
+	if (copy.get() == original.get())
+		std::cout << "FAIL:  clone returned the same instance." << std::endl;
+	else
+		std::cout << "Clone is a distinct instance (original=0x" << original.get()
+		  << ", copy=0x" << copy.get() << ")." << std::endl;
+
+	std::cout << "Copied id attribute:  '" << copy->getAttribute("id") << "'" << std::endl;
+	copy->setAttribute("id", "clone");
+	std::cout << "Original id after mutating copy:  '" << original->getAttribute("id") << "'" << std::endl;
+
+	container->appendChild(copy);
+
+	std::fstream	file(argv[2], std::ios_base::out);
+	XMLSerializer	xmlSerializer(&file);
+	xmlSerializer.serializePretty(document);
 }

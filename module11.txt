@@ -1,0 +1,1 @@
+The invoker is the command sender. It has a reference to the command project. 

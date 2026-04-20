@@ -48,6 +48,25 @@ std::shared_ptr<dom::Iterator> Document_Impl::createIterator(dom::Node * node)
 	return std::shared_ptr<DOMIterator>(new DOMIterator(node, this));
 }
 
+std::shared_ptr<dom::Prototype>	Document_Impl::clone(void)
+{
+	std::shared_ptr<Document_Impl>	copy(new Document_Impl);
+
+	//
+	// Cloned children still reference the source document, so insert directly
+	// into the new document's child list rather than appendChild, which would
+	// raise WRONG_DOCUMENT_ERR.
+	//
+	for (dom::NodeList::iterator i = getChildNodes()->begin(); i != getChildNodes()->end(); i++)
+	{
+		std::shared_ptr<dom::Node>	child(std::dynamic_pointer_cast<dom::Node>((*i)->clone()));
+		copy->getChildNodes()->push_back(child);
+		std::dynamic_pointer_cast<Node_Impl>(child)->setParent(copy.get());
+	}
+
+	return copy;
+}
+
 DocumentValidator::DocumentValidator(dom::Document * _component, std::shared_ptr<XMLValidator> xmlValidator) :
   Node_Impl("", dom::Node::DOCUMENT_NODE),
   component(_component),
