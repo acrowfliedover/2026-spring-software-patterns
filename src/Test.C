@@ -12,6 +12,7 @@
 #include "Builder.H"
 #include "Director.H"
 #include "StdOutObserver.H"
+#include "CommandInterpreter.H"
 
 void testTokenizer(int argc, char** argv);
 void testSerializer(int argc, char** argv);
@@ -20,6 +21,7 @@ void testIterator(int argc, char** argv);
 void testDirector(int argc, char** argv);
 void testEvent(int argc, char** argv);
 void testPrototype(int argc, char** argv);
+void testCommand(int argc, char** argv);
 
 void printUsage(void)
 {
@@ -31,6 +33,7 @@ void printUsage(void)
 	printf("\tTest d [file1] [file2]\n");
 	printf("\tTest e [file]\n");
 	printf("\tTest p [file]\n");
+	printf("\tTest c\n");
 }
 
 int main(int argc, char** argv)
@@ -70,6 +73,10 @@ int main(int argc, char** argv)
 	case 'P':
 	case 'p':
 		testPrototype(argc, argv);
+		break;
+	case 'C':
+	case 'c':
+		testCommand(argc, argv);
 		break;
 	}
 }
@@ -378,4 +385,11 @@ void testPrototype(int argc, char** argv)
 	std::fstream	file(argv[2], std::ios_base::out);
 	XMLSerializer	xmlSerializer(&file);
 	xmlSerializer.serializePretty(document);
+}
+
+void testCommand(int argc, char** argv)
+{
+	CommandInterpreter	interpreter;
+
+	interpreter.run();
 }
