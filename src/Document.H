@@ -2,7 +2,7 @@
 #define DOCUMENT_H
 
 #include <string>
-#include <fstream>
+#include <iostream>
 #include <stack>
 #include <memory>
 
@@ -30,7 +30,7 @@ namespace dom
 		//
 		// Serialization Data Extraction Strategy
 		//
-		virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)	= 0;
+		virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)	= 0;
 		virtual std::shared_ptr<Element>	createElement(const std::string & tagName)		= 0;
 		virtual std::shared_ptr<Text>		createTextNode(const std::string & data)		= 0;
 		virtual std::shared_ptr<Attr>		createAttribute(const std::string & name)		= 0;
@@ -53,12 +53,7 @@ public:
 	//
 	// Serialization Data Extraction Strategy
 	//
-	virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
-
-	//
-	// Prototype
-	//
-	virtual std::shared_ptr<dom::Prototype>	clone(void);
+	virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
 
 	virtual std::shared_ptr<dom::Element>	createElement(const std::string & tagName);
 	virtual std::shared_ptr<dom::Text>	createTextNode(const std::string & data);
@@ -69,6 +64,8 @@ public:
 	// Iterator Factory
 	//
 	std::shared_ptr<dom::Iterator>		createIterator(dom::Node * node);
+
+	virtual std::shared_ptr<dom::Node>	cloneNode(bool deep);
 };
 
 class DOMIterator : public virtual dom::Iterator
@@ -105,13 +102,8 @@ public:
 	//
 	// Serialization Data Extraction Strategy
 	//
-	virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
+	virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
 	  { component->serialize(writer, whitespace); }
-
-	//
-	// Prototype
-	//
-	virtual std::shared_ptr<dom::Prototype>	clone(void)		{ return component->clone(); }
 
 	//
 	// Iterator Factory
@@ -134,6 +126,8 @@ public:
 	virtual std::shared_ptr<dom::Node>	replaceChild(std::shared_ptr<dom::Node> newChild,
 						  std::shared_ptr<dom::Node> oldChild);
 	virtual std::shared_ptr<dom::Node>	appendChild(std::shared_ptr<dom::Node> newChild);
+
+	virtual std::shared_ptr<dom::Node>	cloneNode(bool deep);
 };
 
 #endif // DOCUMENT_H

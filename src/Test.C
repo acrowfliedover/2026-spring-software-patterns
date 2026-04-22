@@ -11,8 +11,8 @@
 #include "XMLValidator.H"
 #include "Builder.H"
 #include "Director.H"
+#include "Invoker.H"
 #include "StdOutObserver.H"
-#include "CommandInterpreter.H"
 
 void testTokenizer(int argc, char** argv);
 void testSerializer(int argc, char** argv);
@@ -20,8 +20,8 @@ void testValidator(int argc, char** argv);
 void testIterator(int argc, char** argv);
 void testDirector(int argc, char** argv);
 void testEvent(int argc, char** argv);
-void testPrototype(int argc, char** argv);
 void testCommand(int argc, char** argv);
+void testPrototype(int argc, char** argv);
 
 void printUsage(void)
 {
@@ -32,8 +32,8 @@ void printUsage(void)
 	printf("\tTest i\n");
 	printf("\tTest d [file1] [file2]\n");
 	printf("\tTest e [file]\n");
-	printf("\tTest p [file]\n");
 	printf("\tTest c\n");
+	printf("\tTest p [file]\n");
 }
 
 int main(int argc, char** argv)
@@ -70,13 +70,13 @@ int main(int argc, char** argv)
 	case 'e':
 		testEvent(argc, argv);
 		break;
-	case 'P':
-	case 'p':
-		testPrototype(argc, argv);
-		break;
 	case 'C':
 	case 'c':
 		testCommand(argc, argv);
+		break;
+	case 'P':
+	case 'p':
+		testPrototype(argc, argv);
 		break;
 	}
 }
@@ -344,6 +344,17 @@ void testEvent(int argc, char** argv)
 	}
 }
 
+void testCommand(int argc, char** argv)
+{
+	Invoker	invoker;
+
+	invoker.addCommand("read", new ParseCommand(&invoker));
+	invoker.addCommand("write", new WriteCommand(&invoker));
+	invoker.addCommand("print", new PrintCommand(&invoker));
+
+	invoker.run();
+}
+
 void testPrototype(int argc, char** argv)
 {
 	if (argc < 3)
@@ -353,43 +364,69 @@ void testPrototype(int argc, char** argv)
 	}
 
 	//
-	// Build a small subtree under a <container>, clone it, and graft the clone
-	// back next to the original so serialization shows both copies.
+	// Create tree of this document:
+	// <? xml version="1.0" encoding="UTF-8"?>
+	// <document>
+	//   <element attribute="attribute value"/>
+	//   <element/>
+	//   <element attribute="attribute value" attribute2="attribute2 value">
+	//     Element Value
+	//   </element>
+	//   <element>
+	//   </element>
+	// </document>
 	//
-	std::shared_ptr<dom::Document>	document(std::make_shared<Document_Impl>());
-	std::shared_ptr<dom::Element>	container(document->createElement("container"));
-	document->appendChild(container);
+	// Schema for this document:
+	// document contains:  element
+	// element contains:  element
+	// element contains attributes:  attribute, attribute2
+	//
+	std::shared_ptr<XMLValidator>	xmlValidator(new XMLValidator);
+	std::shared_ptr<ValidChildren>	schemaElement(xmlValidator->addSchemaElement(""));
+	schemaElement->addValidChild("document", false);
+	schemaElement	= xmlValidator->addSchemaElement("document");
+	schemaElement->addValidChild("element", false);
+	schemaElement	= xmlValidator->addSchemaElement("element");
+	schemaElement->addValidChild("element", false);
+	schemaElement->addValidChild("attribute", true);
+	schemaElement->addValidChild("attribute2", true);
+	schemaElement->setCanHaveText(true);
 
-	std::shared_ptr<dom::Element>	original(document->createElement("subtree"));
-	original->setAttribute("id", "original");
-	std::shared_ptr<dom::Element>	inner(document->createElement("inner"));
-	inner->setAttribute("key", "value");
-	inner->appendChild(document->createTextNode("payload"));
-	original->appendChild(inner);
-	container->appendChild(original);
+	//
+	// Store this in a standard library container or some other container to properly fill the Container role.
+	//
+	std::shared_ptr<Memento>	m(xmlValidator->CreateMemento());
+	xmlValidator->SetMemento(m);
+	std::shared_ptr<dom::Document>	document(new DocumentValidator(new Document_Impl, xmlValidator));
+	std::shared_ptr<dom::Element>	root;
+	std::shared_ptr<dom::Element>	child;
+	std::shared_ptr<dom::Attr>	attr;
 
-	std::shared_ptr<dom::Element>	copy(std::dynamic_pointer_cast<dom::Element>(original->clone()));
+	root		= document->createElement("document");
+	document->appendChild(root);
+	child		= document->createElement("element");
+	attr		= document->createAttribute("attribute");
+	attr->setValue("attribute value");
+	child->setAttributeNode(attr);
+	root->appendChild(child);
+	child		= document->createElement("element");
+	root->appendChild(child);
+	child		= document->createElement("element");
+	child->setAttribute("attribute", "attribute value");
+	child->setAttribute("attribute2", "attribute2 value");
+	std::shared_ptr<dom::Text>	text(document->createTextNode("Element Value"));
+	child->appendChild(text);
+	root->appendChild(child);
+	child		= document->createElement("element");
+	root->appendChild(child);
 
-	if (copy.get() == original.get())
-		std::cout << "FAIL:  clone returned the same instance." << std::endl;
-	else
-		std::cout << "Clone is a distinct instance (original=0x" << original.get()
-		  << ", copy=0x" << copy.get() << ")." << std::endl;
+	//
+	// Serialize
+	//
+	std::fstream *	file	= 0;
+	XMLSerializer	xmlSerializer(file = new std::fstream(argv[2], std::ios_base::out));
+	xmlSerializer.serializePretty(document->getDocumentElement()->cloneNode(true));
+	delete file;
 
-	std::cout << "Copied id attribute:  '" << copy->getAttribute("id") << "'" << std::endl;
-	copy->setAttribute("id", "clone");
-	std::cout << "Original id after mutating copy:  '" << original->getAttribute("id") << "'" << std::endl;
-
-	container->appendChild(copy);
-
-	std::fstream	file(argv[2], std::ios_base::out);
-	XMLSerializer	xmlSerializer(&file);
-	xmlSerializer.serializePretty(document);
-}
-
-void testCommand(int argc, char** argv)
-{
-	CommandInterpreter	interpreter;
-
-	interpreter.run();
+	// delete Document and tree.
 }

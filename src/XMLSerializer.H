@@ -1,5 +1,5 @@
 #include <string>
-#include <fstream>
+#include <iostream>
 #include <ios>
 #include <memory>
 
@@ -15,9 +15,9 @@
 class XMLSerializer
 {
 private:
-	std::fstream *		file;
+	std::ostream *		file;
 public:
-	XMLSerializer(std::fstream * _file) : file(_file)	{}
+	XMLSerializer(std::ostream * _file) : file(_file)	{}
 	~XMLSerializer() {}
 private:
 	class PrettyWhitespaceStrategy : public WhitespaceStrategy
@@ -27,7 +27,7 @@ private:
 	public:
 		PrettyWhitespaceStrategy(void) : indentationLevel(0)	{}
 
-		virtual void	prettyIndentation(std::fstream * wwriter)
+		virtual void	prettyIndentation(std::ostream * wwriter)
 		{
 			for (int i = 0; i < indentationLevel; i++)
 				*wwriter << "\t";
@@ -35,16 +35,16 @@ private:
 
 		virtual void incrementIndentation(void)		{ indentationLevel++; }
 		virtual void decrementIndentation(void)		{ indentationLevel--; }
-		virtual void newLine(std::fstream * wwriter)	{ *wwriter << "\n"; }
+		virtual void newLine(std::ostream * wwriter)	{ *wwriter << "\n"; }
 	};
 
 	class MinimalWhitespaceStrategy : public WhitespaceStrategy
 	{
 	public:
-		virtual void prettyIndentation(std::fstream * wwriter)	{}
+		virtual void prettyIndentation(std::ostream * wwriter)	{}
 		virtual void incrementIndentation(void)			{}
 		virtual void decrementIndentation(void)			{}
-		virtual void newLine(std::fstream * wwriter)		{}
+		virtual void newLine(std::ostream * wwriter)		{}
 	};
 public:
 	//

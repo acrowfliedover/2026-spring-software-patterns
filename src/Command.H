@@ -1,11 +1,12 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
+#include <string>
+
 class Command
 {
 public:
-	virtual ~Command() {}
-	virtual void	execute(void)	= 0;
+	virtual void	Execute(const std::string & arg)	= 0;
 };
 
 #endif // COMMAND_H

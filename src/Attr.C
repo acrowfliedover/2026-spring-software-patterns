@@ -15,7 +15,7 @@ Attr_Impl::Attr_Impl(const std::string & tagName, const std::string & value, dom
 
 Attr_Impl::~Attr_Impl() {}
 
-void Attr_Impl::serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
+void Attr_Impl::serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
 {
 	*writer << " " << getName() << "=\"" << getValue() << "\"";
 }
@@ -40,7 +40,7 @@ dom::Element *		Attr_Impl::getOwnerElement(void)
 	return dynamic_cast<dom::Element *>(Node_Impl::getParentNode());
 }
 
-std::shared_ptr<dom::Prototype>	Attr_Impl::clone(void)
+std::shared_ptr<dom::Node> Attr_Impl::cloneNode(bool deep)
 {
-	return std::shared_ptr<Attr_Impl>(new Attr_Impl(getName(), getValue(), document));
+	return std::shared_ptr<Attr_Impl>(new Attr_Impl(getName(), getValue(), getOwnerDocument()));
 }

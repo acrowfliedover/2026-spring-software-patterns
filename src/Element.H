@@ -27,7 +27,7 @@ namespace dom
 		//
 		// Serialization Data Extraction Strategy
 		//
-		virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)		= 0;
+		virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)		= 0;
 
 		virtual const std::string &		getAttribute(const std::string & name)				= 0;
 		virtual std::shared_ptr<Attr>		getAttributeNode(const std::string & name)			= 0;
@@ -63,12 +63,7 @@ public:
 	//
 	// Serialization Data Extraction Strategy
 	//
-	virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
-
-	//
-	// Prototype
-	//
-	virtual std::shared_ptr<dom::Prototype>	clone(void);
+	virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
 
 	virtual const std::string &		getAttribute(const std::string & name);
 	virtual std::shared_ptr<dom::Attr>	getAttributeNode(const std::string & name);
@@ -82,6 +77,8 @@ public:
 
 	virtual dom::NamedNodeMap *		getAttributes(void)	{ return &attributes; }
 	virtual bool				hasAttributes(void)	{ return attributes.size() > 0; }
+
+	virtual std::shared_ptr<dom::Node>	cloneNode(bool deep);
 };
 
 class ElementDecorator : public virtual dom::Element
@@ -99,6 +96,11 @@ class ElementValidator : public virtual ElementDecorator, public virtual Node_Im
 private:
 	std::shared_ptr<dom::Element>	component;
 	std::shared_ptr<ValidChildren>	schemaElement;
+
+	ElementValidator(std::shared_ptr<dom::Element> _component, std::shared_ptr<ValidChildren> _schemaElement) :
+	  Node_Impl("", dom::Node::ELEMENT_NODE),
+	  component(_component),
+	  schemaElement(_schemaElement) {}
 public:
 	ElementValidator(std::shared_ptr<dom::Element> _component, std::shared_ptr<XMLValidator> xmlValidator);
 
@@ -110,13 +112,8 @@ public:
 	//
 	// Serialization Data Extraction Strategy
 	//
-	virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
+	virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
 	  { component->serialize(writer, whitespace); }
-
-	//
-	// Prototype
-	//
-	virtual std::shared_ptr<dom::Prototype>	clone(void)			{ return component->clone(); }
 
 	//
 	// Undecorated pass-through methods.
@@ -162,6 +159,8 @@ public:
 	virtual std::shared_ptr<dom::Node>	removeChild(std::shared_ptr<Node> oldChild) { return component->removeChild(oldChild);}
 	virtual bool				hasChildNodes(void)			{ return component->hasChildNodes(); }
 	virtual const std::string &		getLocalName(void)			{ return component->getLocalName(); }
+
+	virtual std::shared_ptr<dom::Node>	cloneNode(bool deep);
 };
 
 class Director;
@@ -169,13 +168,13 @@ class Director;
 class ElementProxy : public virtual dom::Element
 {
 private:
-	dom::Element *	realSubject;
-	bool		realized;
-	Director *	director;
+	std::shared_ptr<dom::Element>		realSubject;
+	bool					realized;
+	std::shared_ptr<	Director>	director;
 
 	void	realize(void);
 public:
-	ElementProxy(dom::Element * _realSubject, Director * _director) :
+	ElementProxy(std::shared_ptr<dom::Element> _realSubject, std::shared_ptr<Director> _director) :
 	  realSubject(_realSubject),
 	  director(_director),
 	  realized(false)
@@ -184,12 +183,6 @@ public:
 	virtual ~ElementProxy() {}
 
 	virtual void				HandleRequest(std::string & event)	{ realSubject->HandleRequest(event); }
-
-	//
-	// Prototype
-	//
-	virtual std::shared_ptr<dom::Prototype>	clone(void)				{ return realSubject->clone(); }
-
 	virtual dom::NodeList *			getChildNodes(void);
 	virtual std::shared_ptr<dom::Node>	getFirstChild(void);
 	virtual std::shared_ptr<dom::Node>	getLastChild(void);
@@ -198,9 +191,15 @@ public:
 	//
 	// Passthrough Element members.
 	//
-	virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
+	virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
 	  { realSubject->serialize(writer, whitespace); }
 
+	virtual std::shared_ptr<dom::Node>	insertBefore(std::shared_ptr<dom::Node> newChild, std::shared_ptr<dom::Node> refChild)
+	  { return realSubject->insertBefore(newChild, refChild); }
+	virtual std::shared_ptr<dom::Node>	replaceChild(std::shared_ptr<dom::Node> newChild, std::shared_ptr<dom::Node> oldChild)
+	  { return realSubject->replaceChild(newChild, oldChild); }
+	virtual std::shared_ptr<dom::Node>	appendChild(std::shared_ptr<dom::Node> newChild)
+	  { return realSubject->appendChild(newChild); }
 	virtual const std::string &		getAttribute(const std::string & name)	{ return realSubject->getAttribute(name); }
 	virtual std::shared_ptr<dom::Attr>	getAttributeNode(const std::string & name)
 	  { return realSubject->getAttributeNode(name); }
@@ -229,6 +228,8 @@ public:
 	virtual std::shared_ptr<dom::Node>	removeChild(std::shared_ptr<dom::Node> oldChild)
 	  {return realSubject->removeChild(oldChild);}
 	virtual const std::string &	getLocalName(void)				{ return realSubject->getLocalName(); }
+
+	virtual std::shared_ptr<dom::Node>	cloneNode(bool deep);
 };
 
 #endif // ELEMENT_H

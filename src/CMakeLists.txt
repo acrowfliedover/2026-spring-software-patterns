@@ -9,18 +9,14 @@ target_sources(Patterns PUBLIC
 	Attr.H
 	Builder.C
 	Builder.H
-	Command.H
-	CommandInterpreter.C
-	CommandInterpreter.H
-	CommandInvoker.H
-	Commands.C
-	Commands.H
 	Director.C
 	Director.H
 	Document.C
 	Document.H
 	Element.C
 	Element.H
+	Invoker.C
+	Invoker.H
 	Mediator.C
 	Mediator.H
 	NamedNodeMap.C
@@ -29,7 +25,6 @@ target_sources(Patterns PUBLIC
 	Node.H
 	NodeList.H
 	Observer.H
-	Prototype.H
 	StdOutObserver.C
 	StdOutObserver.H
 	Subject.C
@@ -41,8 +36,6 @@ target_sources(Patterns PUBLIC
 	XMLSerializer.H
 	XMLTokenizer.C
 	XMLTokenizer.H
-	XMLSession.C
-	XMLSession.H
 	XMLValidator.C
 	XMLValidator.H
 	ValidChildren.C

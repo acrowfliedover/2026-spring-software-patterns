@@ -12,7 +12,7 @@ Document_Impl::Document_Impl(void) : Node_Impl("", dom::Node::DOCUMENT_NODE)
 
 Document_Impl::~Document_Impl() {}
 
-void Document_Impl::serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
+void Document_Impl::serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
 {
 	*writer << "<? xml version=\"1.0\" encoding=\"UTF-8\"?>";
 	whitespace->newLine(writer);
@@ -48,23 +48,15 @@ std::shared_ptr<dom::Iterator> Document_Impl::createIterator(dom::Node * node)
 	return std::shared_ptr<DOMIterator>(new DOMIterator(node, this));
 }
 
-std::shared_ptr<dom::Prototype>	Document_Impl::clone(void)
+std::shared_ptr<dom::Node> Document_Impl::cloneNode(bool deep)
 {
-	std::shared_ptr<Document_Impl>	copy(new Document_Impl);
+	return std::shared_ptr<dom::Node>();	// This implementation doesn't have the ability to reparent a cloned tree
+						// into a new document.  Therefore it can't usefully support cloning of Document.
+}
 
-	//
-	// Cloned children still reference the source document, so insert directly
-	// into the new document's child list rather than appendChild, which would
-	// raise WRONG_DOCUMENT_ERR.
-	//
-	for (dom::NodeList::iterator i = getChildNodes()->begin(); i != getChildNodes()->end(); i++)
-	{
-		std::shared_ptr<dom::Node>	child(std::dynamic_pointer_cast<dom::Node>((*i)->clone()));
-		copy->getChildNodes()->push_back(child);
-		std::dynamic_pointer_cast<Node_Impl>(child)->setParent(copy.get());
-	}
-
-	return copy;
+std::shared_ptr<dom::Node> DocumentValidator::cloneNode(bool deep)
+{
+	return component->cloneNode(deep);
 }
 
 DocumentValidator::DocumentValidator(dom::Document * _component, std::shared_ptr<XMLValidator> xmlValidator) :

@@ -18,7 +18,7 @@ namespace dom
 		//
 		// Serialization Data Extraction Strategy
 		//
-		virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)	= 0;
+		virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)	= 0;
 
 		virtual const std::string &	getName(void)							= 0;
 		virtual const std::string &	getData(void)							= 0;
@@ -47,12 +47,7 @@ public:
 	//
 	// Serialization Data Extraction Strategy
 	//
-	virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
-
-	//
-	// Prototype
-	//
-	virtual std::shared_ptr<dom::Prototype>	clone(void);
+	virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
 
 	virtual const std::string &		getName(void);
 	virtual const std::string &		getData(void);
@@ -76,6 +71,8 @@ public:
 						  std::shared_ptr<dom::Node> oldChild)			{ return 0; }
 	virtual std::shared_ptr<dom::Node>	removeChild(std::shared_ptr<dom::Node> oldChild)	{ return 0; }
 	virtual std::shared_ptr<dom::Node>	appendChild(std::shared_ptr<dom::Node> newChild)	{ return 0; }
+
+	virtual std::shared_ptr<dom::Node>	cloneNode(bool deep);
 };
 
 #endif // TEXT_H

@@ -147,7 +147,7 @@ std::shared_ptr<dom::Attr>		Element_Impl::setAttributeNode(std::shared_ptr<dom::
 	return oldAttribute;
 }
 
-void Element_Impl::serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
+void Element_Impl::serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
 {
 	whitespace->prettyIndentation(writer);
 	*writer << "<" << getTagName();
@@ -183,6 +183,40 @@ void Element_Impl::serialize(std::fstream * writer, std::shared_ptr<WhitespaceSt
 		*writer << "</" << getTagName() + ">";
 		whitespace->newLine(writer);
 	}
+}
+
+std::shared_ptr<dom::Node> Element_Impl::cloneNode(bool deep)
+{
+	std::shared_ptr<dom::Element>	element(new Element_Impl(getTagName(), getOwnerDocument()));
+
+	if (deep)
+	{
+		dom::NodeList *	children	= getChildNodes();
+
+		for (dom::NodeList::iterator i = children->begin(); i != children->end(); i++)
+			element->appendChild((*i)->cloneNode(deep));
+
+		for (dom::NamedNodeMap::iterator i = attributes.begin(); i != attributes.end(); i++)
+			element->setAttributeNode(std::dynamic_pointer_cast<dom::Attr>((*i)->cloneNode(deep)));
+	}
+
+	return element;
+}
+
+std::shared_ptr<dom::Node> ElementValidator::cloneNode(bool deep)
+{
+	return
+	 std::shared_ptr<ElementValidator>(new ElementValidator(std::dynamic_pointer_cast<dom::Element>(component->cloneNode(deep)),
+	  schemaElement));
+}
+
+std::shared_ptr<dom::Node> ElementProxy::cloneNode(bool deep)
+{
+	std::shared_ptr<ElementProxy>
+	  temp(new ElementProxy(std::dynamic_pointer_cast<dom::Element>(realSubject->cloneNode(deep)), director));
+	temp->realize();
+
+	return temp;
 }
 
 ElementValidator::ElementValidator(std::shared_ptr<dom::Element> _component, std::shared_ptr<XMLValidator> xmlValidator) :
@@ -271,19 +305,6 @@ bool ElementProxy::hasChildNodes(void)
 		realize();
 
 	return realSubject->hasChildNodes();
-}
-
-std::shared_ptr<dom::Prototype>	Element_Impl::clone(void)
-{
-	std::shared_ptr<Element_Impl>	copy(new Element_Impl(getTagName(), getOwnerDocument()));
-
-	for (dom::NamedNodeMap::iterator i = getAttributes()->begin(); i != getAttributes()->end(); i++)
-		copy->setAttributeNode(std::dynamic_pointer_cast<dom::Attr>((*i)->clone()));
-
-	for (dom::NodeList::iterator i = getChildNodes()->begin(); i != getChildNodes()->end(); i++)
-		copy->appendChild(std::dynamic_pointer_cast<dom::Node>((*i)->clone()));
-
-	return copy;
 }
 
 void Element_Impl::HandleRequest(std::string & event)

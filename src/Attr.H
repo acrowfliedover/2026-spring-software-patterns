@@ -2,7 +2,7 @@
 #define ATTR_H
 
 #include <string>
-#include <fstream>
+#include <iostream>
 #include <memory>
 
 #include "Node.H"
@@ -20,7 +20,7 @@ namespace dom
 		//
 		// Serialization Data Extraction Strategy
 		//
-		virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)	= 0;
+		virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)	= 0;
 
 		virtual const std::string &	getName(void)				= 0;
 		virtual const std::string &	getValue(void)				= 0;
@@ -43,25 +43,26 @@ public:
 	//
 	// Serialization Data Extraction Strategy
 	//
-	virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
+	virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
 
-	//
-	// Prototype
-	//
-	virtual std::shared_ptr<dom::Prototype>	clone(void);
-
-	virtual const std::string &	getName(void);
-	virtual const std::string &	getValue(void);
-	virtual void			setValue(const std::string & value);
-	virtual dom::Element *		getOwnerElement(void);
+	virtual const std::string &		getName(void);
+	virtual const std::string &		getValue(void);
+	virtual void				setValue(const std::string & value);
+	virtual dom::Element *			getOwnerElement(void);
 
 	//
 	// Overridden functions for conforming to Composite Leaf node behavior.
 	//
-	virtual Node *			insertBefore(Node * newChild, Node * refChild)	{ return 0; }
-	virtual Node *			replaceChild(Node * newChild, Node * oldChild)	{ return 0; }
-	virtual Node *			removeChild(Node * oldChild)			{ return 0; }
-	virtual Node *			appendChild(Node * newChild)			{ return 0; }
+	virtual std::shared_ptr<Node>		insertBefore(Node * newChild, Node * refChild)
+	  { return std::shared_ptr<Attr_Impl>(); }
+	virtual std::shared_ptr<Node>		replaceChild(Node * newChild, Node * oldChild)
+	  { return std::shared_ptr<Attr_Impl>(); }
+	virtual std::shared_ptr<Node>		removeChild(Node * oldChild)
+	  { return std::shared_ptr<Attr_Impl>(); }
+	virtual std::shared_ptr<Node>		appendChild(Node * newChild)
+	  { return std::shared_ptr<Attr_Impl>(); }
+
+	virtual std::shared_ptr<dom::Node>	cloneNode(bool deep);
 };
 
 #endif // ATTR_H

@@ -4,14 +4,13 @@
 #include <string>
 #include <memory>
 #include "NodeList.H"
-#include "Prototype.H"
 #include "WhitespaceStrategy.H"
 
 namespace dom
 {
 	class Document;
 
-	class Node : public virtual Prototype
+	class Node
 	{
 	public:
 		static const short		ATTRIBUTE_NODE	= 0;
@@ -24,7 +23,7 @@ namespace dom
 		//
 		// Serialization Data Extraction Strategy
 		//
-		virtual void serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)	= 0;
+		virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)	= 0;
 
 		virtual const std::string &	getNodeName(void)						= 0;
 		virtual const std::string &	getNodeValue(void)						= 0;
@@ -43,6 +42,11 @@ namespace dom
 		virtual std::shared_ptr<Node>	appendChild(std::shared_ptr<Node> newChild)			= 0;
 		virtual bool			hasChildNodes(void)						= 0;
 		virtual const std::string &	getLocalName(void)						= 0;
+
+		//
+		// Prototype clone
+		//
+		virtual std::shared_ptr<Node>	cloneNode(bool deep)				= 0;
 	};
 
 	class DOMException
@@ -86,6 +90,11 @@ public:
 	Node_Impl(const std::string & name, short type);
 	virtual ~Node_Impl();
 
+	//
+	// Serialization Data Extraction Strategy
+	//
+	virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)	{}
+
 	virtual const std::string &		getNodeName(void);
 	virtual const std::string &		getNodeValue(void);
 	virtual void				setNodeValue(const std::string & nodeValue);
@@ -107,6 +116,8 @@ public:
 	virtual const std::string &		getLocalName(void);
 
 	virtual void setParent(dom::Node * parent);
+
+	virtual std::shared_ptr<dom::Node>	cloneNode(bool deep);
 };
 
 #endif // NODE_H

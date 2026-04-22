@@ -11,7 +11,7 @@ Text_Impl::~Text_Impl()
 {
 }
 
-void Text_Impl::serialize(std::fstream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
+void Text_Impl::serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
 {
 	whitespace->prettyIndentation(writer);
 	*writer << getData();
@@ -94,11 +94,6 @@ void			Text_Impl::replaceData(int offset, int count, const std::string & arg)
 	setValue(value.erase(offset, count).insert(offset, arg));
 }
 
-std::shared_ptr<dom::Prototype>		Text_Impl::clone(void)
-{
-	return std::shared_ptr<Text_Impl>(new Text_Impl(getValue(), document));
-}
-
 std::shared_ptr<dom::Text>		Text_Impl::splitText(int offset)
 {
 	try
@@ -117,4 +112,9 @@ std::shared_ptr<dom::Text>		Text_Impl::splitText(int offset)
 	{
 		throw dom::DOMException(dom::DOMException::INDEX_SIZE_ERR, "Index larget than Text node's value.");
 	}
+}
+
+std::shared_ptr<dom::Node> Text_Impl::cloneNode(bool deep)
+{
+	return std::shared_ptr<Text_Impl>(new Text_Impl(getValue(), getOwnerDocument()));
 }

@@ -178,3 +178,8 @@ std::shared_ptr<dom::Node>		Node_Impl::getSibling(int direction)
 			return *i;
 	}
 }
+
+std::shared_ptr<dom::Node> Node_Impl::cloneNode(bool deep)
+{
+	return std::shared_ptr<Node_Impl>();
+}
