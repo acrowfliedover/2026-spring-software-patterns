@@ -1,0 +1,19 @@
+---
+description: Core coding standards for concise, intentional changes
+alwaysApply: true
+---
+
+# Core Coding Standards
+
+- Prefer the smallest change that solves the problem clearly.
+- Understand why a line, helper, dependency, or abstraction is needed before adding it.
+- Remove redundant, unused, or dead code when it is part of the problem being solved.
+- Follow the style, naming, and structure already used near the code being edited.
+- Avoid broad refactors unless they directly support the requested change.
+- Keep generated output and explanations concise.
+- Add tests or checks when behavior changes, and keep them focused on the changed behavior.
+
+```cpp
+// Avoid keeping unused variables, commented-out branches, or duplicate logic.
+// Prefer one clear implementation that matches the surrounding code.
+```
