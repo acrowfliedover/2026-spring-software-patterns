@@ -1,0 +1,104 @@
+@startuml
+title Visitor Pattern Used by XML Serialization
+
+package "Client" {
+	class XMLSerializer {
+		- file : std::ostream*
+		+ serializePretty(node : dom::Node)
+		+ serializeMinimal(node : dom::Node)
+	}
+}
+
+package "Visitors" {
+	interface "dom::Visitor" as Visitor {
+		+ visit(document : dom::Document*)
+		+ visit(element : dom::Element*)
+		+ visit(attr : dom::Attr*)
+		+ visit(text : dom::Text*)
+	}
+
+	abstract class SerializeVisitor {
+		# writer : std::ostream*
+		# prettyIndentation()
+		# incrementIndentation()
+		# decrementIndentation()
+		# newLine()
+		+ visit(document : dom::Document*)
+		+ visit(element : dom::Element*)
+		+ visit(attr : dom::Attr*)
+		+ visit(text : dom::Text*)
+	}
+
+	class PrettySerializeVisitor {
+		- indentationLevel : int
+		# prettyIndentation()
+		# incrementIndentation()
+		# decrementIndentation()
+		# newLine()
+	}
+
+	class MinimalSerializeVisitor {
+		# prettyIndentation()
+		# incrementIndentation()
+		# decrementIndentation()
+		# newLine()
+	}
+}
+
+package "Elements" {
+	interface "dom::Node" as Node {
+		+ accept(visitor : dom::Visitor&)
+	}
+
+	interface "dom::Document" as Document
+	interface "dom::Element" as Element
+	interface "dom::Attr" as Attr
+	interface "dom::Text" as Text
+
+	class Document_Impl {
+		+ accept(visitor : dom::Visitor&)
+	}
+
+	class Element_Impl {
+		+ accept(visitor : dom::Visitor&)
+	}
+
+	class Attr_Impl {
+		+ accept(visitor : dom::Visitor&)
+	}
+
+	class Text_Impl {
+		+ accept(visitor : dom::Visitor&)
+	}
+}
+
+Visitor <|.. SerializeVisitor
+SerializeVisitor <|-- PrettySerializeVisitor
+SerializeVisitor <|-- MinimalSerializeVisitor
+
+Node <|-- Document
+Node <|-- Element
+Node <|-- Attr
+Node <|-- Text
+
+Document <|.. Document_Impl
+Element <|.. Element_Impl
+Attr <|.. Attr_Impl
+Text <|.. Text_Impl
+
+XMLSerializer ..> Node : calls accept(visitor)
+XMLSerializer ..> PrettySerializeVisitor : creates for pretty output
+XMLSerializer ..> MinimalSerializeVisitor : creates for minimal output
+
+Node ..> Visitor : accepts
+Document_Impl ..> Visitor : visitor.visit(this)
+Element_Impl ..> Visitor : visitor.visit(this)
+Attr_Impl ..> Visitor : visitor.visit(this)
+Text_Impl ..> Visitor : visitor.visit(this)
+
+SerializeVisitor ..> Document : serializes document
+SerializeVisitor ..> Element : serializes element
+SerializeVisitor ..> Attr : serializes attribute
+SerializeVisitor ..> Text : serializes text
+
+@enduml
