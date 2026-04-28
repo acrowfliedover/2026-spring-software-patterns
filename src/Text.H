@@ -15,11 +15,6 @@ namespace dom
 	public:
 		virtual ~Text()	{}
 
-		//
-		// Serialization Data Extraction Strategy
-		//
-		virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)	= 0;
-
 		virtual const std::string &	getName(void)							= 0;
 		virtual const std::string &	getData(void)							= 0;
 		virtual const std::string &	getValue(void)							= 0;
@@ -45,9 +40,9 @@ public:
 	virtual ~Text_Impl();
 
 	//
-	// Serialization Data Extraction Strategy
+	// Visitor
 	//
-	virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
+	virtual void accept(dom::Visitor & visitor);
 
 	virtual const std::string &		getName(void);
 	virtual const std::string &		getData(void);

@@ -2,7 +2,6 @@
 #define DOCUMENT_H
 
 #include <string>
-#include <iostream>
 #include <stack>
 #include <memory>
 
@@ -27,10 +26,6 @@ namespace dom
 	class Document : public virtual Node
 	{
 	public:
-		//
-		// Serialization Data Extraction Strategy
-		//
-		virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)	= 0;
 		virtual std::shared_ptr<Element>	createElement(const std::string & tagName)		= 0;
 		virtual std::shared_ptr<Text>		createTextNode(const std::string & data)		= 0;
 		virtual std::shared_ptr<Attr>		createAttribute(const std::string & name)		= 0;
@@ -51,9 +46,9 @@ public:
 	virtual ~Document_Impl();
 
 	//
-	// Serialization Data Extraction Strategy
+	// Visitor
 	//
-	virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
+	virtual void accept(dom::Visitor & visitor);
 
 	virtual std::shared_ptr<dom::Element>	createElement(const std::string & tagName);
 	virtual std::shared_ptr<dom::Text>	createTextNode(const std::string & data);
@@ -100,10 +95,10 @@ public:
 	DocumentValidator(dom::Document * _component, std::shared_ptr<XMLValidator> xmlValidator);
 
 	//
-	// Serialization Data Extraction Strategy
+	// Visitor
 	//
-	virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
-	  { component->serialize(writer, whitespace); }
+	virtual void accept(dom::Visitor & visitor)
+	  { component->accept(visitor); }
 
 	//
 	// Iterator Factory

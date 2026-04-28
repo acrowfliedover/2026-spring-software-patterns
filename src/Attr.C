@@ -1,5 +1,6 @@
 #include "Attr.H"
 #include "Element.H"
+#include "Visitor.H"
 
 Attr_Impl::Attr_Impl(const std::string & tagName, dom::Document * document) : Node_Impl(tagName, dom::Node::ATTRIBUTE_NODE)
 {
@@ -15,9 +16,9 @@ Attr_Impl::Attr_Impl(const std::string & tagName, const std::string & value, dom
 
 Attr_Impl::~Attr_Impl() {}
 
-void Attr_Impl::serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
+void Attr_Impl::accept(dom::Visitor & visitor)
 {
-	*writer << " " << getName() << "=\"" << getValue() << "\"";
+	visitor.visit(this);
 }
 
 const std::string &	Attr_Impl::getName(void)

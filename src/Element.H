@@ -24,11 +24,6 @@ namespace dom
 		//
 		virtual void			HandleRequest(std::string & event)					= 0;
 
-		//
-		// Serialization Data Extraction Strategy
-		//
-		virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)		= 0;
-
 		virtual const std::string &		getAttribute(const std::string & name)				= 0;
 		virtual std::shared_ptr<Attr>		getAttributeNode(const std::string & name)			= 0;
 		virtual std::shared_ptr<NodeList>	getElementsByTagName(const std::string & tagName)		= 0;
@@ -61,9 +56,9 @@ public:
 	virtual void				HandleRequest(std::string & event);
 
 	//
-	// Serialization Data Extraction Strategy
+	// Visitor
 	//
-	virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace);
+	virtual void accept(dom::Visitor & visitor);
 
 	virtual const std::string &		getAttribute(const std::string & name);
 	virtual std::shared_ptr<dom::Attr>	getAttributeNode(const std::string & name);
@@ -110,10 +105,10 @@ public:
 	virtual void			HandleRequest(std::string & event)		{ component->HandleRequest(event); }
 
 	//
-	// Serialization Data Extraction Strategy
+	// Visitor
 	//
-	virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
-	  { component->serialize(writer, whitespace); }
+	virtual void accept(dom::Visitor & visitor)
+	  { component->accept(visitor); }
 
 	//
 	// Undecorated pass-through methods.
@@ -191,8 +186,8 @@ public:
 	//
 	// Passthrough Element members.
 	//
-	virtual void serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
-	  { realSubject->serialize(writer, whitespace); }
+	virtual void accept(dom::Visitor & visitor)
+	  { realSubject->accept(visitor); }
 
 	virtual std::shared_ptr<dom::Node>	insertBefore(std::shared_ptr<dom::Node> newChild, std::shared_ptr<dom::Node> refChild)
 	  { return realSubject->insertBefore(newChild, refChild); }

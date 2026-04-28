@@ -1,4 +1,5 @@
 #include "Text.H"
+#include "Visitor.H"
 #include <stdexcept>
 
 Text_Impl::Text_Impl(const std::string value, dom::Document * document) : Node_Impl("", dom::Node::TEXT_NODE)
@@ -11,11 +12,9 @@ Text_Impl::~Text_Impl()
 {
 }
 
-void Text_Impl::serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
+void Text_Impl::accept(dom::Visitor & visitor)
 {
-	whitespace->prettyIndentation(writer);
-	*writer << getData();
-	whitespace->newLine(writer);
+	visitor.visit(this);
 }
 
 const std::string &	Text_Impl::getName(void)

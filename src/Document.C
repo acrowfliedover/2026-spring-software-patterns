@@ -4,6 +4,7 @@
 #include "Attr.H"
 #include "NodeList.H"
 #include "XMLValidator.H"
+#include "Visitor.H"
 
 Document_Impl::Document_Impl(void) : Node_Impl("", dom::Node::DOCUMENT_NODE)
 {
@@ -12,11 +13,9 @@ Document_Impl::Document_Impl(void) : Node_Impl("", dom::Node::DOCUMENT_NODE)
 
 Document_Impl::~Document_Impl() {}
 
-void Document_Impl::serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
+void Document_Impl::accept(dom::Visitor & visitor)
 {
-	*writer << "<? xml version=\"1.0\" encoding=\"UTF-8\"?>";
-	whitespace->newLine(writer);
-	getDocumentElement()->serialize(writer, whitespace);
+	visitor.visit(this);
 }
 
 std::shared_ptr<dom::Element>	Document_Impl::createElement(const std::string & tagName)

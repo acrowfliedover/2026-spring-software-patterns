@@ -27,6 +27,8 @@ target_sources(Patterns PUBLIC
 	Observer.H
 	ParserState.C
 	ParserState.H
+	SerializeVisitor.C
+	SerializeVisitor.H
 	StdOutObserver.C
 	StdOutObserver.H
 	Subject.C
@@ -42,5 +44,6 @@ target_sources(Patterns PUBLIC
 	XMLValidator.H
 	ValidChildren.C
 	ValidChildren.H
+	Visitor.H
 	WhitespaceStrategy.H
 	)

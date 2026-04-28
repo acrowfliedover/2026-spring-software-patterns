@@ -1,14 +1,11 @@
-#include <string>
 #include <iostream>
-#include <ios>
 #include <memory>
 
 #include "Node.H"
+#include "WhitespaceStrategy.H"
 
 //
-// XMLSerializer is Serialization Strategy Context
-// Node is Serialization Strategy and output stream Strategy Context
-// Document, Element, Attr, Text are Serialization Concrete Strategies
+// XMLSerializer is Serialization Visitor Context
 // java.io.Writer is output stream Strategy
 // java.io.BufferedWriter is output stream Concrete Strategy
 //
@@ -48,7 +45,7 @@ private:
 	};
 public:
 	//
-	// Strategized serialization
+	// Visitor-based serialization
 	//
 	virtual void		serializePretty(std::shared_ptr<dom::Node> node);
 	virtual void		serializeMinimal(std::shared_ptr<dom::Node> node);

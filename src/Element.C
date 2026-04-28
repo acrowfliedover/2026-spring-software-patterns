@@ -3,9 +3,9 @@
 #include "Text.H"
 #include "Document.H"
 #include "XMLValidator.H"
+#include "Visitor.H"
 
 #include <iostream>
-#include <ios>
 
 Element_Impl::Element_Impl(const std::string & tagName, dom::Document * document) : Node_Impl(tagName, dom::Node::ELEMENT_NODE),
   attributes(document)
@@ -68,7 +68,7 @@ bool			Element_Impl::hasAttribute(const std::string & name)
 {
 	for (dom::NodeList::iterator i = attributes.begin(); i != attributes.end(); i++)
 	{
-		std::shared_ptr<dom::Attr> attr(dynamic_pointer_cast<dom::Attr>(*i));
+		std::shared_ptr<dom::Attr> attr(std::dynamic_pointer_cast<dom::Attr>(*i));
 
 		if (attr->getName().compare(name) == 0)
 			return true;
@@ -147,42 +147,9 @@ std::shared_ptr<dom::Attr>		Element_Impl::setAttributeNode(std::shared_ptr<dom::
 	return oldAttribute;
 }
 
-void Element_Impl::serialize(std::ostream * writer, std::shared_ptr<WhitespaceStrategy> whitespace)
+void Element_Impl::accept(dom::Visitor & visitor)
 {
-	whitespace->prettyIndentation(writer);
-	*writer << "<" << getTagName();
-
-	int	attrCount	= 0;
-
-	for (dom::NamedNodeMap::iterator i = getAttributes()->begin(); i != getAttributes()->end(); i++)
-	{
-		(*i)->serialize(writer, whitespace);
-		attrCount++;
-	}
-
-	if (attrCount > 0)
-		*writer << " ";
-
-	if (getChildNodes()->size() == 0)
-	{
-		*writer << "/>";
-		whitespace->newLine(writer);
-	}
-	else
-	{
-		*writer << ">";
-		whitespace->newLine(writer);
-		whitespace->incrementIndentation();
-
-		for (dom::NodeList::iterator i = getChildNodes()->begin(); i != getChildNodes()->end(); i++)
-			if (dynamic_pointer_cast<dom::Element>(*i)  || dynamic_pointer_cast<dom::Text>(*i))
-				(*i)->serialize(writer, whitespace);
-
-		whitespace->decrementIndentation();
-		whitespace->prettyIndentation(writer);
-		*writer << "</" << getTagName() + ">";
-		whitespace->newLine(writer);
-	}
+	visitor.visit(this);
 }
 
 std::shared_ptr<dom::Node> Element_Impl::cloneNode(bool deep)
@@ -244,7 +211,7 @@ std::shared_ptr<dom::Attr> ElementValidator::setAttributeNode(std::shared_ptr<do
 
 std::shared_ptr<dom::Node> ElementValidator::insertBefore(std::shared_ptr<dom::Node> newChild, std::shared_ptr<dom::Node> refChild)
 {
-	if (schemaElement == 0 || dynamic_pointer_cast<dom::Text>(newChild) ||
+	if (schemaElement == 0 || std::dynamic_pointer_cast<dom::Text>(newChild) ||
 	  schemaElement->childIsValid(newChild->getNodeName(), false))
 		return component->insertBefore(newChild, refChild);
 	else
@@ -253,7 +220,7 @@ std::shared_ptr<dom::Node> ElementValidator::insertBefore(std::shared_ptr<dom::N
 
 std::shared_ptr<dom::Node> ElementValidator::replaceChild(std::shared_ptr<dom::Node> newChild, std::shared_ptr<dom::Node> oldChild)
 {
-	if (schemaElement == 0 || dynamic_pointer_cast<dom::Text>(newChild) ||
+	if (schemaElement == 0 || std::dynamic_pointer_cast<dom::Text>(newChild) ||
 	  schemaElement->childIsValid(newChild->getNodeName(), false))
 		return component->replaceChild(newChild, oldChild);
 	else
@@ -262,7 +229,7 @@ std::shared_ptr<dom::Node> ElementValidator::replaceChild(std::shared_ptr<dom::N
 
 std::shared_ptr<dom::Node> ElementValidator::appendChild(std::shared_ptr<dom::Node> newChild)
 {
-	if (schemaElement == 0 || dynamic_pointer_cast<dom::Text>(newChild) ||
+	if (schemaElement == 0 || std::dynamic_pointer_cast<dom::Text>(newChild) ||
 	  schemaElement->childIsValid(newChild->getNodeName(), false))
 		return component->appendChild(newChild);
 	else
