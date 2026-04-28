@@ -45,5 +45,4 @@ target_sources(Patterns PUBLIC
 	ValidChildren.C
 	ValidChildren.H
 	Visitor.H
-	WhitespaceStrategy.H
 	)

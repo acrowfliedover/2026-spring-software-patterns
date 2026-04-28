@@ -5,16 +5,22 @@
 #include "Element.H"
 #include "Text.H"
 
+void PrettySerializeVisitor::prettyIndentation(void)
+{
+	for (int i = 0; i < indentationLevel; i++)
+		*writer << "\t";
+}
+
 void SerializeVisitor::visit(dom::Document * document)
 {
 	*writer << "<? xml version=\"1.0\" encoding=\"UTF-8\"?>";
-	whitespace->newLine(writer);
+	newLine();
 	document->getDocumentElement()->accept(*this);
 }
 
 void SerializeVisitor::visit(dom::Element * element)
 {
-	whitespace->prettyIndentation(writer);
+	prettyIndentation();
 	*writer << "<" << element->getTagName();
 
 	int	attrCount	= 0;
@@ -31,22 +37,22 @@ void SerializeVisitor::visit(dom::Element * element)
 	if (element->getChildNodes()->size() == 0)
 	{
 		*writer << "/>";
-		whitespace->newLine(writer);
+		newLine();
 	}
 	else
 	{
 		*writer << ">";
-		whitespace->newLine(writer);
-		whitespace->incrementIndentation();
+		newLine();
+		incrementIndentation();
 
 		for (dom::NodeList::iterator i = element->getChildNodes()->begin(); i != element->getChildNodes()->end(); i++)
 			if (std::dynamic_pointer_cast<dom::Element>(*i)  || std::dynamic_pointer_cast<dom::Text>(*i))
 				(*i)->accept(*this);
 
-		whitespace->decrementIndentation();
-		whitespace->prettyIndentation(writer);
+		decrementIndentation();
+		prettyIndentation();
 		*writer << "</" << element->getTagName() + ">";
-		whitespace->newLine(writer);
+		newLine();
 	}
 }
 
@@ -57,7 +63,7 @@ void SerializeVisitor::visit(dom::Attr * attr)
 
 void SerializeVisitor::visit(dom::Text * text)
 {
-	whitespace->prettyIndentation(writer);
+	prettyIndentation();
 	*writer << text->getData();
-	whitespace->newLine(writer);
+	newLine();
 }
