@@ -6,130 +6,140 @@ namespace
 	class BeforePrologState : public ParserState
 	{
 	public:
-		virtual void start(Director & director, Builder & builder, XMLTokenizer::XMLToken::TokenTypes tokenType)
-		{
-			if (tokenType == XMLTokenizer::XMLToken::PROLOG_START)
-			{
-				builder.createProlog();
-				director.transitionTo(director.getInPrologState());
-			}
-		}
+		virtual void start(Director & director, Builder & builder, XMLTokenizer::XMLToken::TokenTypes tokenType);
 	};
 
 	class InPrologState : public ParserState
 	{
 	public:
-		virtual void name(Director & director, Builder & builder, const std::string & text)
-		{
-			builder.identifyProlog(text);
-		}
-
-		virtual void attribute(Director & director, Builder & builder, const std::string & text)
-		{
-			builder.createAttribute(text);
-			director.transitionToAttribute(director.getInPrologState());
-		}
-
-		virtual void end(Director & director, Builder & builder, XMLTokenizer::XMLToken::TokenTypes tokenType)
-		{
-			if (tokenType == XMLTokenizer::XMLToken::PROLOG_END || tokenType == XMLTokenizer::XMLToken::TAG_END)
-			{
-				builder.endProlog();
-				director.transitionTo(director.getOutsideTagState());
-			}
-		}
+		virtual void name(Director & director, Builder & builder, const std::string & text);
+		virtual void attribute(Director & director, Builder & builder, const std::string & text);
+		virtual void end(Director & director, Builder & builder, XMLTokenizer::XMLToken::TokenTypes tokenType);
 	};
 
 	class OutsideTagState : public ParserState
 	{
 	public:
-		virtual void start(Director & director, Builder & builder, XMLTokenizer::XMLToken::TokenTypes tokenType)
-		{
-			if (tokenType == XMLTokenizer::XMLToken::TAG_START)
-			{
-				director.beginOpeningElement();
-				director.transitionTo(director.getInsideElementTagState());
-			}
-			else if (tokenType == XMLTokenizer::XMLToken::TAG_CLOSE_START)
-			{
-				director.beginClosingElement();
-				director.transitionTo(director.getInsideElementTagState());
-			}
-		}
-
-		virtual void value(Director & director, Builder & builder, const std::string & text)
-		{
-			builder.addValue(text);
-		}
+		virtual void start(Director & director, Builder & builder, XMLTokenizer::XMLToken::TokenTypes tokenType);
+		virtual void value(Director & director, Builder & builder, const std::string & text);
 	};
 
 	class InsideElementTagState : public ParserState
 	{
+	private:
+		bool	closingElement;
 	public:
-		virtual void name(Director & director, Builder & builder, const std::string & text)
-		{
-			if (director.isClosingElement())
-				builder.confirmElement(text);
-			else
-				builder.createElement(text);
-		}
+		InsideElementTagState(bool _closingElement) : closingElement(_closingElement) {}
 
-		virtual void attribute(Director & director, Builder & builder, const std::string & text)
-		{
-			builder.createAttribute(text);
-			director.transitionToAttribute(director.getInsideElementTagState());
-		}
-
-		virtual void end(Director & director, Builder & builder, XMLTokenizer::XMLToken::TokenTypes tokenType)
-		{
-			if (tokenType == XMLTokenizer::XMLToken::TAG_END)
-			{
-				if (director.isClosingElement())
-				{
-					if (!builder.popElement())
-						director.transitionTo(std::shared_ptr<ParserState>());
-					else
-						director.transitionTo(director.getOutsideTagState());
-				}
-				else
-				{
-					builder.pushElement();
-					director.transitionTo(director.getOutsideTagState());
-				}
-			}
-			else if (tokenType == XMLTokenizer::XMLToken::NULL_TAG_END)
-			{
-				director.transitionTo(director.getOutsideTagState());
-			}
-		}
+		virtual void name(Director & director, Builder & builder, const std::string & text);
+		virtual void attribute(Director & director, Builder & builder, const std::string & text);
+		virtual void end(Director & director, Builder & builder, XMLTokenizer::XMLToken::TokenTypes tokenType);
 	};
 
 	class InsideAttributeState : public ParserState
 	{
+	private:
+		std::shared_ptr<ParserState>	returnState;
 	public:
-		virtual void value(Director & director, Builder & builder, const std::string & text)
-		{
-			builder.valueAttribute(text);
-			director.transitionFromAttribute();
-		}
+		InsideAttributeState(std::shared_ptr<ParserState> _returnState) : returnState(_returnState) {}
+
+		virtual void value(Director & director, Builder & builder, const std::string & text);
 	};
+
+	void BeforePrologState::start(Director & director, Builder & builder, XMLTokenizer::XMLToken::TokenTypes tokenType)
+	{
+		if (tokenType == XMLTokenizer::XMLToken::PROLOG_START)
+		{
+			builder.createProlog();
+			director.transitionTo(std::make_shared<InPrologState>());
+		}
+	}
+
+	void InPrologState::name(Director & director, Builder & builder, const std::string & text)
+	{
+		builder.identifyProlog(text);
+	}
+
+	void InPrologState::attribute(Director & director, Builder & builder, const std::string & text)
+	{
+		builder.createAttribute(text);
+		director.transitionTo(std::make_shared<InsideAttributeState>(std::make_shared<InPrologState>()));
+	}
+
+	void InPrologState::end(Director & director, Builder & builder, XMLTokenizer::XMLToken::TokenTypes tokenType)
+	{
+		if (tokenType == XMLTokenizer::XMLToken::PROLOG_END || tokenType == XMLTokenizer::XMLToken::TAG_END)
+		{
+			builder.endProlog();
+			director.transitionTo(std::make_shared<OutsideTagState>());
+		}
+	}
+
+	void OutsideTagState::start(Director & director, Builder & builder, XMLTokenizer::XMLToken::TokenTypes tokenType)
+	{
+		if (tokenType == XMLTokenizer::XMLToken::TAG_START)
+			director.transitionTo(std::make_shared<InsideElementTagState>(false));
+		else if (tokenType == XMLTokenizer::XMLToken::TAG_CLOSE_START)
+			director.transitionTo(std::make_shared<InsideElementTagState>(true));
+	}
+
+	void OutsideTagState::value(Director & director, Builder & builder, const std::string & text)
+	{
+		builder.addValue(text);
+	}
+
+	void InsideElementTagState::name(Director & director, Builder & builder, const std::string & text)
+	{
+		if (closingElement)
+			builder.confirmElement(text);
+		else
+			builder.createElement(text);
+	}
+
+	void InsideElementTagState::attribute(Director & director, Builder & builder, const std::string & text)
+	{
+		builder.createAttribute(text);
+		director.transitionTo(std::make_shared<InsideAttributeState>(std::make_shared<InsideElementTagState>(closingElement)));
+	}
+
+	void InsideElementTagState::end(Director & director, Builder & builder, XMLTokenizer::XMLToken::TokenTypes tokenType)
+	{
+		if (tokenType == XMLTokenizer::XMLToken::TAG_END)
+		{
+			if (closingElement)
+			{
+				if (!builder.popElement())
+					director.transitionTo(std::shared_ptr<ParserState>());
+				else
+					director.transitionTo(std::make_shared<OutsideTagState>());
+			}
+			else
+			{
+				builder.pushElement();
+				director.transitionTo(std::make_shared<OutsideTagState>());
+			}
+		}
+		else if (tokenType == XMLTokenizer::XMLToken::NULL_TAG_END)
+		{
+			director.transitionTo(std::make_shared<OutsideTagState>());
+		}
+	}
+
+	void InsideAttributeState::value(Director & director, Builder & builder, const std::string & text)
+	{
+		builder.valueAttribute(text);
+		director.transitionTo(returnState);
+	}
 
 }
 
 Director::Director(const std::string & filename, std::shared_ptr<Builder> _builder) :
-  builder(_builder),
-  attributeReturnState(std::shared_ptr<ParserState>()),
-  beforePrologState(new BeforePrologState),
-  inPrologState(new InPrologState),
-  outsideTagState(new OutsideTagState),
-  insideElementTagState(new InsideElementTagState),
-  insideAttributeState(new InsideAttributeState),
-  closingElement(false)
+  builder(_builder)
 {
 	XMLTokenizer	tokenizer(filename);
 	std::shared_ptr<XMLTokenizer::XMLToken>	token;
 
-	transitionTo(beforePrologState);
+	transitionTo(std::make_shared<BeforePrologState>());
 
 	do
 	{
@@ -141,17 +151,6 @@ Director::Director(const std::string & filename, std::shared_ptr<Builder> _build
 void Director::transitionTo(std::shared_ptr<ParserState> nextState)
 {
 	state	= nextState;
-}
-
-void Director::transitionToAttribute(std::shared_ptr<ParserState> returnState)
-{
-	attributeReturnState	= returnState;
-	transitionTo(insideAttributeState);
-}
-
-void Director::transitionFromAttribute(void)
-{
-	transitionTo(attributeReturnState);
 }
 
 void Director::dispatch(std::shared_ptr<XMLTokenizer::XMLToken> token)
