@@ -3,6 +3,7 @@
 
 #include <string>
 #include <memory>
+#include "NodeFlyweight.H"
 #include "NodeList.H"
 
 namespace dom
@@ -76,11 +77,10 @@ namespace dom
 class Node_Impl : public virtual dom::Node
 {
 private:
-	std::string	name;
-	std::string	value;
-	short		nodeType;
-	dom::Node *	parent;
-	dom::NodeList	nodes;
+	std::shared_ptr<const dom::NodeFlyweight>	flyweight;
+	std::string					value;
+	dom::Node *					parent;
+	dom::NodeList					nodes;
 
 	std::shared_ptr<dom::Node>			getSibling(int direction);
 protected:

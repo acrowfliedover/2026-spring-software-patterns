@@ -23,6 +23,8 @@ target_sources(Patterns PUBLIC
 	NamedNodeMap.H
 	Node.C
 	Node.H
+	NodeFlyweight.C
+	NodeFlyweight.H
 	NodeList.H
 	Observer.H
 	ParserState.C

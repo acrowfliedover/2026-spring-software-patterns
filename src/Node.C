@@ -1,6 +1,9 @@
 #include "Node.H"
 
-Node_Impl::Node_Impl(const std::string & n, short type) : name(n), nodeType(type), parent(0), document(0)
+Node_Impl::Node_Impl(const std::string & n, short type) :
+  flyweight(dom::NodeFlyweightFactory::instance().getFlyweight(type, n)),
+  parent(0),
+  document(0)
 {
 }
 
@@ -10,7 +13,7 @@ Node_Impl::~Node_Impl()
 
 const std::string &	Node_Impl::getNodeName(void)
 {
-	return name;
+	return flyweight->getName();
 }
 
 const std::string &	Node_Impl::getNodeValue(void)
@@ -25,7 +28,7 @@ void			Node_Impl::setNodeValue(const std::string & nodeValue)
 
 short			Node_Impl::getNodeType(void)
 {
-	return nodeType;
+	return flyweight->getNodeType();
 }
 
 dom::Node *		Node_Impl::getParentNode(void)
@@ -146,7 +149,7 @@ bool			Node_Impl::hasChildNodes(void)
 
 const std::string &	Node_Impl::getLocalName(void)
 {
-	return name;
+	return flyweight->getName();
 }
 
 void Node_Impl::setParent(dom::Node * parent)
