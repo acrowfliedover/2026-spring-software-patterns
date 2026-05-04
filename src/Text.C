@@ -1,6 +1,7 @@
 #include "Text.H"
 #include "Visitor.H"
 #include <stdexcept>
+#include <string>
 
 Text_Impl::Text_Impl(const std::string value, dom::Document * document) : Node_Impl("", dom::Node::TEXT_NODE)
 {
@@ -15,6 +16,11 @@ Text_Impl::~Text_Impl()
 void Text_Impl::accept(dom::Visitor & visitor)
 {
 	visitor.visit(this);
+}
+
+int Text_Impl::interpret(void)
+{
+	return std::stoi(getValue());
 }
 
 const std::string &	Text_Impl::getName(void)

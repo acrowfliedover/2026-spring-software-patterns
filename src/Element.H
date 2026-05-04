@@ -60,6 +60,11 @@ public:
 	//
 	virtual void accept(dom::Visitor & visitor);
 
+	//
+	// Interpreter
+	//
+	virtual int interpret(void) override;
+
 	virtual const std::string &		getAttribute(const std::string & name);
 	virtual std::shared_ptr<dom::Attr>	getAttributeNode(const std::string & name);
 	virtual std::shared_ptr<dom::NodeList>	getElementsByTagName(const std::string & tagName);

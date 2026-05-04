@@ -6,6 +6,7 @@
 #include "Visitor.H"
 
 #include <iostream>
+#include <vector>
 
 Element_Impl::Element_Impl(const std::string & tagName, dom::Document * document) : Node_Impl(tagName, dom::Node::ELEMENT_NODE),
   attributes(document)
@@ -150,6 +151,39 @@ std::shared_ptr<dom::Attr>		Element_Impl::setAttributeNode(std::shared_ptr<dom::
 void Element_Impl::accept(dom::Visitor & visitor)
 {
 	visitor.visit(this);
+}
+
+int Element_Impl::interpret(void)
+{
+	if (getTagName().compare("value") == 0)
+	{
+		for (dom::NodeList::iterator i = getChildNodes()->begin(); i != getChildNodes()->end(); i++)
+			return (*i)->interpret();
+
+		return 0;
+	}
+
+	if (getTagName().compare("operation") != 0)
+		return 0;
+
+	const std::string &	opType	= getAttribute("type");
+	std::vector<std::shared_ptr<dom::Element>>	elementChildren;
+
+	for (dom::NodeList::iterator i = getChildNodes()->begin(); i != getChildNodes()->end(); i++)
+	{
+		std::shared_ptr<dom::Element>	el(std::dynamic_pointer_cast<dom::Element>(*i));
+
+		if (el)
+			elementChildren.push_back(el);
+	}
+
+	if (opType.compare("+") == 0 && elementChildren.size() == 2)
+		return elementChildren[0]->interpret() + elementChildren[1]->interpret();
+
+	if (opType.compare("-") == 0 && elementChildren.size() == 1)
+		return -elementChildren[0]->interpret();
+
+	return 0;
 }
 
 std::shared_ptr<dom::Node> Element_Impl::cloneNode(bool deep)

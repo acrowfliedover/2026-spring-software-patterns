@@ -26,6 +26,11 @@ namespace dom
 		//
 		virtual void accept(Visitor & visitor)						= 0;
 
+		//
+		// Interpreter
+		//
+		virtual int interpret(void) { return 0; }
+
 		virtual const std::string &	getNodeName(void)						= 0;
 		virtual const std::string &	getNodeValue(void)						= 0;
 		virtual void			setNodeValue(const std::string & nodeValue)			= 0;

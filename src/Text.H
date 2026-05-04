@@ -44,6 +44,11 @@ public:
 	//
 	virtual void accept(dom::Visitor & visitor);
 
+	//
+	// Interpreter
+	//
+	virtual int interpret(void) override;
+
 	virtual const std::string &		getName(void);
 	virtual const std::string &		getData(void);
 	virtual const std::string &		getValue(void);

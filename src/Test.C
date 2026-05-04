@@ -22,6 +22,7 @@ void testDirector(int argc, char** argv);
 void testEvent(int argc, char** argv);
 void testCommand(int argc, char** argv);
 void testPrototype(int argc, char** argv);
+void testInterpreter(int argc, char** argv);
 
 void printUsage(void)
 {
@@ -34,6 +35,7 @@ void printUsage(void)
 	printf("\tTest e [file]\n");
 	printf("\tTest c\n");
 	printf("\tTest p [file]\n");
+	printf("\tTest n [file]\n");
 }
 
 int main(int argc, char** argv)
@@ -77,6 +79,10 @@ int main(int argc, char** argv)
 	case 'P':
 	case 'p':
 		testPrototype(argc, argv);
+		break;
+	case 'N':
+	case 'n':
+		testInterpreter(argc, argv);
 		break;
 	}
 }
@@ -429,4 +435,32 @@ void testPrototype(int argc, char** argv)
 	delete file;
 
 	// delete Document and tree.
+}
+
+void testInterpreter(int argc, char** argv)
+{
+	if (argc < 3)
+	{
+		printUsage();
+		exit(0);
+	}
+
+	std::shared_ptr<dom::Document>	document(new Document_Impl);
+	std::shared_ptr<StdOutObserver>	observer(new StdOutObserver);
+	std::shared_ptr<Builder>	builder(new Builder(document, observer));
+	Director			director(argv[2], builder);
+
+	std::shared_ptr<dom::Element>	root(document->getDocumentElement());
+
+	if (!root)
+	{
+		std::cerr << "No document element." << std::endl;
+		return;
+	}
+
+	// Interpreter client: the "context" for evaluation is this DOM subtree — built by Director/Builder from argv[2].
+	// Expressions recurse via interpret() return values; no separate Context object.
+	const int	result(root->interpret());
+
+	std::cout << result << std::endl;
 }
