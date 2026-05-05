@@ -27,6 +27,8 @@ target_sources(Patterns PUBLIC
 	NodeFlyweight.H
 	NodeList.H
 	Observer.H
+	PatternsFacade.C
+	PatternsFacade.H
 	ParserState.C
 	ParserState.H
 	SerializeVisitor.C
