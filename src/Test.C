@@ -83,10 +83,10 @@ int main(int argc, char** argv)
 		if (requireArgs(argc, 3))
 			app.prototype(argv[2]);
 		break;
-	// case 'N':
-	// case 'n':
-	// 	if (requireArgs(argc, 3))
-	// 		app.interpret(argv[2]);
-	// 	break;
-	// }
+	case 'N':
+	case 'n':
+		if (requireArgs(argc, 3))
+			app.interpret(argv[2]);
+		break;
+	}
 }
